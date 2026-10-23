@@ -817,7 +817,10 @@ const mnH=m=>m?`<div class="mnh"><div class="mh">Mnemonics</div><div class="mt">
 // ===== GitHub release update checker =====
 const UPDATE_CONFIG=window.FL_UPDATE_CONFIG||{repository:'',tag:'latest-apk',buildSha:'',version:'development',buildNumber:0,signingMode:'unknown',releasePage:''};
 let APP_UPDATE={status:'idle',available:false,checkedAt:0,latestVersion:'',latestSha:'',apkUrl:'',releasePage:'',warning:'',error:''};
-const updateCacheKey=()=>`ceAppUpdate:${UPDATE_CONFIG.repository||'unconfigured'}`;
+// Scope cached results to the exact installed build. A cached result from build +6
+// must never be reused as if it belonged to build +7.
+const updateCacheKey=()=>`ceAppUpdate:${UPDATE_CONFIG.repository||'unconfigured'}:${UPDATE_CONFIG.buildNumber||UPDATE_CONFIG.version||'development'}:${UPDATE_CONFIG.buildSha||'no-sha'}`;
+const UPDATE_CACHE_TTL=10*60*1000; // keep ordinary cached results short-lived
 function updateStatusText(){
  if(!UPDATE_CONFIG.repository||!UPDATE_CONFIG.buildSha)return 'Update checking is available in APKs built by the project’s GitHub Actions workflow. This source/development build does not include a GitHub repository or build identity.';
  if(APP_UPDATE.status==='checking')return 'Checking GitHub Releases for the latest FormuLater build…';
@@ -830,7 +833,7 @@ function updateStatusText(){
 function renderUpdateUI(){
  const status=gid('appUpdateStatus');
  if(status){status.textContent=updateStatusText();status.classList.toggle('warn',APP_UPDATE.available&&!!APP_UPDATE.warning);status.classList.toggle('good',APP_UPDATE.status==='current')}
- const check=gid('checkAppUpdates');if(check){const st=APP_UPDATE.status,upToDate=st==='current'&&!APP_UPDATE.available;check.disabled=st==='checking'||upToDate;check.style.opacity=upToDate?'.5':'';check.textContent=st==='checking'?'Checking GitHub…':APP_UPDATE.available?'Download Update':upToDate?'Latest version is already installed':'Check for updates'}
+ const check=gid('checkAppUpdates');if(check){const st=APP_UPDATE.status;check.disabled=st==='checking';check.style.opacity=st==='checking'?'.65':'';check.textContent=st==='checking'?'Checking GitHub…':APP_UPDATE.available?'Download Update':st==='current'?'Check again for updates':'Check for updates'}
  updateMenuNotice();
 }
 function updateMenuNotice(){
@@ -843,7 +846,7 @@ async function checkAppUpdates(force=false){
  if(!force&&APP_UPDATE.status==='checking')return;
  const now=Date.now();
  if(!UPDATE_CONFIG.repository||!UPDATE_CONFIG.buildSha){APP_UPDATE={status:'error',available:false,error:'Update checking is only configured in APKs built by the project’s GitHub Actions workflow.'};renderUpdateUI();return}
- if(!force){try{const cached=JSON.parse(localStorage.getItem(updateCacheKey())||'null');if(cached&&now-(+cached.checkedAt||0)<6*60*60*1000){APP_UPDATE=cached;renderUpdateUI();return}}catch(_){}}
+ if(!force){try{const cached=JSON.parse(localStorage.getItem(updateCacheKey())||'null');if(cached&&now-(+cached.checkedAt||0)<UPDATE_CACHE_TTL){APP_UPDATE=cached;renderUpdateUI();return}}catch(_){}}
  APP_UPDATE={...APP_UPDATE,status:'checking',available:false,error:''};renderUpdateUI();
  try{
   const repo=String(UPDATE_CONFIG.repository).trim();
@@ -869,7 +872,12 @@ async function checkAppUpdates(force=false){
   if(!latest||!latest.buildSha){
    throw new Error('This release does not contain embedded update metadata yet. Publish a new APK using the updated Build APK workflow, then install that build once.');
   }
-  const available=String(latest.buildSha)!==String(UPDATE_CONFIG.buildSha)||String(latest.signingMode||'')!==String(UPDATE_CONFIG.signingMode||'');
+  // Compare the CI build number as well as the commit SHA. Re-running Actions
+  // on the same commit creates a newer APK (+7 after +6) with the same SHA.
+  const installedNumber=Number(UPDATE_CONFIG.buildNumber)||Number(String(UPDATE_CONFIG.version||'').match(/\+(\d+)$/)?.[1]||0);
+  const latestNumber=Number(latest.buildNumber)||Number(String(latest.version||'').match(/\+(\d+)$/)?.[1]||0);
+  const newerBuild=latestNumber>installedNumber;
+  const available=newerBuild||String(latest.buildSha)!==String(UPDATE_CONFIG.buildSha)||String(latest.signingMode||'')!==String(UPDATE_CONFIG.signingMode||'');
   const warning=(available&&(UPDATE_CONFIG.signingMode!=='release'||latest.signingMode!=='release'))
    ?'This APK is not configured with a persistent release-signing key. Android may refuse to install it over an existing build. Export your formulas before any uninstall/reinstall, and configure the same signing key for future releases.'
    :'';
