@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f2e8d5">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
-:root{--ff:Georgia,'Times New Roman',serif;--onacc:#4a3b2a;--tb:color-mix(in srgb,var(--ink) 16%,var(--card));--accd:color-mix(in srgb,var(--acc) 55%,var(--ink));--bg:#f2e8d5;--card:#fbf6ea;--ink:#4a3b2a;--mut:#8a7a62;--pill:#e4d5b7;--acc:#b08a52;--native-safe-top:0px;--native-safe-bottom:0px;box-sizing:border-box;padding-top:max(env(safe-area-inset-top,0px),var(--native-safe-top,0px));padding-bottom:max(env(safe-area-inset-bottom,0px),var(--native-safe-bottom,0px))}
+:root{--ff:'Roboto','Arial',system-ui,sans-serif;--onacc:#4a3b2a;--tb:color-mix(in srgb,var(--ink) 16%,var(--card));--accd:color-mix(in srgb,var(--acc) 55%,var(--ink));--bg:#f2e8d5;--card:#fbf6ea;--ink:#4a3b2a;--mut:#8a7a62;--pill:#e4d5b7;--acc:#b08a52;--native-safe-top:0px;--native-safe-bottom:0px;box-sizing:border-box;padding-top:max(env(safe-area-inset-top,0px),var(--native-safe-top,0px));padding-bottom:max(env(safe-area-inset-bottom,0px),var(--native-safe-bottom,0px))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b241b;--card:#3a3126;--ink:#f1e6d0;--mut:#b5a58a;--pill:#4a3f30;--acc:#d2a967}}
 :root[data-theme="dark"]{--bg:#2b241b;--card:#3a3126;--ink:#f1e6d0;--mut:#b5a58a;--pill:#4a3f30;--acc:#d2a967}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -178,7 +178,11 @@ input,textarea,select{border:2px solid var(--tb);border-bottom-width:4px;border-
 #bo.show{opacity:1;pointer-events:auto}
 #bs{overflow-y:auto;position:fixed;left:0;right:0;bottom:0;z-index:8;max-height:68dvh;background:var(--card);border:2px solid var(--tb);border-bottom:0;border-radius:24px 24px 0 0;padding:14px 18px calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;gap:12px}
 #bs.show{transform:none}
-.bh{display:flex;justify-content:space-between;align-items:center}
+.bh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.formula-action-tools{display:flex;align-items:center;gap:6px;flex:none}
+.formula-action-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex:none;padding:5px;background:transparent;color:var(--accd);border:2px solid var(--tb);border-radius:12px}
+.formula-action-icon svg{display:block;width:23px;height:23px}
+.formula-action-icon[aria-pressed="true"]{background:var(--pill)}
 .bg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;overflow-y:auto;overscroll-behavior:contain;padding:4px 2px 8px}
 .blk{position:relative;aspect-ratio:1;background:var(--card);color:var(--ink);border:2px solid var(--tb);border-bottom-width:4px;border-radius:14px;font:600 17px var(--ff);touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .blk.cur{background:var(--acc);color:var(--onacc);border-color:var(--accd)}
@@ -234,7 +238,7 @@ input[type=range]{border:0;padding:0;background:none;accent-color:var(--acc);wid
 .bp.fxw .fx{padding:.15em 0 .35em}
 /* FIX 1: on-screen QWERTY keyboard */
 .kb{display:flex;flex-direction:column;gap:7px;flex:none}
-.kr{display:flex;gap:5px;justify-content:center}
+.kr{display:flex;gap:7px;justify-content:center}
 .kr.ind{padding:0 5%}
 .kr .tile{flex:1 1 0;min-width:0;min-height:48px;padding:0 2px;display:flex;align-items:center;justify-content:center;font-size:20px;border-radius:12px}
 .kr .tile.w{flex:1.5 1 0}
@@ -256,22 +260,36 @@ input[type=range]{border:0;padding:0;background:none;accent-color:var(--acc);wid
 .erow .dd{flex:0 0 46%;width:auto}
 .opts>.opts{margin-bottom:4px}
 /* Formula variants in Build & Edit */
-.variant-editbar{display:flex;flex-direction:column;gap:7px;margin:2px 0 5px}
-.variant-editbar>.variant-label{font-size:11px;margin:0;background:transparent;border:0;color:var(--mut);font:inherit;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:none;cursor:pointer;padding:7px;line-height:1.4}.variant-block>.variant-label{text-transform:none;letter-spacing:.04em;font-size:11px}.variant-editbar>.variant-label small{display:block;font-size:10px;letter-spacing:0;text-transform:none;font-weight:500;margin-top:2px}
-.variant-edit-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
-.variant-edit-tabs .pill{min-height:34px;padding:6px 11px;font-size:12px;justify-content:center}
+.variant-editbar{display:flex;flex-direction:column;align-items:stretch;gap:7px;margin:2px 0 5px}
+.variant-block>.variant-label{text-transform:none;letter-spacing:.04em;font-size:11px}
+.variant-edit-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:start;align-items:stretch;gap:7px;max-width:520px}
+.variant-edit-tabs .pill{position:relative;min-width:0;min-height:42px;padding:8px 11px;font-size:13px;justify-content:flex-start;text-align:left;align-items:center;flex-wrap:wrap;overflow:hidden;white-space:normal;overflow-wrap:anywhere}
+.variant-edit-tabs .pill>span{min-width:0}
 .variant-edit-tabs .pill.on{background:var(--acc);border-color:var(--accd);color:var(--onacc)}
-.variant-edit-actions{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.variant-edit-tabs .variant-rename-hint{display:block;flex:1 0 100%;font-size:10px;line-height:1.25;letter-spacing:0;font-weight:500;color:var(--mut);margin-top:2px}
+.variant-edit-tabs .pill.on .variant-rename-hint{color:var(--onacc)}
+.variant-edit-tabs .variant-add{font-size:22px;font-weight:500;justify-content:center;text-align:center;padding:5px}
+.variant-edit-actions{display:flex;justify-content:flex-start;gap:7px;flex-wrap:wrap}
 .variant-edit-actions .pill{min-height:34px;padding:6px 11px;font-size:12px;justify-content:center}
 .variant-edit-actions .pill:disabled{opacity:.45}
+/* Icon-only native keyboard toggle and accent-highlighted syntax guide. */
+.builder-beam-row{display:flex;align-items:center;justify-content:flex-end;margin:-2px 0 -3px}.builder-add-beam{min-height:34px;padding:6px 12px;font-size:13px;text-transform:none;letter-spacing:0;justify-content:center;line-height:1}.builder-keyboard-row{display:flex;align-items:center;justify-content:flex-start;min-height:40px;margin:-2px 0 0}
+.builder-kb-icon{width:44px;height:40px;min-width:44px;min-height:40px;padding:7px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.builder-kb-icon svg{display:block;width:24px;height:24px}
+.builder-kb-icon.sel{background:var(--acc);color:var(--onacc);border-color:var(--accd)}
+#mb.kb-guide-highlight{background:var(--acc);color:var(--onacc)!important;border:2px solid var(--accd);border-radius:12px;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 24%,transparent)}
+#mb.kb-guide-highlight:active{transform:scale(.96)}
 
 /* v7: flashcards centred, chevron at the bottom (no box) */
 .fmid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:0}
 .fmid .scene{flex:none;height:clamp(320px,58dvh,470px);max-height:none}
 .fbar{margin-top:auto;padding-top:6px}
-.up{background:none;border:0;box-shadow:none;color:var(--mut);padding:10px 56px 4px;min-height:48px;display:flex;align-items:center;justify-content:center}
+.up{background:none;border:0;box-shadow:none;color:var(--mut);padding:10px 40px 4px;min-height:48px;display:flex;align-items:center;justify-content:center;gap:24px}
 .up:active{transform:translateY(-3px)}
-.chv{display:block;width:18px;height:18px;border-left:3.5px solid currentColor;border-top:3.5px solid currentColor;border-radius:3px;transform:rotate(45deg);margin-top:8px}
+.chv{display:block;width:18px;height:18px;border-left:3.5px solid currentColor;border-top:3.5px solid currentColor;border-radius:3px;transform:rotate(45deg);margin-top:8px;flex:none}
+.up-share{display:flex;align-items:center;justify-content:center;flex:none;padding:5px;border-radius:10px;color:var(--accd)}
+.up-share svg{display:block;width:21px;height:21px}
+.up-share:active{background:var(--pill)}
 .blk{will-change:transform}
 #sb:not(.open){box-shadow:none}
 /* nth roots + integrals */
@@ -574,8 +592,13 @@ main{padding-left:max(var(--pad-x),calc((100% - var(--colw))/2));padding-right:m
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* where: subscript / superscript / fractions */
-.wo{margin:0 .24em}.wf{vertical-align:middle;margin:0 .12em;font-size:.95em}.where .fx .fr>.n,.where .fx .fr>.d{padding:0 .22em}
-.ws,.wp{font-size:.72em;line-height:0}.ws{vertical-align:sub}.wp{vertical-align:super}
+.wo{margin:0 .24em}
+.wf{display:inline-flex;align-items:center;vertical-align:middle;margin:.04em .16em;font-size:1em;line-height:1.15;white-space:normal}
+.where .wf .fr{display:inline-flex;flex-direction:column;align-items:stretch;justify-content:center;vertical-align:middle;margin:0 .14em;line-height:1.05;max-width:100%}
+.where .wf .fr>.n,.where .wf .fr>.d{padding-left:.22em;padding-right:.22em;min-height:1em;justify-content:center}
+.where .wf .fr>.n{padding-bottom:.12em}
+.where .wf .fr>.d{padding-top:.12em}
+.ws,.wp{font-size:.72em;line-height:1}.ws{vertical-align:sub}.wp{vertical-align:super}
 /* stretchy brackets: ( ) and [ ] grow with what is inside */
 .fx .bkg{display:inline-flex;align-items:stretch}
 .fx .bki{display:inline-flex;align-items:center}
@@ -602,7 +625,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .beam-diagram text{font-family:var(--ff);fill:currentColor}.beam-diagram .beam-caption{font-size:9px;fill:var(--mut)}
 .beam-builder{display:flex;flex-direction:column;gap:12px;padding-bottom:12px}
 /* Keep the live beam preview pinned while the editor fields scroll. */
-.beam-builder #beamPreview{position:sticky;top:0;z-index:8;background:var(--bg);padding:4px 0;isolation:isolate;}
+.beam-builder .beam-freeze-pane{position:sticky;top:0;z-index:8;background:var(--bg);padding:4px 0 8px;isolation:isolate;display:flex;flex-direction:column;gap:8px}.beam-builder #beamPreview{position:static;background:var(--bg);padding:0;}
 .beam-builder .beam-drag-tip[data-dismissed="true"]{display:none}
 .beam-builder .beam-intro{font-size:13px;line-height:1.45;color:var(--mut);margin-top:-5px}
 .beam-mem-canvas{width:100%;max-width:520px;margin:10px auto 0;font-size:initial;text-align:left}.beam-mem-canvas .beam-diagram{max-height:170px}.beam-preview-head{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);font-weight:700;padding:2px 3px}
@@ -623,14 +646,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .beam-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px;margin-top:4px}
 .beam-actions .pill{justify-content:center;text-align:center;padding:13px 8px}
 .beam-empty{font-size:13px;color:var(--mut);text-align:center;border:1px dashed var(--tb);border-radius:12px;padding:14px}
-.beam-diagram .beam-support-hit{cursor:ew-resize;touch-action:none}.beam-diagram-wrap{touch-action:pan-y}.beam-support-card .beam-loadhead{margin-bottom:1px}.beam-support-card input[type=range]{accent-color:var(--accd)}.beam-support-card select{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--tb);border-radius:11px;padding:10px 9px;font:14px var(--ff)}#beamSnap{width:22px;height:22px;accent-color:var(--accd);align-self:flex-start}
+.beam-diagram .beam-support-hit{cursor:ew-resize;touch-action:none}.beam-diagram-wrap{touch-action:pan-y}.beam-support-card .beam-loadhead{margin-bottom:1px}.beam-support-card input[type=range]{accent-color:var(--accd)}.beam-support-card select{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--tb);border-radius:11px;padding:10px 9px;font:14px var(--ff)}#beamSnap{width:22px;height:22px;accent-color:var(--accd);align-self:flex-start}.beam-check-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;border:1.5px solid var(--tb);border-radius:11px;background:var(--card);color:var(--ink);font-size:13px;line-height:1.35}.beam-check-row input{width:22px;height:22px;flex:none;accent-color:var(--accd)}
 .beam-palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:2px 0 4px}.beam-palette-group{display:flex;flex-direction:column;gap:7px;margin:4px 0}.beam-palette-title{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);font-weight:800}.beam-palette-item{min-width:0;min-height:58px;padding:9px 6px;border:2px solid var(--tb);border-bottom-width:4px;border-radius:12px;background:var(--card);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;font:700 12px var(--ff);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}.beam-palette-item .beam-tool-icon{font-size:19px;line-height:1}.beam-palette-item:active,.beam-palette-item.dragging{cursor:grabbing;border-color:var(--accd);background:var(--pill)}.beam-palette-help{font-size:12px;color:var(--mut);line-height:1.4}.beam-diagram-wrap.beam-drop-active{border-color:var(--accd);box-shadow:0 0 0 3px color-mix(in srgb,var(--accd) 20%,transparent)}.beam-diagram-wrap.beam-drop-active .beam-diagram{cursor:copy}.beam-diagram .beam-load-hit{cursor:grab;pointer-events:all;touch-action:none}.beam-diagram .beam-support-hit{cursor:ew-resize}.beam-drag-ghost{position:fixed;z-index:999999;pointer-events:none;transform:translate(12px,12px);padding:9px 13px;border:2px solid var(--accd);border-radius:12px;background:var(--card);color:var(--ink);box-shadow:0 8px 24px #0003;font:700 12px var(--ff);white-space:nowrap}.beam-drag-ghost[hidden]{display:none}@media(max-width:380px){.beam-palette{grid-template-columns:repeat(2,minmax(0,1fr))}.beam-palette-item{min-height:52px}}
 @media(max-width:380px){.beam-fields,.beam-loadfields{grid-template-columns:minmax(0,1fr)}.beam-loadfields .full{grid-column:auto}.beam-toolrow{grid-template-columns:repeat(2,minmax(0,1fr))}.beam-toolrow .pill{font-size:11px}}
 
 
 /* ===== Phase 2 ===== */
-.pill.violet{background:#7c3aed!important;color:#fff!important;border-color:#6d28d9!important;box-shadow:0 3px 0 #5b21b6}
-.category-delete-confirm.pending{border-color:#c4b5fd;background:color-mix(in srgb,#ede9fe 72%,var(--card));color:#4c1d95}
+.pill.violet{background:#7c3aed!important;color:#fff!important;border-color:#6d28d9!important;box-shadow:0 3px 0 #5b21b6}.category-delete-options{display:flex;flex-direction:column;gap:7px;margin-top:10px}.category-delete-choice{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important;overflow:hidden;text-overflow:clip;font-size:11px!important;line-height:1!important;padding:9px 5px!important;min-width:0;width:100%;font-weight:700}.category-delete-options-wrap{padding:12px}.category-delete-confirm.pending{border-color:#c4b5fd;background:color-mix(in srgb,#ede9fe 72%,var(--card));color:#4c1d95}
 .variant-stack{display:flex;flex-direction:column;gap:10px;min-width:0;width:100%}
 .variant-block>.variant-label{text-align:left}
 main.fl,main.va,#pv{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -641,36 +663,43 @@ main.fl input,main.fl textarea,main.va input,main.va textarea{-webkit-user-selec
 .kr .tile.ph{visibility:hidden;pointer-events:none}
 .etools.l2{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
 .etools.l2 .tile{max-width:none;width:100%;min-height:46px}
-.keyboard-layer{display:flex;flex-direction:column;gap:6px;min-width:0}.keyboard-layer+.keyboard-layer{border-top:1px solid var(--tb);padding-top:6px}
-main.nkb{padding-bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+.keyboard-layer{display:flex;flex-direction:column;gap:7px;min-width:0}.keyboard-layer+.keyboard-layer{border-top:1px solid var(--tb);padding-top:7px}
+main.nkb{padding-bottom:calc(var(--npbar-space,200px) + env(safe-area-inset-bottom,0px))}
 /* Keep the memorization keypad immediately above Skip, not floating high in the available column. */
 main.memv #op{margin-top:auto;margin-bottom:8px;gap:6px;flex-shrink:0}
 main.memv .nav.b{margin-top:0;align-self:stretch}
 main.memv .nav.b #sk{justify-content:center}
-main.memv .kp{display:flex;flex-direction:column;gap:6px;min-height:0;max-height:36dvh;overflow-y:auto;align-content:stretch}
-main.memv .kp .kr{width:100%;gap:5px}
+main.memv .kp{display:flex;flex-direction:column;gap:7px;min-height:0;max-height:36dvh;overflow-y:auto;align-content:stretch}
+main.memv .kp .kr{width:100%;gap:7px}
 main.memv .kp .kr .tile{flex:1 1 0;min-width:0;min-height:46px;padding:0 2px;display:flex;align-items:center;justify-content:center;font-size:19px}
 main.memv .kp .kr .tile.ph{visibility:hidden;pointer-events:none}
-.npbar{position:fixed;left:0;right:0;bottom:var(--npb,0px);z-index:30;background:var(--bg);border-top:2px solid var(--tb);padding:2px 10px calc(env(safe-area-inset-bottom,0px) + 6px);display:flex;flex-direction:column;gap:6px;box-shadow:0 -4px 14px rgba(0,0,0,.12)}
-.nphandle{height:22px;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:ns-resize}
-.nphandle i{display:block;width:46px;height:5px;border-radius:3px;background:var(--mut);opacity:.55}
+.npbar{box-sizing:border-box;position:fixed;left:0;right:0;bottom:var(--npb,0px);z-index:30;background:var(--bg);border-top:2px solid var(--tb);padding:6px 10px calc(env(safe-area-inset-bottom,0px) + 6px);display:flex;flex-direction:column;gap:6px;box-shadow:0 -4px 14px rgba(0,0,0,.12)}
 .nppills{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 0}
 .nppills::-webkit-scrollbar,.npkeys::-webkit-scrollbar{display:none}
 .nppill{flex:none;border-radius:999px;padding:8px 16px;border:2px solid var(--tb);background:var(--pill);color:var(--ink);font:600 14px var(--ff);white-space:nowrap}
 .nppill.on{background:var(--acc);color:var(--onacc);border-color:var(--accd)}
+.npnav{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:0 0 1px}
+.npnav .tile{min-width:42px;min-height:38px;padding:3px 12px;font-size:19px;line-height:1}
 .npkeys{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px}
 .npkeys .tile{flex:none;min-width:46px;min-height:46px;padding:4px 10px;font-size:19px}
+.npkeys .npstruct{display:flex;align-items:center;justify-content:center;gap:2px}
+.npkeys .npstruct .fx{font-size:21px;line-height:1}
 #nkin{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;border:0;padding:0;margin:0;pointer-events:none}
-.sharecard{box-sizing:border-box;padding:40px;background:#fffdf8;color:#1d1b16;font-family:var(--ff);line-height:1.4}
-.sharecard .sc-name{font-size:34px;font-weight:700;text-align:center;line-height:1.2;margin-bottom:14px}
-.sharecard .sc-block{margin:10px 0}
-.sharecard .sc-label{font-size:14px;font-weight:800;letter-spacing:.06em;text-align:left;color:#5e5a50;margin-bottom:6px}
-.sharecard .fxw{font-size:38px;text-align:center;overflow:visible}
-.sharecard .sc-sec{border-top:1px solid #d8cfba;margin-top:18px;padding-top:12px}
-.sharecard .sc-h{font-size:14px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5e5a50;margin-bottom:6px;text-align:left}
-.sharecard .sc-line{font-size:21px;line-height:1.7;text-align:left}
-.sharecard .sc-diagram{margin-top:6px}
+
+.sharecard{box-sizing:border-box;padding:28px;background:var(--bg);color:var(--ink);font-family:var(--ff);line-height:1.4}
+.sharecard .sc-paper{box-sizing:border-box;width:100%;padding:40px;background:var(--card);color:var(--ink);border:2px solid var(--tb);border-radius:30px}
+.sharecard .sc-name{font-size:34px;font-weight:700;text-align:center;line-height:1.2;margin-bottom:18px;color:var(--ink)}
+.sharecard .sc-block{margin:12px 0}
+.sharecard .sc-label{font-size:14px;font-weight:800;letter-spacing:.06em;text-align:left;color:var(--mut);margin-bottom:6px}
+.sharecard .fxw{font-size:38px;text-align:center;overflow:visible;color:var(--ink)}
+.sharecard .sc-sec{border-top:1px solid var(--tb);margin-top:18px;padding-top:12px}
+.sharecard .sc-h{font-size:14px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:6px;text-align:left}
+.sharecard .sc-line{font-size:21px;line-height:1.65;text-align:left;color:var(--ink)}
+.sharecard .sc-diagram{margin-top:10px}
 .sgnote{font-size:13px;line-height:1.45;color:var(--mut);margin:0 0 6px}
+
+/* Clear numeric glyphs and consistent digit widths for formulas, answers, and beam dimensions. */
+.formula,.formula2,.q,.ans,.tile,.fx,.beam-diagram text,.beam-value,.beam-field input[type=number],.beam-field input[type=text],.beam-field select,.cn,.name,.where,.mw .mb,.mt,.blk,.cnt{font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
 </style></head>
 <body>
 <header><button class="back" id="back" hidden>‹</button><h1 id="title">FormuLater</h1><button class="back" id="mb" hidden>☰</button></header>
@@ -768,7 +797,7 @@ let state={view:'menu'};
 let RESUME={};try{RESUME=JSON.parse(localStorage.getItem('celast')||'{}')}catch(e){}
 const lastGet=(m,c)=>(RESUME[m]||{})[c];
 const lastSet=(m,c,v)=>{const o=RESUME[m]=RESUME[m]||{};if(JSON.stringify(o[c])===JSON.stringify(v))return;o[c]=v;try{localStorage.setItem('celast',JSON.stringify(RESUME))}catch(e){}};
-const fade=()=>{app.onclick=null;document.getElementById('fb').classList.remove('show');app.style.overflowY='';app.classList.remove('ctr','fl','memv','va','nkb');mb.textContent='☰';mb.onclick=sidebar;mb.style.color='';app.style.paddingTop='';gid('gb').hidden=true;{const sh=gid('shb');if(sh)sh.hidden=true}nativeKbCleanup();['bs','bo','pv','ab'].forEach(i=>document.getElementById(i).classList.remove('show'));setTimeout(syncHist,0);app.style.animation='none';void app.offsetWidth;app.style.animation='in .3s cubic-bezier(.2,.7,.2,1)'};
+const fade=()=>{app.onclick=null;document.getElementById('fb').classList.remove('show');app.style.overflowY='';app.classList.remove('ctr','fl','memv','va','nkb');mb.textContent='☰';mb.onclick=sidebar;mb.style.color='';mb.classList.remove('kb-guide-highlight');app.style.paddingTop='';gid('gb').hidden=true;{const sh=gid('shb');if(sh)sh.hidden=true}nativeKbCleanup();['bs','bo','pv','ab'].forEach(i=>document.getElementById(i).classList.remove('show'));setTimeout(syncHist,0);app.style.animation='none';void app.offsetWidth;app.style.animation='in .3s cubic-bezier(.2,.7,.2,1)'};
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 // star icon: identical box + stroke whether marked or not, so it never changes size or moves
 const STARI=on=>`<svg class="si2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.8 6.35.8-4.65 4.4 1.18 6.3L12 17.05 6.37 20.1l1.18-6.3L2.9 9.4l6.35-.8z" fill="${on?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>`;
@@ -918,30 +947,36 @@ function createCategory(name){
 }
 function openCategoryManager(cat,mode,returnTo,allowDeleteCategory=false){
  const bs=gid('bs'),bo=gid('bo');bs.onpointerdown=bs.onpointermove=bs.onpointerup=bs.onpointercancel=bs.onclick=null;
- const hasCat=!!cat;let deleteConfirm=false,deleteSubConfirm=-1;const pendingSubs=[];const isPending=sub=>pendingSubs.some(x=>categoryNorm(x)===categoryNorm(sub));
+ const hasCat=!!cat;let deleteConfirm=false,deleteSubConfirm=-1;const pendingSubs=[];const isPending=sub=>pendingSubs.some(x=>categoryNorm(x.name)===categoryNorm(sub));
  const render=(message='',success=false)=>{
   const subs=hasCat?subcategoriesFor(cat):[],contents=hasCat?(CATS[cat]||[]):[];
   const deleteUI=allowDeleteCategory&&hasCat&&contents.length&&categoryKeys().length>1?(deleteConfirm?`<div class="category-delete-confirm" role="alert"><div>Delete “${esc(categoryName(cat))}” and move all ${contents.length} formula${contents.length===1?'':'s'} to Trash? You can restore individual formulas from Trash.</div><div class="grp"><button class="pill danger" data-cat-action="confirmdelete">Yes, delete</button><button class="pill" data-cat-action="canceldelete">No, keep it</button></div></div>`:`<button class="pill danger" data-cat-action="delete" style="justify-content:center">Delete category</button>`):'';
   const subRows=subs.map((sub,i)=>{
    const subCount=contents.filter(d=>categoryNorm(d.s||'')===categoryNorm(sub)).length;
-   if(isPending(sub))return `<div class="category-delete-confirm pending" role="status"><div>“${esc(sub)}” and ${subCount} formula${subCount===1?'':'s'} will be moved to Trash when you press Done.</div><div class="grp"><button class="pill" data-cat-action="undodeletesub" data-index="${i}">Undo</button></div></div>`;
-   if(deleteSubConfirm===i)return `<div class="category-delete-confirm" role="alert"><div>Delete subcategory “${esc(sub)}” and move ${subCount} formula${subCount===1?'':'s'} to Trash? You can restore them from Build &amp; Edit → Trash.</div><div class="grp"><button class="pill violet" data-cat-action="confirmdeletesub" data-index="${i}">Yes, delete subcategory and formulas</button><button class="pill" data-cat-action="canceldeletesub">No, keep it</button></div></div>`;
+   const pending=pendingSubs.find(x=>categoryNorm(x.name)===categoryNorm(sub));
+   if(pending)return `<div class="category-delete-confirm pending" role="status"><div>“${esc(sub)}” is queued for deletion. ${pending.deleteFormulas?`${subCount} formula${subCount===1?'':'s'} will be moved to Trash.`:`${subCount} formula${subCount===1?'':'s'} will be kept in “${esc(categoryName(cat))}”.`}</div><div class="grp"><button class="pill category-delete-choice" data-cat-action="undodeletesub" data-index="${i}">Undo</button></div></div>`;
+   if(deleteSubConfirm===i)return `<div class="category-delete-confirm category-delete-options-wrap" role="alert"><div>Delete subcategory “${esc(sub)}”? Choose whether to keep or delete its ${subCount} formula${subCount===1?'':'s'}.</div><div class="category-delete-options"><button class="pill danger category-delete-choice" data-cat-action="confirmsubcategory" data-index="${i}">Yes, delete subcategory</button><button class="pill violet category-delete-choice" data-cat-action="confirmdeletesub" data-index="${i}">Yes delete subcategory and formulas</button><button class="pill category-delete-choice" data-cat-action="canceldeletesub">No keep it</button></div></div>`;
    return `<div class="erow"><input maxlength="80" id="subName${i}" value="${escA(sub)}" aria-label="Subcategory name"><button class="pill g" data-cat-action="renamesub" data-index="${i}">Save</button><button class="pill danger g" data-cat-action="deletesub" data-index="${i}" aria-label="Delete subcategory ${escA(sub)}">Delete</button></div>`;
   }).join('');
   bs.innerHTML=`<div class="bh"><b>${hasCat?`Manage “${esc(categoryName(cat))}”`:'Add category'}</b></div>${hasCat?`<div class="lbl">Category name</div><input id="categoryNameInput" maxlength="80" value="${escA(categoryName(cat))}" placeholder="e.g. MSTC"><button class="pill on" data-cat-action="rename" style="justify-content:center">Save category name</button><div class="lbl">Subcategories</div>${subRows||'<div class="msg">No subcategories yet.</div>'}<div class="lbl">Add subcategory</div><div class="erow"><input id="newSubcategoryInput" maxlength="80" placeholder="e.g. Stress and strain"><button class="pill g" data-cat-action="addsub">Add</button></div>${deleteUI}`:''}${!hasCat?`<div class="lbl">Add new category</div><div class="erow"><input id="newCategoryInput" maxlength="80" placeholder="Category name"><button class="pill g" data-cat-action="addcat">Add</button></div>`:''}${message?`<div class="msg${success?' success':''}" id="categoryManagerMessage">${esc(message)}</div>`:''}<button class="pill" data-cat-action="close" style="justify-content:center">Done</button>`;
  };
  // Subcategory deletions are staged; they are applied when "Done" is pressed or when the person taps outside the dialog.
  const commitPending=()=>{
-  if(!pendingSubs.length)return 0;let moved=0;const names=[...pendingSubs];pendingSubs.length=0;
-  for(const old of names){
-   const oldNorm=categoryNorm(old),doomed=(CATS[cat]||[]).filter(d=>categoryNorm(d.s||'')===oldNorm);
+  if(!pendingSubs.length)return 0;let movedToTrash=0,keptInCategory=0;const operations=[...pendingSubs];pendingSubs.length=0;
+  for(const op of operations){
+   const old=op.name,oldNorm=categoryNorm(old),doomed=(CATS[cat]||[]).filter(d=>categoryNorm(d.s||'')===oldNorm);
    for(const d of doomed){
-    if(d.b){const baseCat=String(d.k0||'').split(':')[0];if(BASE_CAT_IDS.includes(baseCat))EDITS[d.k0]={...(EDITS[d.k0]||{}),c:baseCat,s:''};delete BUILTIN_LOCATIONS[d.k0]}
-    delF(d);moved++}
+    if(op.deleteFormulas){delF(d);movedToTrash++}
+    else{
+     d.s='';
+     if(d.b){BUILTIN_LOCATIONS[d.k0]={c:cat,s:''};if(EDITS[d.k0])EDITS[d.k0]={...EDITS[d.k0],c:cat,s:''}}
+     keptInCategory++;
+    }
+   }
    CAT_META.subcategories[cat]=subcategoriesFor(cat).filter(x=>categoryNorm(x)!==oldNorm)}
-  try{localStorage.setItem(BUILTIN_LOC_KEY,JSON.stringify(BUILTIN_LOCATIONS))}catch(_){};sv('ceedits',EDITS);sv('cetrash',TRASH);persistCategoryMeta();
-  showAppToast(`${names.length===1?'Subcategory':'Subcategories'} deleted${moved?`; ${moved} formula${moved===1?'':'s'} moved to Trash`:''}.`);
-  return names.length};
+  try{localStorage.setItem(BUILTIN_LOC_KEY,JSON.stringify(BUILTIN_LOCATIONS))}catch(_){};sv('ceedits',EDITS);sv('cetrash',TRASH);saveU();persistCategoryMeta();
+  showAppToast(`${operations.length===1?'Subcategory':'Subcategories'} deleted${movedToTrash?`; ${movedToTrash} formula${movedToTrash===1?'':'s'} moved to Trash`:''}${keptInCategory?`; ${keptInCategory} formula${keptInCategory===1?'':'s'} kept in ${categoryName(cat)}`:''}.`);
+  return operations.length};
  const close=()=>{commitPending();bs.classList.remove('show');bo.classList.remove('show');bs.onclick=null;bo.onclick=null;if(returnTo)returnTo()};
  render('');bo.onclick=()=>{const n=commitPending();bs.classList.remove('show');bo.classList.remove('show');bs.onclick=null;bo.onclick=null;if(n&&returnTo)returnTo()};
  bs.onclick=e=>{
@@ -951,12 +986,12 @@ function openCategoryManager(cat,mode,returnTo,allowDeleteCategory=false){
   if(action==='canceldelete'){deleteConfirm=false;render();return}
   if(action==='deletesub'){deleteSubConfirm=Number(b.dataset.index);render();return}
   if(action==='canceldeletesub'){deleteSubConfirm=-1;render();return}
-  if(action==='undodeletesub'){const old=subcategoriesFor(cat)[Number(b.dataset.index)];if(old){const k=pendingSubs.findIndex(x=>categoryNorm(x)===categoryNorm(old));if(k>=0)pendingSubs.splice(k,1)}render('Deletion cancelled.',true);return}
-  if(action==='confirmdeletesub'){
-   const index=Number(b.dataset.index),old=subcategoriesFor(cat)[index];
+  if(action==='undodeletesub'){const old=subcategoriesFor(cat)[Number(b.dataset.index)];if(old){const k=pendingSubs.findIndex(x=>categoryNorm(x.name)===categoryNorm(old));if(k>=0)pendingSubs.splice(k,1)}render('Deletion cancelled.',true);return}
+  if(action==='confirmsubcategory'||action==='confirmdeletesub'){
+   const index=Number(b.dataset.index),old=subcategoriesFor(cat)[index],deleteFormulas=action==='confirmdeletesub';
    if(!hasCat||!Number.isInteger(index)||!old){deleteSubConfirm=-1;render('That subcategory no longer exists.');return}
-   if(!isPending(old))pendingSubs.push(old);
-   deleteSubConfirm=-1;render(`“${old}” will be deleted when you press Done. Tap outside this window to delete it right away.`,true);return
+   if(!isPending(old))pendingSubs.push({name:old,deleteFormulas});
+   deleteSubConfirm=-1;render(deleteFormulas?`“${old}” and its formulas will be moved to Trash when you press Done.`:`“${old}” will be removed and its formulas kept in “${categoryName(cat)}” when you press Done.`,true);return
   }
   if(action==='confirmdelete'){
    const doomed=[...(CATS[cat]||[])];if(!hasCat||!doomed.length||categoryKeys().length<=1){deleteConfirm=false;render(categoryKeys().length<=1?'Keep at least one category in the app.':'This category has no formulas to delete.');return}
@@ -1023,11 +1058,11 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
   idx=Math.max(quizFlow.batchStart,Math.min(idx,quizFlow.batchEnd));
  }
  const dismissHint=kind=>{if(kind==='flip'){showFlipHint=false;FLASH_FLIP_HINT_DISMISSED=hintDone('FLASH_FLIP_HINT_DISMISSED')}if(kind==='swipe'){showSwipeHint=false;FLASH_SWIPE_HINT_DISMISSED=hintDone('FLASH_SWIPE_HINT_DISMISSED')}const h=gid('flashHint');if(!h)return;if(!showFlipHint&&!showSwipeHint){h.classList.add('fade');setTimeout(()=>{if(h.isConnected)h.remove()},450);return}h.innerHTML=`${showFlipHint?'<span id="flipHint">Tap to flip</span>':''}${showFlipHint&&showSwipeHint?' · ':''}${showSwipeHint?'<span id="swipeHint">swipe for next</span>':''}`};
- app.innerHTML=`<div class="fmid"><div class="scene"><div class="drg" id="drg"><div class="card" id="card"><div class="face" id="f1"></div><div class="face back-f" id="f2"></div></div></div></div><div class="cnt" id="cn"></div></div><div class="fbar"><button class="up" id="up" aria-label="All cards"><i class="chv"></i></button></div>`;
+ app.innerHTML=`<div class="fmid"><div class="scene"><div class="drg" id="drg"><div class="card" id="card"><div class="face" id="f1"></div><div class="face back-f" id="f2"></div></div></div></div><div class="cnt" id="cn"></div></div><div class="fbar"><button class="up" id="up" aria-label="All cards; share current formula"><i class="chv" aria-hidden="true"></i><span class="up-share" data-share-current aria-label="Share current formula as image" title="Share formula">${ICO_SHARE.replace('width="26" height="26"','width="21" height="21"')}</span></button></div>`;
  const drg=gid('drg'),card=gid('card'),f1=gid('f1'),f2=gid('f2'),sc=app.querySelector('.scene'),bs=gid('bs'),bo=gid('bo'),pv=gid('pv');
  const stb=d=>`<button class="stb" data-star aria-label="Mark">${STARI(isS(cat,d))}</button>`;
  const saveFlowState=(phaseOverride,extra={})=>{if(!quizFlow)return;const phase=phaseOverride||quizFlow.phase||'flash';quizFlow.phase=phase;if(Number.isInteger(extra.quizPos))quizFlow.quizPos=extra.quizPos;if(Object.prototype.hasOwnProperty.call(extra,'currentQ'))quizFlow.currentQ=extra.currentQ;quizFlow.batchEnd=Math.min(list.length-1,quizFlow.batchStart+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(x=>x.n);saveFlashQuizProgress({cat,subcat,batchSize:quizFlow.batchSize,batchStart:quizFlow.batchStart,batchEnd:quizFlow.batchEnd,cardIndex:idx,cardName:list[idx]?.n||null,batchNames:quizFlow.batchNames,phase:quizFlow.phase,quizPos:Number.isInteger(quizFlow.quizPos)?quizFlow.quizPos:0,currentQ:quizFlow.currentQ??null,only:ONLY,paused:false});};
- const fill=()=>{const d=list[idx];lastSet('flash',cat,d.n);if(quizFlow)saveFlowState();{const sh=gid('shb');sh.hidden=false;sh.classList.remove('two');sh.innerHTML=ICO_SHARE;sh.setAttribute('aria-label','Share formula as image');sh.onclick=()=>shareFormulas([list[idx]])}
+ const fill=()=>{const d=list[idx];lastSet('flash',cat,d.n);if(quizFlow)saveFlowState();{const sh=gid('shb');sh.hidden=true;sh.classList.remove('two');sh.onclick=null}
   f1.innerHTML=`${stb(d)}<div class="name">${esc(d.n)}</div>${showFlipHint||showSwipeHint?`<div class="hint" id="flashHint">${showFlipHint?'<span id="flipHint">Tap to flip</span>':''}${showFlipHint&&showSwipeHint?' · ':''}${showSwipeHint?'<span id="swipeHint">swipe for next</span>':''}</div>`:''}`;
   f2.innerHTML=`${stb(d)}${formulaVersionsHTML(d,'formula')}`;
   gid('cn').textContent=quizFlow?`Quiz mode · ${idx-quizFlow.batchStart+1} / ${quizFlow.batchEnd-quizFlow.batchStart+1}`:`${idx+1} / ${list.length}`;
@@ -1058,7 +1093,7 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
  const draw=()=>{all=ordered(cat).filter(d=>!subcat||d.s===subcat);const cn=list[idx],shown=all.filter(d=>!ONLY||isS(cat,d)),batch=getFlashQuizBatch(),options=FLASH_QUIZ_BATCH_OPTIONS;
   const savedSheetProgress=getFlashQuizProgress(),canResume=savedSheetProgress&&savedSheetProgress.cat===cat&&(savedSheetProgress.subcat||'')===subcat;
   bs.onclick=null;
-  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))} · ${shown.length} cards</b><div class="quiz-controls"><button class="back" id="bst" aria-label="Show starred cards" title="Starred cards">${STARI(ONLY)}</button><button class="pill" id="quizModeBtn">${quizFlow?(quizFlow.phase==='quiz'?'Resume Quiz':'Pause Quiz Mode'):(canResume?'Resume Quiz':'Quiz')}</button><button class="pill g" id="flashSelectModeBtn">${FLASH_SELECT_MODE?'Done selecting':'Select multiple'}</button></div></div><div class="quizprefs"><div class="quizprefs-head"><span>Quiz after every</span><strong><span id="quizBatchLabel">${batch}</span> flashcards</strong></div><input id="quizBatchRange" type="range" min="0" max="${options.length-1}" step="1" value="${Math.max(0,options.indexOf(batch))}" aria-label="Number of flashcards before quiz"><div class="quizrangeends"><span>3 cards</span><span>50 cards</span></div><p class="quizhint">Choices: 3, 5, 10, 15, 20 … 50 cards.</p>${quizFlow?'<p class="quizhint">Your batch and quiz progress are saved on this device.</p>':'<p class="quizhint">Study a set, then answer a memorization-style quiz before the next set.</p>'}</div>${FLASH_EDIT_HINT_DISMISSED||FLASH_SELECT_MODE?'':'<div class="navhint" id="editHint">Double tap a number for formula options · hold to preview or drag to reorder</div>'}${FLASH_SELECT_MODE?'<div class="msg">Tap numbers to select or deselect formulas.</div>':''}<div class="bg" id="bgr">${shown.map(d=>{const k=all.indexOf(d);return `<button class="blk${d===cn?' cur':''}${isS(cat,d)?' st':''}${FLASH_SELECTED.has(d)?' selected':''}" data-k="${k}">${k+1}</button>`}).join('')}</div>${FLASH_SELECTED.size?`<div class="quiz-controls"><span>${FLASH_SELECTED.size} selected</span><button class="pill g" id="flashSelectAll">Select all</button><button class="pill on" id="flashMoveSelected">Move selected</button><button class="pill g" id="flashShareSelected">Share selected</button><button class="pill g" id="flashClearSelected">Clear</button></div>`:''}`;
+  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))}</b><div class="quiz-controls"><button class="back" id="bst" aria-label="Show starred cards" title="Starred cards">${STARI(ONLY)}</button><button class="pill" id="quizModeBtn">${quizFlow?(quizFlow.phase==='quiz'?'Resume Quiz':'Pause Quiz Mode'):(canResume?'Resume Quiz':'Quiz')}</button><button class="pill g" id="flashSelectModeBtn">${FLASH_SELECT_MODE?'Done selecting':'Select multiple'}</button></div></div><div class="quizprefs"><div class="quizprefs-head"><span>Quiz after every</span><strong><span id="quizBatchLabel">${batch}</span> flashcards</strong></div><input id="quizBatchRange" type="range" min="0" max="${options.length-1}" step="1" value="${Math.max(0,options.indexOf(batch))}" aria-label="Number of flashcards before quiz"><div class="quizrangeends"><span>3 cards</span><span>50 cards</span></div><p class="quizhint">Choices: 3, 5, 10, 15, 20 … 50 cards.</p>${quizFlow?'<p class="quizhint">Your batch and quiz progress are saved on this device.</p>':'<p class="quizhint">Study a set, then answer a memorization-style quiz before the next set.</p>'}</div>${FLASH_EDIT_HINT_DISMISSED||FLASH_SELECT_MODE?'':'<div class="navhint" id="editHint">Double tap a number for formula options · hold to preview or drag to reorder</div>'}${FLASH_SELECT_MODE?'<div class="msg">Tap numbers to select or deselect formulas.</div>':''}<div class="bg" id="bgr">${shown.map(d=>{const k=all.indexOf(d);return `<button class="blk${d===cn?' cur':''}${isS(cat,d)?' st':''}${FLASH_SELECTED.has(d)?' selected':''}" data-k="${k}">${k+1}</button>`}).join('')}</div>${FLASH_SELECTED.size?`<div class="quiz-controls"><span>${FLASH_SELECTED.size} selected</span><button class="pill g" id="flashSelectAll">Select all</button><button class="pill on" id="flashMoveSelected">Move selected</button><button class="pill g" id="flashShareSelected">Share selected</button><button class="pill g" id="flashClearSelected">Clear</button></div>`:''}`;
   gid('bst').onclick=()=>{const c=list[idx];ONLY=!ONLY;list=base();if(!list.length){ONLY=false;list=base()}idx=Math.max(0,list.indexOf(c));if(quizFlow){quizFlow.batchStart=idx;quizFlow.batchEnd=Math.min(list.length-1,idx+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null}fill();draw()};
   if(gid('flashSelectModeBtn'))gid('flashSelectModeBtn').onclick=()=>{FLASH_SELECT_MODE=!FLASH_SELECT_MODE;draw()};
   if(gid('flashSelectAll'))gid('flashSelectAll').onclick=()=>{if(shown.every(d=>FLASH_SELECTED.has(d)))shown.forEach(d=>FLASH_SELECTED.delete(d));else shown.forEach(d=>FLASH_SELECTED.add(d));draw()};
@@ -1068,7 +1103,7 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
   const range=gid('quizBatchRange'),label=gid('quizBatchLabel');range.oninput=()=>{const v=setFlashQuizBatchIndex(range.value);label.textContent=v;if(quizFlow){quizFlow.batchSize=v;quizFlow.batchStart=idx;quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null;quizFlow.batchEnd=Math.min(list.length-1,idx+v-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);saveFlowState('flash');fill()}else{const saved=getFlashQuizProgress();if(saved&&saved.cat===cat&&(saved.subcat||'')===subcat){saved.batchSize=v;saved.batchStart=idx;saved.batchEnd=Math.min(list.length-1,idx+v-1);saved.cardIndex=idx;saved.cardName=list[idx]?.n||null;saved.batchNames=list.slice(idx,saved.batchEnd+1).map(d=>d.n);saved.phase='flash';saved.quizPos=0;saved.currentQ=null;saved.only=ONLY;saved.paused=true;saveFlashQuizProgress(saved)}}};
   gid('quizModeBtn').onclick=()=>{if(quizFlow&&quizFlow.phase==='quiz'){startBatchQuiz();return}if(quizFlow){saveFlowState('flash');const p=getFlashQuizProgress();if(p){p.paused=true;saveFlashQuizProgress(p)}quizFlow=null;closeS();fill();return}const saved=getFlashQuizProgress();if(saved&&saved.cat===cat&&(saved.subcat||'')===subcat){if(typeof saved.only==='boolean'&&saved.only!==ONLY){ONLY=saved.only;list=base()}quizFlow={batchSize:setFlashQuizBatch(saved.batchSize||getFlashQuizBatch()),batchStart:Number.isInteger(saved.batchStart)?saved.batchStart:idx,phase:saved.phase||'flash',batchNames:saved.batchNames,quizPos:saved.quizPos,currentQ:saved.currentQ};const first=Array.isArray(saved.batchNames)&&saved.batchNames.length?list.findIndex(d=>d.n===saved.batchNames[0]):-1;if(first>=0)quizFlow.batchStart=first;const savedCard=saved.cardName?list.findIndex(d=>d.n===saved.cardName):-1;if(savedCard>=0)idx=savedCard;quizFlow.batchStart=Math.max(0,Math.min(quizFlow.batchStart,list.length-1));quizFlow.batchEnd=Math.min(list.length-1,quizFlow.batchStart+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);if(quizFlow.phase==='quiz'){closeS();startBatchQuiz();return}}else quizFlow={batchSize:getFlashQuizBatch(),batchStart:idx,phase:'flash'};quizFlow.batchEnd=Math.min(list.length-1,quizFlow.batchStart+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);closeS();fill()};
  };
- gid('up').onclick=()=>{draw();void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show')};
+ gid('up').onclick=e=>{if(e.target.closest('[data-share-current]')){e.preventDefault();shareFormulas([list[idx]]);return}draw();void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show')};
  bo.onclick=closeS;
  bs.onpointerdown=e=>{const b=e.target.closest('.blk');if(!b)return;P={b,x:e.clientX,y:e.clientY,m:FLASH_SELECT_MODE?'select':'w'};
   if(!FLASH_SELECT_MODE)P.t=setTimeout(()=>{if(!P)return;P.m='h';DRAG=true;dismissFlashEditHint();const d=all[+b.dataset.k];pv.innerHTML=`<div class="name">${esc(d.n)}</div>${formulaVersionsHTML(d,'formula')}`;fitFx(pv);pv.classList.add('show');if(navigator.vibrate)navigator.vibrate(15)},350);
@@ -1097,15 +1132,20 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
 }
 // ===== KEYBOARD SHORTHAND -> clean formula =====
 // 1/2 fraction · a_b · a^b · a^(bc) · rt(ab) · rt^3(ab) · \theta \Theta · $ab · $^a_b(dc)
-const GREEK_N={alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',iota:'ι',kappa:'κ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',omicron:'ο',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',upsilon:'υ',phi:'φ',chi:'χ',psi:'ψ',omega:'ω'};
-const SYM_N={pm:'±',times:'×',div:'÷',infty:'∞',inf:'∞',int:'∫',sqrt:'√',deg:'°',prime:'′',neq:'≠',leq:'≤',geq:'≥',approx:'≈',cdot:'·'};
+const GREEK_N={alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',iota:'ι',kappa:'κ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',omicron:'ο',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',upsilon:'υ',phi:'φ',chi:'χ',psi:'ψ',omega:'ω',varepsilon:'ϵ',vartheta:'ϑ',varpi:'ϖ',varrho:'ϱ',varsigma:'ς',varphi:'ϕ',digamma:'ϝ'};
+const SYM_N={pm:'±',mp:'∓',times:'×',div:'÷',infty:'∞',inf:'∞',int:'∫',sqrt:'√',deg:'°',prime:'′',neq:'≠',leq:'≤',geq:'≥',approx:'≈',cdot:'·'};
+const greekSymbol=name=>{
+ if(name==='SigmaN')return 'Σ';
+ const g=GREEK_N[String(name||'').toLowerCase()];
+ if(g)return name[0]!==name[0].toLowerCase()?g.toUpperCase():g;
+ return SYM_N[String(name||'').toLowerCase()]||null
+};
 
 // "where" lines: a_b / a_(ab) subscript, a^b / a^(ab) superscript, \theta / \Theta Greek
 const SP='\u200b';
 function wH(src){
- return wR(String(src||'').replace(/\\([A-Za-z]+)/g,(m,w)=>{const lw=w.toLowerCase(),g=GREEK_N[lw];
-  if(g)return w[0]!==w[0].toLowerCase()?g.toUpperCase():g;return SYM_N[lw]||m}))}
-const W_OPS='=+×÷±≈≤≥≠';
+ return wR(String(src||'').replace(/\\SigmaN(?![A-Za-z])/g,'Σ').replace(/\\([A-Za-z]+)/g,(m,w)=>greekSymbol(w)||m))}
+const W_OPS='=+×÷±∓≈≤≥≠';
 function wGrp(s,i){let d=0;for(let k=i;k<s.length;k++){if(s[k]==='(')d++;else if(s[k]===')'&&--d===0)return k}return -1}
 function wAtt(s,i){const ch=s[i];if(ch!=='_'&&ch!=='^')return null;let j=i+1;
  if(s[j]==='('){const k=wGrp(s,j);return k>0?{k:ch,body:s.slice(j+1,k),end:k+1}:null}
@@ -1135,15 +1175,15 @@ function wR(s){
  return out}
 function sh2f(src){
  let s=String(src||'');
- s=s.replace(/\\SigmaN(?![A-Za-z])/g,'Σ'); // \SigmaN = summation sign (like $ for the integral); plain \Sigma stays the Greek letter
- s=s.replace(/\\([A-Za-z]+)/g,(m,w)=>{const lw=w.toLowerCase(),g=GREEK_N[lw];
-  if(g)return w[0]!==w[0].toLowerCase()?g.toUpperCase():g;
-  return SYM_N[lw]||m});
+ // rt^n() is a template for an nth root with both its index and radicand blank.
+ s=s.replace(/(?:sqrt|rt)\s*\^\s*n\s*\(\s*\)/gi,'√^()()');
+ s=s.replace(/\\SigmaN(?![A-Za-z])/g,'Σ'); // \SigmaN is summation; \Sigma alone is uppercase Greek sigma.
+ s=s.replace(/\\([A-Za-z]+)/g,(m,w)=>greekSymbol(w)||m);
  s=s.replace(/sqrt(?=\s*\()/gi,'√').replace(/(^|[^A-Za-z])rt(?=\s*[\^(])/g,'$1√').replace(/√\s+/g,'√');
- s=s.replace(/\+-/g,'±').replace(/\*/g,'×').replace(/[–—-]/g,'−');
+ s=s.replace(/\+-|\+−/g,'±').replace(/-\+|−\+/g,'∓').replace(/\*/g,'×').replace(/[–—-]/g,'−');
  s=s.replace(/([\^_])(−\d+|−[A-Za-z])/g,'$1($2)');
  s=s.replace(/\$/g,'∫');
- // integral with limits: the (…) straight after the limits is the thing being integrated, so its brackets go away
+ // The (…) immediately after an integral/summation with limits is the expression to integrate/sum.
  const nextBig=from=>{const a=s.indexOf('∫',from),b=s.indexOf('Σ',from);return a<0?b:b<0?a:Math.min(a,b)};
  for(let i=nextBig(0);i>=0&&i<s.length;i=nextBig(i+1)){
   let j=i+1,lim=false;
@@ -1157,15 +1197,15 @@ function sh2f(src){
  return s}
 // shorthand -> canonical stored formula (what every screen typesets)
 const canonF=t=>toStr(build(lex(sh2f(t))));
-const shGuide=()=>{const ex=[['1/2','fraction'],['(a+b)/(c+d)','fraction'],['a_b','subscript'],['a^b','superscript'],['a^(bc)','group with ( )'],['rt(ab)','square root'],['rt^3(ab)','cube root'],['\\theta  \\alpha  \\pi','Greek (lowercase)'],['\\Theta  \\Alpha','Greek (capital)'],['$ab','integral'],['$^a_b(dc)','integral with limits'],['+-  *','± and ×']];
+const shGuide=()=>{const ex=[['1/2','fraction'],['(a+b)/(c+d)','fraction'],['a_b','subscript'],['a^b','superscript'],['a^(bc)','group with ( )'],['rt()','square root'],['rt^n()','nth root · blank index and radicand'],['+-  -+','plus/minus (±) and minus/plus (∓)'],['\\name / \\Name','All Greek letters: use \\ plus the letter name; capitalize its first letter for uppercase'],['$ab','integral'],['$^a_b(dc)','integral with limits'],['\\SigmaN^(n)_(x=1) (expression)','summation with limits']];
  return `<details class="guide"><summary><span>⌨ Typing guide</span><i class="chev"></i></summary><div class="gnote">Type this on the keyboard and it is turned into the clean form shown on the right.</div>${ex.map(([c,n])=>{let h='';try{h=fx(sh2f(c.replace(/\s{2,}/g,' ')),'')}catch(e){}return `<div class="gr"><div><code>${esc(c)}</code><div class="gnote" style="padding:2px 0 0">${n}</div></div><i>→</i>${h}</div>`}).join('')}</details>`};
 // ===== FORMULA TYPESETTING (fractions, roots, exponents, subscripts) =====
 const SUPM={'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'−','⁺':'+','ⁿ':'n','ⁱ':'i','ˣ':'x'};
 const SUBM={'₀':'0','₁':'1','₂':'2','₃':'3','₄':'4','₅':'5','₆':'6','₇':'7','₈':'8','₉':'9','₋':'−','₊':'+','ᵥ':'v','ₛ':'s','ₐ':'a','ₙ':'n','ₘ':'m','ₜ':'t','ₒ':'o','ₓ':'x','ᵢ':'i','ᵣ':'r','ᵤ':'u','ₑ':'e','ₖ':'k','ₗ':'l','ₚ':'p','ⱼ':'j','ₕ':'h'};
-const FN=["sin","cos","tan","cot","sec","csc","ln","log"],SEP=new Set(['+','−','±','=','×','÷',',','\u200b']);
+const FN=["sin","cos","tan","cot","sec","csc","ln","log"],SEP=new Set(['+','−','±','∓','=','×','÷',',','\u200b']);
 const OPN=s=>s=='('||s=='[',CLS=s=>s==')'||s==']',isOpn=n=>!!n&&n.k=='c'&&OPN(n.s),isCls=n=>!!n&&n.k=='c'&&CLS(n.s);
 const isC=(n,s)=>n&&n.k=='c'&&n.s==s;
-function lex(f){const a=f.replace(/\s+/g,''),out=[];
+function lex(f){const a=sh2f(String(f||'')).replace(/\s+/g,''),out=[];
  for(let i=0;i<a.length;){
   const fn=FN.find(x=>a.startsWith(x,i));if(fn){out.push({t:'c',s:fn});i+=fn.length;continue}
   const ch=String.fromCodePoint(a.codePointAt(i));
@@ -1220,7 +1260,7 @@ function collapse(row){ // (a/b) -> stacked a/b, except after sin/cos/...
   if(isC(row[i],'(')&&row[i+1].k=='frac'&&isC(row[i+2],')')&&!(i>0&&row[i-1].k=='c'&&FN.includes(row[i-1].s)))row.splice(i,3,row[i+1]);
  return row}
 const SQSVG='<svg class="rd" viewBox="0 0 10 20" preserveAspectRatio="none" aria-hidden="true"><path d="M.6 12.2 2.6 10.8 5 17.6 9.6 .9"/></svg>';
-const OPS=new Set(['=','+','−','±','×','÷']);
+const OPS=new Set(['=','+','−','±','∓','×','÷']);
 // an integral sign followed by its limits (^hi / _lo) is drawn as one block with the limits stacked beside it
 const gsg=n=>!!n&&n.k=='c'&&(n.s=='∫'||n.s=='Σ');
 function intGrp(nodes,ix,r){
@@ -1314,22 +1354,22 @@ function beamDiagramHTML(raw,interactive=false){
  // Keep a load's label clear of any point load standing on it.
  const labelX=m=>{
   const a=px(m.start),z=px(m.end);
-  const pts=b.loads.filter(p=>p.type==='point'&&sameSide(m,p)&&p.pos>=m.start&&p.pos<=m.end).map(p=>px(p.pos));
+  const pts=b.loads.filter(p=>['point','resultant'].includes(p.type)&&sameSide(m,p)&&p.pos>=m.start&&p.pos<=m.end).map(p=>px(p.pos));
   const cands=[.5,.25,.75,.12,.88].map(t=>a+(z-a)*t);
   return cands.find(c=>pts.every(q=>Math.abs(q-c)>12))??cands[0];
  };
  const sName=esc(beamSetupName(b)),circle=b.section==='circle';
  const alpha=n=>{let out='';for(n=Math.max(0,n);n>=0;n=Math.floor(n/26)-1)out=String.fromCharCode(65+(n%26))+out;return out};
  const orderedSupports=[...(b.supports||[])].map((S,i)=>({S,i})).sort((a,z)=>a.S.pos-z.S.pos||a.i-z.i);
- const autoPointLabel=i=>{const rank=orderedSupports.findIndex(x=>x.i===i);return `Point ${alpha(Math.max(0,rank))}`};
+ const autoPointLabel=i=>{const rank=orderedSupports.findIndex(x=>x.i===i);return alpha(Math.max(0,rank))};
  const pointLabel=(S,i)=>esc(S.label&&S.label.trim()?S.label:autoPointLabel(i));
  let out='';
  out+=`<rect class="beam-body" x="${x0}" y="${BT}" width="${span}" height="${BB-BT}"${interactive?' data-beam-body="1"':''}/>`;
  (b.supports||[]).forEach((sp,i)=>{
-  const x=px(sp.pos),pl=pointLabel(sp,i);
-  if(!interactive){out+=drawSupport(sp)+`<text class="beam-point-label" x="${x}" y="120" text-anchor="middle" font-size="9">${pl}</text>`;return}
+  const x=px(sp.pos),pl=pointLabel(sp,i),labelY=sp.type==='fixed'?118:132;
+  if(!interactive){out+=drawSupport(sp)+`<text class="beam-point-label" x="${x}" y="${labelY}" text-anchor="middle" font-size="9">${pl}</text>`;return}
   const st='pointer-events:all;cursor:ew-resize;touch-action:none';
-  out+=`<g data-beam-kind="support" data-beam-index="${i}">${drawSupport(sp)}<text class="beam-point-label" x="${x}" y="120" text-anchor="middle" font-size="9">${pl}</text>`;
+  out+=`<g data-beam-kind="support" data-beam-index="${i}">${drawSupport(sp)}<text class="beam-point-label" x="${x}" y="${labelY}" text-anchor="middle" font-size="9">${pl}</text>`;
   if(sp.type==='fixed'){const wx=wallX(sp.pos),right=sp.pos>=100;out+=`<rect class="beam-support-hit" data-beam-support-handle="${i}" x="${right?wx-2:wx-12}" y="${BY-WALL_H/2-4}" width="${WALL_W+14}" height="${WALL_H+8}" rx="5" fill="transparent" stroke="transparent" style="${st}" aria-label="Tap to remove or drag fixed end ${i+1}"/>`}
   else out+=`<circle class="beam-support-hit" data-beam-support-handle="${i}" cx="${x}" cy="${BB+10}" r="14" fill="transparent" stroke="transparent" style="${st}" aria-label="Tap to remove or drag support ${i+1}"/>`;
   out+='</g>'
@@ -1365,7 +1405,7 @@ function beamDiagramHTML(raw,interactive=false){
  });
  b.loads.filter(l=>!isDist(l)).forEach(l=>{
   const loadIndex=b.loads.indexOf(l);if(interactive)out+=`<g data-beam-kind="load" data-beam-index="${loadIndex}">`;
-  const down=l.dir!=='up';
+  const down=l.type==='resultant'?false:l.dir!=='up';
   if(l.type==='moment'){
    const x=px(l.pos),clockwise=l.dir!=='counterclockwise';
    out+=`<text class="beam-moment-symbol" x="${x}" y="${BY+9}" text-anchor="middle" font-size="26">${clockwise?'↻':'↺'}</text><text x="${x}" y="${BT-7}" text-anchor="middle" font-size="11">${esc(l.mag||'M')}</text>`;
@@ -1378,7 +1418,7 @@ function beamDiagramHTML(raw,interactive=false){
     yt=down?land-1:land+1;y0=down?yt-34:yt+34;
    }else{y0=down?26:140;yt=down?BT-1:BB+1}
    const ly=down?y0-6:y0+13;if(!down)grow(ly+4);
-   out+=arrow(x,y0,yt,l.dir)+`<text x="${x}" y="${ly}" text-anchor="middle" font-size="11">${esc(l.mag||'P')}</text>`;
+   out+=arrow(x,y0,yt,l.type==='resultant'?'up':l.dir)+`<text x="${x}" y="${ly}" text-anchor="middle" font-size="11">${esc(l.mag||(l.type==='resultant'?'R':'P'))}</text>`;
   }
   if(interactive)out+='</g>'
  });
@@ -1400,21 +1440,42 @@ function beamDiagramHTML(raw,interactive=false){
    if(isDist(l))return;
    const x=px(l.pos);
    if(l.type==='moment'){out+=`<circle class="beam-load-hit" data-beam-load-handle="${i}" data-part="move" cx="${x}" cy="${BY}" r="17" fill="transparent" stroke="transparent" aria-label="Tap to remove or drag moment ${i+1}"/>`;return}
-   const down=l.dir!=='up',under=b.loads.some(m=>isDist(m)&&sameSide(m,l)&&l.pos>=m.start&&l.pos<=m.end);
+   const down=l.type==='resultant'?false:l.dir!=='up',under=b.loads.some(m=>isDist(m)&&sameSide(m,l)&&l.pos>=m.start&&l.pos<=m.end);
    let y0,yt;
    if(under){const e=b.loads.filter(m=>isDist(m)&&sameSide(m,l)&&l.pos>=m.start&&l.pos<=m.end).map(m=>edgeAt(m,l.pos));const land=down?Math.min(...e):Math.max(...e);yt=down?land-1:land+1;y0=down?yt-34:yt+34}
    else{y0=down?26:140;yt=down?BT-1:BB+1}
    out+=`<rect class="beam-load-hit" data-beam-load-handle="${i}" data-part="move" x="${x-10}" y="${Math.min(y0,yt)-12}" width="20" height="${Math.abs(yt-y0)+16}" rx="5" fill="transparent" stroke="transparent" aria-label="Drag load ${i+1} along the beam"/>`;
   });
  }
- // Dimension lines: overall L plus the a/b segments split by the first point load.
- const pointLoads=b.loads.filter(L=>L.type==='point').sort((a,z)=>a.pos-z.pos);
+ // Dimension lines: show each segment created by point/resultant loads, or by rectangular-load coverage when enabled.
+ const pointLoads=b.loads.filter(L=>L.type==='point'||L.type==='resultant').sort((a,z)=>a.pos-z.pos);
+ const rectLoad=b.rectSplit?b.loads.find(L=>L.type==='uniform'):null;
  const dimY=146,segY=174,dimLabel=esc(b.spanLabel||'L');
  out+=`<path class="line thin beam-dimension" d="M ${x0} ${dimY-5} V ${dimY+5} M ${x0} ${dimY} H ${x1} M ${x1} ${dimY-5} V ${dimY+5}"/><text class="beam-dimension-label" x="${(x0+x1)/2}" y="${dimY-5}" text-anchor="middle" font-size="10">${dimLabel}</text>`;
- if(pointLoads.length){const p=px(pointLoads[0].pos);out+=`<path class="line thin beam-dimension" d="M ${x0} ${segY-5} V ${segY+5} M ${x0} ${segY} H ${p} M ${p} ${segY-5} V ${segY+5} M ${p} ${segY} H ${x1} M ${x1} ${segY-5} V ${segY+5}"/><text class="beam-dimension-label" x="${(x0+p)/2}" y="${segY-5}" text-anchor="middle" font-size="10">a</text><text class="beam-dimension-label" x="${(p+x1)/2}" y="${segY-5}" text-anchor="middle" font-size="10">b</text>`}
+ const spanRaw=String(b.spanLabel||'L');
+ const segmentName=i=>{let n=i,out='';do{out=String.fromCharCode(97+n%26)+out;n=Math.floor(n/26)-1}while(n>=0);return out};
+ const drawSegmentDimension=(positions,y,labelFor)=>{
+  const xs=[...new Set(positions.filter(x=>x>x0+1&&x<x1-1).map(x=>Math.round(x*100)/100))].sort((a,z)=>a-z);
+  if(!xs.length)return;
+  const pts=[x0,...xs,x1],commands=[];
+  for(let i=0;i<pts.length;i++){
+   commands.push(`M ${pts[i]} ${y-5} V ${y+5}`);
+   if(i<pts.length-1)commands.push(`M ${pts[i]} ${y} H ${pts[i+1]}`)
+  }
+  out+=`<path class="line thin beam-dimension" d="${commands.join(' ')}"/>`;
+  for(let i=0;i<pts.length-1;i++){const label=labelFor(i);out+=`<text class="beam-dimension-label" x="${(pts[i]+pts[i+1])/2}" y="${y-5}" text-anchor="middle" font-size="10">${esc(label)}</text>`}
+ };
+ let rectCoverageX=null;
+ if(rectLoad){const coverage=rectLoad.end-rectLoad.start;if(coverage>0&&coverage<100)rectCoverageX=px(coverage)}
+ if(rectCoverageX!==null)drawSegmentDimension([rectCoverageX],174,i=>i===0?'a':'b');
+ if(pointLoads.length){
+  const pointPositions=pointLoads.map(L=>px(L.pos)),pointY=rectCoverageX!==null?198:174;
+  const centeredSingle=pointLoads.length===1&&Math.abs(pointLoads[0].pos-50)<0.001;
+  drawSegmentDimension(pointPositions,pointY,i=>centeredSingle?`${spanRaw}/2`:segmentName(i+(rectCoverageX!==null?2:0)));
+ }
  const nL=b.loads.length;
  const secIcon=circle?`<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.8" fill="var(--card)" stroke="currentColor" stroke-width="1.3"/></svg>`:`<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" fill="var(--card)" stroke="currentColor" stroke-width="1.3"/></svg>`;
- maxY=Math.max(maxY,188);
+ maxY=Math.max(maxY,210);
  const svg=`<svg class="beam-diagram" viewBox="0 -14 360 ${maxY+14}" role="img" aria-label="Beam diagram, ${sName}, with ${nL} load${nL===1?'':'s'}">${out}</svg>`;
  return `<div class="beam-diagram-wrap"><div class="beam-diagram-head"><span>${sName}${nL?` · ${nL} load${nL===1?'':'s'}`:''}</span><span class="beam-section-tag">${secIcon}${circle?'Circular':'Rectangular'} section</span></div>${svg}</div>`
 }
@@ -1426,12 +1487,17 @@ function formulaParts(d){
 }
 function formulaVersionsHTML(d,cls='formula2'){
  const {vs,where,mn}=formulaParts(d);
- if(vs.length===1){const v=vs[0];return `${fx(v.f,cls)}${v.beam?`<div class="formula-beam-diagram">${beamDiagramHTML(v.beam)}</div>`:''}<div class="where"><b>where:</b><br>${(v.w||[]).map(wH).join('<br>')||'—'}${v.m?mnH(v.m):''}</div>`}
- // Keep diagrams after formula variants and directly above Where / Mnemonics.
+ if(vs.length===1){
+  const v=vs[0],lines=(v.w||[]).map(w=>String(w||'').trim()).filter(Boolean);
+  const whereBlock=lines.length?`<div class="where"><b>where:</b><br>${lines.map(wH).join('<br>')}</div>`:'';
+  return `${fx(v.f,cls)}${v.beam?`<div class="formula-beam-diagram">${beamDiagramHTML(v.beam)}</div>`:''}${whereBlock}${String(v.m||'').trim()?mnH(String(v.m).trim()):''}`
+ }
+ // Keep Where and Mnemonics outside the variant list and render only populated sections.
  const stack=vs.map((v,i)=>`<section class="variant-block"><div class="variant-label">${esc(v.label||`Formula ${i+1}`)}</div>${fx(v.f,cls)}</section>`).join('');
  const diagrams=vs.map((v,i)=>v.beam?`<div class="formula-beam-diagram">${vs.length>1?`<div class="variant-label">${esc(v.label||`Formula ${i+1}`)} · Diagram</div>`:''}${beamDiagramHTML(v.beam)}</div>`:'').join('');
+ const whereBlock=where.length?`<div class="where"><b>where:</b><br>${where.map(wH).join('<br>')}</div>`:'';
  const mnBlock=mn.length?`<div class="mnh"><div class="mh">Mnemonics</div>${mn.map(m=>`<div class="mt">“${mnB(m)}”</div>`).join('')}</div>`:'';
- return `<div class="variant-stack">${stack}</div>${diagrams}<div class="where"><b>where:</b><br>${where.map(wH).join('<br>')||'—'}${mnBlock}</div>`
+ return `<div class="variant-stack">${stack}</div>${diagrams}${whereBlock}${mnBlock}`
 }
 function fitOne(w,keep){
  const f=w.querySelector('.fx');if(!f||!w.clientWidth)return;
@@ -1440,7 +1506,7 @@ function fitOne(w,keep){
  while(f.scrollWidth>w.clientWidth&&fs>11){fs-=1;w.style.fontSize=fs+'px';if(fs<=17)w.classList.add('wr')}}
 const fitFx=root=>root.querySelectorAll('.fxw').forEach(w=>fitOne(w));
 // ===== PHASE 2: MEMORIZATION =====
-const GR={Variables:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),Greek:"π σ γ θ ε Δ τ φ α β δ λ μ ν ρ ω Σ Ω η".split(" "),"Trig/Log":["sin","cos","tan","cot","sec","csc","ln","log"],"Operators & Numbers":["+","−","×","÷","=","±","∫","!",",","′","0","1","2","3","4","5","6","7","8","9","."]};
+const GR={Variables:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),Greek:"α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω".split(" "),"Trig/Log":["sin","cos","tan","cot","sec","csc","ln","log"],"Operators & Numbers":["+","−","×","÷","=","±","∓","∫","Σ","!",",","′","0","1","2","3","4","5","6","7","8","9","."]};
 const NUMS=new Set("0 1 2 3 4 5 6 7 8 9 .".split(" ")),TRIG=/^(sin|cos|tan|csc|sec|cot)/;
 const symH=(k,arr,tl)=>{
  const sec=(h,a)=>a.length?`<div class="sh">${h}</div><div class="opts">${a.map(tl).join('')}</div>`:'';
@@ -1646,10 +1712,10 @@ function normalizeBeam(raw,strict=false){
  const loads=[];
  for(const item of input){
   if(!item||typeof item!=='object'||Array.isArray(item))return fail('A beam load is invalid.');
-  const type=['point','uniform','varying','moment'].includes(item.type)?item.type:'';if(!type)return fail('A beam load type is invalid.');
-  const dir=type==='moment'?(item.dir==='counterclockwise'?'counterclockwise':'clockwise'):(item.dir==='up'?'up':'down');
-  let load={type,dir,mag:typeof item.mag==='string'&&safeStoredText(item.mag,24)?item.mag.slice(0,24):(type==='point'?'P':type==='moment'?'M':'w')};
-  if(type==='point'||type==='moment')load.pos=beamSnapPosition(beamClamp(item.pos,0,100,50),snap);
+  const type=['point','resultant','uniform','varying','moment'].includes(item.type)?item.type:'';if(!type)return fail('A beam load type is invalid.');
+  const dir=type==='moment'?(item.dir==='counterclockwise'?'counterclockwise':'clockwise'):(type==='resultant'?'up':item.dir==='up'?'up':'down');
+  let load={type,dir,mag:typeof item.mag==='string'&&safeStoredText(item.mag,24)?item.mag.slice(0,24):(type==='point'?'P':type==='resultant'?'R':type==='moment'?'M':'w')};
+  if(type==='point'||type==='resultant'||type==='moment')load.pos=beamSnapPosition(beamClamp(item.pos,0,100,50),snap);
   else{
    load.start=beamSnapPosition(beamClamp(item.start,0,95,15),snap);load.end=beamSnapPosition(beamClamp(item.end,load.start+5,100,85),snap);
    if(load.end<load.start+5){if(load.start<=95)load.end=load.start+5;else load.start=load.end-5}
@@ -1662,9 +1728,9 @@ function normalizeBeam(raw,strict=false){
   loads.push(load)
  }
  const spanLabel=typeof raw.spanLabel==='string'&&safeStoredText(raw.spanLabel,24)&&raw.spanLabel.trim()?raw.spanLabel.trim().slice(0,24):'L';
- return {section,support:Array.isArray(raw.supports)?beamPresetOf(supports):support,leftSupport,rightSupport,supports,snap,loads,spanLabel};
+ return {section,support:Array.isArray(raw.supports)?beamPresetOf(supports):support,leftSupport,rightSupport,supports,snap,loads,spanLabel,rectSplit:raw.rectSplit===true};
 }
-function newBeamDiagram(){return {section:'rect',support:'fixed',leftSupport:'hinge',rightSupport:'roller',supports:beamSupportsForPreset('fixed'),snap:true,loads:[]}}
+function newBeamDiagram(){return {section:'rect',support:'fixed',leftSupport:'hinge',rightSupport:'roller',supports:beamSupportsForPreset('fixed'),snap:true,loads:[],rectSplit:false}}
 // Merged formulas keep the original fields as Formula 1 and store up to seven additional variants.
 function normalizeFormulaVariants(raw,strict=false){
  if(raw==null)return [];
@@ -2056,7 +2122,7 @@ function viewAll(cat,j0,keepName,subcat=''){
  mb.innerHTML=ICO_S;mb.style.color='var(--accd)';app.style.paddingTop='40px';
  const gb=gid('gb'),bs=gid('bs'),bo=gid('bo'),pv=gid('pv');
  // Keep the header star hidden in View All; starred-only filtering lives in the long-press options sheet.
- gb.hidden=false;gb.innerHTML=ICO_G;{const sh=gid('shb');sh.hidden=false;sh.classList.add('two');sh.innerHTML=ICO_SHARE;sh.setAttribute('aria-label','Share formula as image');sh.onclick=()=>{const d=L[idx];if(d)shareFormulas([d]);else showAppToast('There is no formula to share here.',true)}}
+ gb.hidden=false;gb.innerHTML=ICO_G;{const sh=gid('shb');sh.hidden=true;sh.classList.remove('two');sh.onclick=null}
  let ALL=ordered(cat).filter(d=>!subcat||d.s===subcat),L=ALL.filter(d=>!VONLY||isS(cat,d));
  let idx=keepName?L.findIndex(d=>d.n===keepName):-1;
  if(idx<0)idx=L.length?Math.max(0,Math.min((j0||0),L.length-1)):0;
@@ -2113,9 +2179,11 @@ function viewAll(cat,j0,keepName,subcat=''){
  const dismissVAEditHint=()=>{VA_EDIT_HINT_DISMISSED=hintDone('VA_EDIT_HINT_DISMISSED');const h=gid('editHint');if(h){h.classList.add('fade');setTimeout(()=>{if(h.isConnected)h.remove()},320)}};
  const openFormulaActions=(d,pos)=>{
   dismissVAEditHint();const hasSubcategories=categoryKeys().some(c=>subcategoriesFor(c).length>0);
-  bs.innerHTML=`<div class="bh"><b>${esc(d.n)}</b><button class="back" data-fa="close">✕</button></div><div class="lbl">${esc(categoryName(cOf(d)||cat)+(d.s?' · '+d.s:''))}</div><button class="pill on" data-fa="edit" style="justify-content:center">Edit Formula</button><button class="pill" data-fa="category" style="justify-content:center">Move to category…</button>${hasSubcategories?'<button class="pill" data-fa="subcategory" style="justify-content:center">Move to subcategory…</button>':''}<button class="pill g" data-fa="select" style="justify-content:center">Select more boxes</button>`;
+  bs.innerHTML=`<div class="bh"><b>${esc(d.n)}</b><div class="formula-action-tools"><button class="formula-action-icon" data-fa="share" type="button" aria-label="Share formula as image" title="Share formula">${ICO_SHARE}</button><button class="formula-action-icon" id="faStar" data-fa="star" type="button" aria-label="Toggle starred formula" aria-pressed="${isS(cat,d)}" title="Star formula">${STARI(isS(cat,d))}</button><button class="back" data-fa="close" aria-label="Close">✕</button></div></div><div class="lbl">${esc(categoryName(cOf(d)||cat)+(d.s?' · '+d.s:''))}</div><button class="pill on" data-fa="edit" style="justify-content:center">Edit Formula</button><button class="pill" data-fa="category" style="justify-content:center">Move to category…</button>${hasSubcategories?'<button class="pill" data-fa="subcategory" style="justify-content:center">Move to subcategory…</button>':''}<button class="pill g" data-fa="select" style="justify-content:center">Select more boxes</button>`;
   bs.onclick=e=>{const b=e.target.closest('[data-fa]');if(!b)return;const action=b.dataset.fa;
    if(action==='close'){closeSheet();return}
+   if(action==='share'){closeSheet();shareFormulas([d]);return}
+   if(action==='star'){toggleS(cat,d);b.innerHTML=STARI(isS(cat,d));b.setAttribute('aria-pressed',String(isS(cat,d)));const cardStar=trk.children[pos]?.querySelector('.stb');if(cardStar)cardStar.innerHTML=STARI(isS(cat,d));if(VONLY&&!isS(cat,d)){closeSheet();viewAll(cat,Math.max(0,pos),L[idx]?.n,subcat)}return}
    if(action==='edit'){closeSheet();DR=null;buildEd('edit',d);DR.ret=()=>viewAll(cat,Math.max(0,pos),d.n,subcat);return}
    if(action==='select'){SELECTED.add(d);SELECT_MODE=true;drawNav();bindNavPointerEvents();return}
    if(action==='category'||action==='subcategory'){openMovePicker([d],()=>{SELECTED.clear();SELECT_MODE=false;closeSheet();viewAll(cat,Math.max(0,pos),d.n,subcat)},action==='subcategory',action!=='category');return}
@@ -2246,7 +2314,7 @@ function patchF(d,f){Object.assign(d,f,{updatedAt:Date.now()});if(d.b){EDITS[d.k
 function restoreF(i){const x=TRASH.splice(i,1)[0];if(!x)return;if(!CATS[x.c])CATS[x.c]=[];CAT_META.deleted=(CAT_META.deleted||[]).filter(c=>c!==x.c);if(!safeCategoryLabel(CAT_META.names[x.c]))CAT_META.names[x.c]=safeCategoryLabel(x.categoryName)?x.categoryName:x.c;if(Array.isArray(x.categorySubcategories))CAT_META.subcategories[x.c]=[...x.categorySubcategories];if(!BASE_CAT_IDS.includes(x.c)&&!CAT_META.custom.some(c=>c.id===x.c))CAT_META.custom.push({id:x.c,name:categoryName(x.c)});if(x.b){const d={...x.it,b:1,k0:x.k0,c:x.c};CATS[x.c].push(d);EDITS[x.k0]={...(EDITS[x.k0]||{}),c:x.c,s:d.s||''};BUILTIN_LOCATIONS[x.k0]={c:x.c,s:d.s||''};sv('ceedits',EDITS);try{localStorage.setItem(BUILTIN_LOC_KEY,JSON.stringify(BUILTIN_LOCATIONS))}catch(_){}}else{const d={...x.it,c:x.c,id:x.it.id||newFormulaId(),updatedAt:Date.now()};USER.push(d);CATS[x.c].push(d);saveU()}persistCategoryMeta();sv('cetrash',TRASH)}
 // ===== FORMULA EDITOR (blocks look like normal text; fraction / root / power / subscript) =====
 const EKIDS=n=>n.k=='frac'?[n.n,n.d]:n.ix?[n.ix,n.c]:n.c?[n.c]:[];
-const BGR={...GR,'Operators & Numbers':[...GR['Operators & Numbers'],'(',')','[',']'],Greek:[...GR.Greek,...'ζ ι κ ξ χ ψ Γ Θ Λ Π Φ Ψ'.split(' ')],'Trig/Log':["sin","cos","tan","csc","sec","cot","sin⁻¹","cos⁻¹","tan⁻¹","csc⁻¹","sec⁻¹","cot⁻¹","log","ln","log₂","log₁₀"]};
+const BGR={...GR,'Operators & Numbers':[...GR['Operators & Numbers'],'(',')','[',']'],Greek:[...new Set(GR.Greek)],'Trig/Log':["sin","cos","tan","csc","sec","cot","sin⁻¹","cos⁻¹","tan⁻¹","csc⁻¹","sec⁻¹","cot⁻¹","log","ln","log₂","log₁₀"]};
 function eMap(t){const m=new Map();(function w(r,par,prow,pi){m.set(r,{par,prow,pi});r.forEach((n,j)=>EKIDS(n).forEach(k=>w(k,n,r,j)))})(t,null,null,0);return m}
 const eEmptyN=n=>EKIDS(n).every(r=>!r.length);
 function eLeft(E){const m=eMap(E.t),{row,i}=E.c;
@@ -2258,11 +2326,33 @@ function eRight(E){const m=eMap(E.t),{row,i}=E.c;
  const p=m.get(row);if(!p||!p.par)return;
  if(p.par.k=='frac'&&row===p.par.n)E.c={row:p.par.d,i:0};else if(p.par.ix&&row===p.par.ix)E.c={row:p.par.c,i:0};else if(p.par.k=='sup'&&gsg(p.prow[p.pi-1])&&p.prow[p.pi+1]&&p.prow[p.pi+1].k=='sub')E.c={row:p.prow[p.pi+1].c,i:0};else if(p.par.k=='sub'&&gsg(p.prow[p.pi-2])&&OPN(p.prow[p.pi+1]?.s)&&CLS(p.prow[p.pi+2]?.s))E.c={row:p.prow,i:p.pi+2};else E.c={row:p.prow,i:p.pi+1}}
 function eIns(E,s){const{row,i}=E.c;
- if(s===' '){row.splice(i,0,{k:'c',s:SP});E.c={row,i:i+1};return}
+ if(s===' '){row.splice(i,0,{k:'c',s:SP});E.c={row,i:i+1};eAutoParseTail(E);return}
  if(CLS(s)&&isC(row[i],s)){E.c={row,i:i+1};return}
- const nodes=build(lex(s));row.splice(i,0,...nodes);E.c={row,i:i+nodes.length}}
-function eFn(E,s){eIns(E,s);const{row,i}=E.c;row.splice(i,0,{k:'c',s:'('},{k:'c',s:')'});E.c={row,i:i+1}} // sin -> sin(blank)
+ const nodes=build(lex(s));row.splice(i,0,...nodes);E.c={row,i:i+nodes.length};eAutoParseTail(E)}
+function eAutoParseTail(E){
+ const {row}=E.c;let i=E.c.i;
+ // Recognize the \\SigmaN summation alias while allowing \\Sigma to render immediately.
+ if(i>=2&&row[i-2]&&row[i-2]._pendingSigmaN&&isC(row[i-1],'N')){row.splice(i-2,2,{k:'c',s:'Σ'});E.c.i=i-1;return}
+ if(i>=1&&row[i-1]&&row[i-1]._pendingSigmaN)delete row[i-1]._pendingSigmaN;
+ // Parse the contiguous plain-text run before the caret, even when earlier siblings are structures.
+ let start=i;while(start>0&&row[start-1]&&row[start-1].k==='c')start--;
+ let text=row.slice(start,i).map(n=>n.s).join('');
+ const pair=text.slice(-2),symbol=pair==='+-'||pair==='+−'?'±':pair==='-+'||pair==='−+'?'∓':null;
+ if(symbol){row.splice(i-2,2,{k:'c',s:symbol});E.c.i=i-1;i--;text=text.slice(0,-2)+symbol}
+ const match=/(\\[A-Za-z]+)$/.exec(text);
+ if(match){
+  const name=match[0].slice(1),g=greekSymbol(name);
+  if(g){const pos=start+match.index,node={k:'c',s:g};if(name==='Sigma')node._pendingSigmaN=true;row.splice(pos,name.length+1,node);E.c.i=i-(name.length+1)+1}
+ }
+}
+function eFn(E,s){eIns(E,s);const{row,i}=E.c;row.splice(i,0,{k:'c',s:'('},{k:'c',s:')'});E.c={row,i:i+1}}
 function eStruct(E,k){const{row,i}=E.c;
+ if(k==='sup'&&i>=2&&isC(row[i-1],'t')&&isC(row[i-2],'r')){const node={k:'sqrt',c:[],ix:[],_typedRoot:true};row.splice(i-2,2,node);E.c={row:node.ix,i:0};return}
+ if(k==='paren'){
+  const p=eMap(E.t).get(row);
+  if(p&&p.par&&p.par._typedRoot&&p.par.ix===row){if(row.every(n=>n.k==='c')&&row.map(n=>n.s).join('')==='n')row.splice(0,row.length);E.c={row:p.par.c,i:0};return}
+  if(i>=2&&isC(row[i-1],'t')&&isC(row[i-2],'r')){const node={k:'sqrt',c:[],_typedRoot:true};row.splice(i-2,2,node);E.c={row:node.c,i:0};return}
+ }
  if(k=='paren'||k=='brack'){const o=k=='paren'?'(':'[',c=k=='paren'?')':']';row.splice(i,0,{k:'c',s:o},{k:'c',s:c});E.c={row,i:i+1};return}
  if(k=='nroot'){const node={k:'sqrt',c:[],ix:[]};row.splice(i,0,node);E.c={row:node.ix,i:0};return}
  if(k=='sub'&&i>=2&&isC(row[i-1],'(')&&isC(row[i-2],'log')){const node={k:'sub',c:[]};row.splice(i-1,0,node);E.c={row:node.c,i:0};return} // log(|) -> log_[ ]( )
@@ -2339,18 +2429,26 @@ function openRenameHeader(current,onSave){
 function openSyntaxGuide(){
  const bs=gid('bs'),bo=gid('bo');bs.onpointerdown=bs.onpointermove=bs.onpointerup=bs.onpointercancel=null;
  const close=()=>{bs.classList.remove('show');bo.classList.remove('show');bs.onclick=null;bo.onclick=null};
- const rows=[['\\theta','θ (lowercase)'],['\\Theta','Θ (uppercase)'],['$','Integral without limits'],['$^(n)_(n)','Integral with limits'],['\\SigmaN','Summation without limits'],['\\SigmaN^(n)_(x=1) (expr)','Summation from x=1 to n']];
+ const rows=[['rt()','Square root'],['rt^n()','Nth root (blank index and radicand)'],['+-','Plus/minus (±)'],['-+','Minus/plus (∓)'],['\\name / \\Name','All Greek letters: prefix the letter name with \\; capitalize the first letter for uppercase'],['\\sigma / \\Sigma','Lowercase sigma / uppercase sigma'],['$','Integral without limits'],['$^(n)_(n)','Integral with limits'],['\\SigmaN','Summation without limits'],['\\SigmaN^(n)_(x=1) (expression)','Summation from x=1 to n']];
  bs.innerHTML=`<div class="bh"><b>Syntax guide</b><button class="back" data-sg="close" aria-label="Close">✕</button></div><p class="sgnote">Type these shortcuts in the formula box. They turn into the clean form shown on the right.</p>${rows.map(([c,n])=>{let h='';try{h=fx(sh2f(c),'')}catch(e){}return `<div class="gr"><div><code>${esc(c)}</code><div class="gnote" style="padding:2px 0 0">${esc(n)}</div></div><i>→</i>${h}</div>`}).join('')}<button class="pill" data-sg="close" style="justify-content:center;margin-top:8px">Close</button>`;
  bs.onclick=e=>{if(e.target.closest('[data-sg]'))close()};bo.onclick=close;
  void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show');fitFx(bs)}
-const showGuideBtn=()=>{mb.hidden=false;mb.textContent='?';mb.setAttribute('aria-label','Syntax guide');mb.style.color='var(--accd)';mb.onclick=openSyntaxGuide};
+const showGuideBtn=()=>{mb.hidden=false;mb.textContent='?';mb.setAttribute('aria-label','Syntax guide');mb.style.color='var(--accd)';mb.classList.toggle('kb-guide-highlight',KB_NATIVE);mb.onclick=openSyntaxGuide};
+const BUILDER_RENAME_HINT_KEY='ceBuilderRenameHintDismissed';
+const builderRenameHintOff=()=>{try{return localStorage.getItem(BUILDER_RENAME_HINT_KEY)==='1'}catch(_){return true}};
+const dismissBuilderRenameHint=()=>{try{localStorage.setItem(BUILDER_RENAME_HINT_KEY,'1')}catch(_){}};
 function builderVariantBar(){
  const active=DR.forms[DR.active],label=active&&active.label?active.label:`Formula ${DR.active+1}`;
- return `<div class="variant-editbar"><button class="variant-label" id="renameActiveFormula" type="button" title="Tap to rename this formula header">${esc(label)} · ${DR.active+1} of ${DR.forms.length}<small>Tap header to rename</small></button><div class="variant-edit-tabs">${DR.forms.map((F,i)=>`<button class="pill${i===DR.active?' on':''}" data-edit-form="${i}">${esc(F.label||`Formula ${i+1}`)}</button>`).join('')}</div><div class="variant-edit-actions"><button class="pill g" id="addFormulaVariant" ${DR.forms.length>=8?'disabled':''}>+ Add Formula ${DR.forms.length+1}</button>${DR.active>0?`<button class="pill g" id="removeFormulaVariant">Remove ${esc(label)}</button>`:''}</div></div>`
+ const showHint=!builderRenameHintOff();
+ return `<div class="variant-editbar"><div class="variant-edit-tabs" role="tablist" aria-label="Formula expressions">${DR.forms.map((F,i)=>`<button class="pill${i===DR.active?' on':''}" data-edit-form="${i}" type="button" role="tab" aria-selected="${i===DR.active}" title="${i===DR.active?'Tap again to rename':'Select formula'}"><span>${esc(F.label||`Formula ${i+1}`)}</span>${showHint&&i===DR.active?'<small class="variant-rename-hint">Tap active tab again to rename</small>':''}</button>`).join('')}<button class="pill g variant-add" id="addFormulaVariant" type="button" aria-label="Add formula" title="Add formula" ${DR.forms.length>=8?'disabled':''}>+</button></div><div class="variant-edit-actions">${DR.active>0?`<button class="pill g" id="removeFormulaVariant">Remove ${esc(label)}</button>`:''}</div></div>`
 }
 function bindBuilderVariantBar(render,onMessage){
- app.querySelectorAll('[data-edit-form]').forEach(b=>b.onclick=()=>{DR.active=+b.dataset.editForm;render()});
- const rename=gid('renameActiveFormula');if(rename)rename.onclick=()=>{const F=DR.forms[DR.active];if(!F)return;openRenameHeader(F.label||`Formula ${DR.active+1}`,label=>{F.label=label;render()})};
+ app.querySelectorAll('[data-edit-form]').forEach(b=>b.onclick=()=>{
+  dismissBuilderRenameHint();
+  const target=+b.dataset.editForm,F=DR.forms[target];if(!F)return;
+  if(target===DR.active){openRenameHeader(F.label||`Formula ${target+1}`,label=>{F.label=label;render()});return}
+  DR.active=target;render()
+ });
  const add=gid('addFormulaVariant');if(add)add.onclick=()=>{
   if(DR.forms.length>=8){onMessage('A formula entry can contain at most eight formulas.');return}
   const current=DR.forms[DR.active];if(!current||!toStr(current.t).trim()||hasEmpty(current.t)){onMessage(`Finish Formula ${DR.active+1} before adding another formula.`);return}
@@ -2441,18 +2539,19 @@ function beamAttachHTML(F){
  return `<div class="beam-attach"><button class="pill" id="openBeamBuilder" style="justify-content:center">${b?'✎ Edit Beam / Load Diagram':'＋ Build Beam / Load Diagram'} <small>${b?'Diagram attached':'Optional'}</small></button>${b?beamDiagramHTML(b):''}</div>`
 }
 function beamLoadCardHTML(L,i,snap=true){
- const title=L.type==='point'?'Point load':L.type==='uniform'?'Rectangular (uniform) load':L.type==='moment'?(L.dir==='counterclockwise'?'Moment (Counterclockwise)':'Moment (Clockwise)'):'Varying distributed load';
+ const title=L.type==='point'?'Point load':L.type==='resultant'?'Resultant load (R)':L.type==='uniform'?'Rectangular (uniform) load':L.type==='moment'?(L.dir==='counterclockwise'?'Moment (Counterclockwise)':'Moment (Clockwise)'):'Varying distributed load';
  const pos=(key,label)=>`<label class="beam-field">${label} · <span class="beam-value" data-beam-out="${i}:${key}">${Number(L[key])}%</span><input type="range" min="0" max="100" step="${snap?5:1}" value="${Number(L[key])}" data-load-index="${i}" data-load-key="${key}"></label>`;
  const mag=`<label class="beam-field">Load label / magnitude<input type="text" maxlength="24" value="${escA(L.mag||'') }" placeholder="P or w" data-load-index="${i}" data-load-key="mag"></label>`;
- const dir=L.type==='moment'?`<label class="beam-field">Rotation<select data-load-index="${i}" data-load-key="dir"><option value="counterclockwise"${L.dir==='counterclockwise'?' selected':''}>Moment (Counterclockwise)</option><option value="clockwise"${L.dir!=='counterclockwise'?' selected':''}>Moment (Clockwise)</option></select></label>`:`<label class="beam-field">Direction<select data-load-index="${i}" data-load-key="dir"><option value="down"${L.dir!=='up'?' selected':''}>Downward</option><option value="up"${L.dir==='up'?' selected':''}>Upward</option></select></label>`;
+ const dir=L.type==='resultant'?'':L.type==='moment'?`<label class="beam-field">Rotation<select data-load-index="${i}" data-load-key="dir"><option value="counterclockwise"${L.dir==='counterclockwise'?' selected':''}>Moment (Counterclockwise)</option><option value="clockwise"${L.dir!=='counterclockwise'?' selected':''}>Moment (Clockwise)</option></select></label>`:`<label class="beam-field">Direction<select data-load-index="${i}" data-load-key="dir"><option value="down"${L.dir!=='up'?' selected':''}>Downward</option><option value="up"${L.dir==='up'?' selected':''}>Upward</option></select></label>`;
  let fields='';
  if(L.type==='point')fields=pos('pos','Position')+mag+dir;
+ else if(L.type==='resultant')fields=pos('pos','Position')+mag;
  else if(L.type==='moment')fields=pos('pos','Position')+mag+dir;
  else if(L.type==='uniform')fields=pos('start','Start position')+pos('end','End position')+mag+dir;
  else {const shape=`<label class="beam-field">Load shape<select data-load-index="${i}" data-load-key="profile"><option value="pyramid"${L.profile==='pyramid'?' selected':''}>Pyramid · peak inside span</option><option value="triangle-left"${L.profile==='triangle-left'?' selected':''}>Right triangle · peak at left, zero at right</option><option value="triangle-right"${L.profile==='triangle-right'?' selected':''}>Right triangle · zero at left, peak at right</option><option value="trapezoid"${L.profile==='trapezoid'?' selected':''}>Trapezoid · tapered ends</option><option value="custom"${L.profile==='custom'?' selected':''}>Custom end heights</option></select></label>`;const shapeControls=L.profile==='pyramid'?pos('peak','Peak position'):['trapezoid','custom'].includes(L.profile)?pos('leftHeight','Left height')+pos('rightHeight','Right height'):'';fields=pos('start','Start position')+pos('end','End position')+mag+shape+shapeControls+dir+`<button class="pill beam-flip" type="button" data-flip-load="${i}">${L.flip?'↔ Unflip horizontally':'↔ Flip horizontally'}</button>`;}
  return `<section class="beam-loadcard"><div class="beam-loadhead"><span>${i+1}. ${title}</span><button class="pill g" data-remove-load="${i}" type="button">Remove</button></div><div class="beam-loadfields">${fields}</div></section>`
 }
-function beamSupportCardHTML(S,i,snap,autoLabel='Point A'){
+function beamSupportCardHTML(S,i,snap,autoLabel='A'){
  const opts=[['fixed','Fixed support'],['hinge','Hinge / pin (triangle)'],['roller','Roller (circle)']];
  const label=typeof S.label==='string'&&S.label.trim()?S.label:autoLabel;
  return `<section class="beam-loadcard beam-support-card"><div class="beam-loadhead"><span data-support-point-head="${i}">${esc(label)} · Support ${i+1}</span><button class="pill g" data-remove-support="${i}" type="button" ${i===0?'aria-label="Remove support 1"':''}>Remove</button></div><div class="beam-loadfields"><label class="beam-field">Support type<select data-support-index="${i}" data-support-key="type">${opts.map(([v,t])=>`<option value="${v}"${S.type===v?' selected':''}>${t}</option>`).join('')}</select></label><label class="beam-field">Position · <span class="beam-value" data-support-out="${i}">${S.pos}%</span><input type="range" min="0" max="100" step="${snap?5:1}" value="${S.pos}" data-support-index="${i}" data-support-key="pos"></label><label class="beam-field full">Point label<input type="text" maxlength="30" value="${escA(label)}" data-auto-point-label="${escA(autoLabel)}" placeholder="${escA(autoLabel)}" data-support-index="${i}" data-support-key="label"></label></div></section>`
@@ -2480,7 +2579,7 @@ function openBeamEditor(F,returnStep){
  const prior=()=>{cleanup();priorBase()};
  let draft=normalizeBeam(F.beam)?JSON.parse(JSON.stringify(normalizeBeam(F.beam))):newBeamDiagram();
  if(!Array.isArray(draft.supports))draft.supports=beamSupportsForPreset(draft.support,draft.leftSupport,draft.rightSupport);
- const pointLabelForIndex=i=>{const ordered=draft.supports.map((S,j)=>({S,j})).sort((a,b)=>a.S.pos-b.S.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=Math.max(1,rank+1),label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return `Point ${label}`};
+ const pointLabelForIndex=i=>{const ordered=draft.supports.map((S,j)=>({S,j})).sort((a,b)=>a.S.pos-b.S.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=Math.max(1,rank+1),label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return label};
  const syncAutoSupportLabels=(activeInput=null)=>draft.supports.forEach((S,i)=>{const auto=pointLabelForIndex(i),label=S.label&&S.label.trim()?S.label.trim():auto,head=app.querySelector(`[data-support-point-head="${i}"]`),input=app.querySelector(`[data-support-index="${i}"][data-support-key="label"]`);if(head)head.textContent=`${label} · Support ${i+1}`;if(input){if(!(S.label&&S.label.trim())&&input!==activeInput)input.value=auto;input.dataset.autoPointLabel=auto;input.placeholder=auto}});
  const snapPct=p=>beamSnapPosition(beamClamp(p,0,100,50),draft.snap!==false);
  const canvasPct=e=>{
@@ -2499,6 +2598,7 @@ function openBeamEditor(F,returnStep){
   if(draft.loads.length>=12)return;
   const pos=snapPct(pct);
   if(type==='point')draft.loads.push({type:'point',pos,mag:'P',dir:'down'});
+  else if(type==='resultant')draft.loads.push({type:'resultant',pos,mag:'R',dir:'up'});
   else if(type==='moment')draft.loads.push({type:'moment',pos,mag:'M',dir:momentDir==='counterclockwise'?'counterclockwise':'clockwise'});
   else{
    let start=snapPct(beamClamp(pos-15,0,95,15)),end=snapPct(beamClamp(pos+15,start+5,100,85));
@@ -2528,23 +2628,23 @@ function openBeamEditor(F,returnStep){
   if(item.startsWith('load-')){addLoad(item.slice(5),pos);return}
  };
  const paletteItemLabel=item=>({
-'preset-double-fixed':'Double fixed beam','preset-fixed-left':'Fixed at left','preset-fixed-right':'Fixed at right','preset-simple':'Hinge + roller','support-fixed':'Fixed end','support-hinge':'Hinge / pin','support-roller':'Roller support','load-point':'Point load','load-uniform':'Rectangular load','load-varying':'Varying load','load-triangle-left':'Triangle · peak left','load-triangle-right':'Triangle · peak right','load-moment':'Applied moment','load-moment-ccw':'Moment (Counterclockwise)','load-moment-cw':'Moment (Clockwise)','section-rect':'Rectangular section','section-circle':'Circular section'
+'preset-double-fixed':'Double fixed beam','preset-fixed-left':'Fixed at left','preset-fixed-right':'Fixed at right','preset-simple':'Hinge + roller','support-fixed':'Fixed end','support-hinge':'Hinge / pin','support-roller':'Roller support','load-point':'Point load','load-resultant':'Resultant load','load-uniform':'Rectangular load','load-varying':'Varying load','load-triangle-left':'Triangle · peak left','load-triangle-right':'Triangle · peak right','load-moment':'Applied moment','load-moment-ccw':'Moment (Counterclockwise)','load-moment-cw':'Moment (Clockwise)','section-rect':'Rectangular section','section-circle':'Circular section'
  }[item]||'Beam tool');
  state={view:'up',step:3,bk:prior};back.hidden=false;mb.hidden=true;title.textContent='Beam Builder';
  const tile=(item,icon,label)=>`<div class="beam-palette-item" role="button" tabindex="0" data-palette-item="${item}"><span class="beam-tool-icon">${icon}</span><span>${label}</span></div>`;
  const advancedHTML=()=>{
   const snap=draft.snap!==false;
   return `<div class="beam-fields"><label class="beam-field">Cross-section shape<select id="beamSection"><option value="rect"${draft.section==='rect'?' selected':''}>Rectangular section</option><option value="circle"${draft.section==='circle'?' selected':''}>Circular section</option></select></label><label class="beam-field">Beam / support preset<select id="beamSupport"><option value="fixed"${draft.support==='fixed'?' selected':''}>Fixed beam · both ends fixed</option><option value="simple"${draft.support==='simple'?' selected':''}>Simply supported · hinge + roller</option><option value="cantilever"${draft.support==='cantilever'?' selected':''}>Cantilever · fixed at left</option><option value="custom"${draft.support==='custom'?' selected':''}>Custom supports</option></select></label></div>
-  <div class="beam-fields"><label class="beam-field">Overall span label<input id="beamSpanLabel" type="text" maxlength="24" value="${escA(draft.spanLabel||'L')}" placeholder="L"></label><label class="beam-field"><span>Snap supports and loads to 5% increments</span><input id="beamSnap" type="checkbox" ${snap?'checked':''}></label></div>
+  <div class="beam-fields"><label class="beam-field">Overall span label<input id="beamSpanLabel" type="text" maxlength="24" value="${escA(draft.spanLabel||'L')}" placeholder="L"></label><label class="beam-field"><span>Snap supports and loads to 5% increments</span><input id="beamSnap" type="checkbox" ${snap?'checked':''}></label></div><label class="beam-check-row"><span>Split dimensions by rectangular-load coverage (<b>a</b> covered, <b>b</b> uncovered)</span><input id="beamRectSplit" type="checkbox" ${draft.rectSplit?'checked':''}></label>
   <div class="beam-field" style="justify-content:center">${draft.supports.length} support${draft.supports.length===1?'':'s'} · ${draft.loads.length} load${draft.loads.length===1?'':'s'} · up to 8 supports / 12 loads</div>
-  <div class="lbl">Supports · default point labels follow left-to-right order</div><div id="beamSupports" class="beam-loadlist">${draft.supports.length?draft.supports.map((S,i)=>{const ordered=[...draft.supports].map((v,j)=>({v,j})).sort((a,b)=>a.v.pos-b.v.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=rank+1,label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return beamSupportCardHTML(S,i,snap,`Point ${label}`)}).join(''):'<div class="beam-empty">No supports placed.</div>'}</div>  <div class="beam-toolrow"><button class="pill" data-add-support type="button" ${draft.supports.length>=8?'disabled':''}>＋ Add support at center</button><button class="pill" id="resetSupports" type="button">Reset to selected preset</button></div>
+  <div class="lbl">Supports · default point labels follow left-to-right order</div><div id="beamSupports" class="beam-loadlist">${draft.supports.length?draft.supports.map((S,i)=>{const ordered=[...draft.supports].map((v,j)=>({v,j})).sort((a,b)=>a.v.pos-b.v.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=rank+1,label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return beamSupportCardHTML(S,i,snap,label)}).join(''):'<div class="beam-empty">No supports placed.</div>'}</div>  <div class="beam-toolrow"><button class="pill" data-add-support type="button" ${draft.supports.length>=8?'disabled':''}>＋ Add support at center</button><button class="pill" id="resetSupports" type="button">Reset to selected preset</button></div>
   <div class="lbl">Loads</div><div class="beam-loadlist" id="beamLoads">${draft.loads.length?draft.loads.map((L,i)=>beamLoadCardHTML(L,i,snap)).join(''):'<div class="beam-empty">No loads placed.</div>'}</div>`;
  };
  const render=()=>{
   draft.support=beamPresetOf(draft.supports);
-  app.innerHTML=`${segHTML(DR.ed?'edit':'new')}<div class="beam-builder"><div class="lbl">Beam / Load Diagram · Formula ${DR.active+1}</div>
+  app.innerHTML=`<div class="beam-builder"><div class="beam-freeze-pane">${segHTML(DR.ed?'edit':'new')}<div class="lbl">Beam / Load Diagram · Formula ${DR.active+1}</div>
   <div id="beamPreview">${beamPreviewHTML(draft)}</div>
-  <div class="beam-drag-tip"${beamHintDismissed?' data-dismissed="true"':''}>Drag palette items onto the beam, drag placed items to reposition them, or tap an element / the beam to make it fall away.</div>
+  <div class="beam-drag-tip"${beamHintDismissed?' data-dismissed="true"':''}>Drag palette items onto the beam, drag placed items to reposition them, or tap an element / the beam to make it fall away.</div></div>
   <div class="beam-palette-group"><div class="beam-palette-title">Beam setups</div><div class="beam-palette">
    ${tile('preset-fixed-left','▌━','Fixed left')}${tile('preset-fixed-right','━▐','Fixed right')}${tile('preset-double-fixed','▌━▐','Double fixed')}${tile('preset-simple','△━━○','Hinge + roller')}
   </div></div>
@@ -2552,7 +2652,7 @@ function openBeamEditor(F,returnStep){
    ${tile('support-fixed','▌','Fixed end')}${tile('support-hinge','△','Hinge / pin')}${tile('support-roller','○','Roller')}
   </div></div>
   <div class="beam-palette-group"><div class="beam-palette-title">Loads</div><div class="beam-palette">
-   ${tile('load-point','↓','Point load')}${tile('load-uniform','↓↓↓','Rectangular load')}${tile('load-varying','▽','Varying load')}${tile('load-triangle-left','◢','Triangle · peak left')}${tile('load-triangle-right','◣','Triangle · peak right')}${tile('load-moment-ccw','↺','Moment (Counterclockwise)')}${tile('load-moment-cw','↻','Moment (Clockwise)')}
+   ${tile('load-point','↓','Point load')}${tile('load-resultant','↑','Resultant load (R)')}${tile('load-uniform','↓↓↓','Rectangular load')}${tile('load-varying','▽','Varying load')}${tile('load-triangle-left','◢','Triangle · peak left')}${tile('load-triangle-right','◣','Triangle · peak right')}${tile('load-moment-ccw','↺','Moment (Counterclockwise)')}${tile('load-moment-cw','↻','Moment (Clockwise)')}
   </div></div>
   <div class="beam-palette-group"><div class="beam-palette-title">Section</div><div class="beam-palette">
    ${tile('section-rect','▭','Rect. section')}${tile('section-circle','○','Circular section')}
@@ -2599,7 +2699,8 @@ function openBeamEditor(F,returnStep){
   };
   app.onchange=e=>{
    const t=e.target;
-   if(t.id==='beamSnap'){draft.snap=t.checked;draft.supports=draft.supports.map(S=>({...S,pos:beamSnapPosition(S.pos,draft.snap)}));draft.loads=draft.loads.map(L=>{if(L.type==='point'||L.type==='moment')return {...L,pos:beamSnapPosition(L.pos,draft.snap)};const start=beamSnapPosition(L.start,draft.snap),end=Math.max(start+5,beamSnapPosition(L.end,draft.snap));return {...L,start:Math.min(start,95),end:Math.min(end,100)}});render();return}
+   if(t.id==='beamSnap'){draft.snap=t.checked;draft.supports=draft.supports.map(S=>({...S,pos:beamSnapPosition(S.pos,draft.snap)}));draft.loads=draft.loads.map(L=>{if(L.type==='point'||L.type==='resultant'||L.type==='moment')return {...L,pos:beamSnapPosition(L.pos,draft.snap)};const start=beamSnapPosition(L.start,draft.snap),end=Math.max(start+5,beamSnapPosition(L.end,draft.snap));return {...L,start:Math.min(start,95),end:Math.min(end,100)}});render();return}
+   if(t.id==='beamRectSplit'){draft.rectSplit=t.checked;render();return}
    if(t.id==='beamSection'){draft.section=t.value;render();return}
    if(t.id==='beamSupport'){if(t.value!=='custom')draft.supports=beamSupportsForPreset(t.value,draft.leftSupport,draft.rightSupport);render();return}
    if(t.matches('[data-support-index][data-support-key="type"]')){const S=draft.supports[+t.dataset.supportIndex];if(S){S.type=t.value;if(S.type==='fixed'){S.pos=nearEnd(S.pos);draft.supports=draft.supports.filter(T=>T===S||T.pos!==S.pos)}render()}return}
@@ -2649,7 +2750,7 @@ function openBeamEditor(F,returnStep){
   }
   if(activeDrag.kind==='load'){
    const L=draft.loads[activeDrag.index];if(!L)return;
-   if(L.type==='point'||L.type==='moment'){
+   if(L.type==='point'||L.type==='resultant'||L.type==='moment'){
     const v=snapPct(pct);if(L.pos===v)return;L.pos=v;
    }else if(activeDrag.part==='start'){
     // Left edge handle: change where the load begins, keep the right end fixed.
@@ -2693,11 +2794,12 @@ function stepF(msg){
  fade();const E=DR.forms[DR.active],ed=DR.ed;state={view:'up',step:1,bk:ed?()=>(DR&&DR.ret?DR.ret():buildEd('edit')):null};back.hidden=false;mb.hidden=true;showGuideBtn();title.textContent='Build & Edit';
  let kmode='abc',shift=false,lock=false,lt=0,H=[]; // Always open with the QWERTY keyboard, including when editing another variant.
  app.innerHTML=`${segHTML(ed?'edit':'new')}${builderVariantBar()}<div class="lbl" style="display:flex;align-items:center;justify-content:space-between">${ed?'Editing · '+esc(ed.n):'New formula'}${ed?'':'<button class="tile" id="upl" style="padding:6px 12px;font-size:13px;text-transform:none;letter-spacing:0">⬆ Upload</button>'}</div>
+ <div class="builder-beam-row"><button class="tile builder-add-beam" id="openBeamBuilder" type="button" aria-label="Add or edit beam diagram" title="Add or edit beam diagram">Add beam</button></div>
+ <div class="builder-keyboard-row"><button class="tile builder-kb-icon${KB_NATIVE?' sel':''}" id="kbSwitch" type="button" role="switch" aria-checked="${KB_NATIVE}" aria-label="Toggle native Android keyboard" title="Toggle native Android keyboard">${ICO_KEYBOARD}</button></div>
   <div class="fxw edbox" id="ed"></div>
- ${beamAttachHTML(E)}
+ ${E.beam?beamDiagramHTML(E.beam):''}
  <div style="display:flex;align-items:center;gap:8px"><div class="msg" id="bm" style="flex:1;text-align:left">${esc(msg||'')}</div><button class="tile" id="bc" style="min-height:34px;padding:4px 14px;font-size:14px;flex:none">Clear</button></div>
- <button class="pill${KB_NATIVE?' sel':''}" id="kbSwitch" type="button" role="switch" aria-checked="${KB_NATIVE}" style="justify-content:center">Native Android keyboard <small>${KB_NATIVE?'On':'Off'}</small></button>
- <div class="etools l2" id="etools">${(KB_NATIVE?['sup','sub','int','sum']:['paren','brack','frac','sqrt','nroot','sup','sub','int','sum']).map(k=>`<button class="tile" data-k="${k}" aria-label="${ELAB[k]}">${EICON[k]}</button>`).join('')}<button class="tile" data-k="left" aria-label="Move left">◀</button><button class="tile" data-k="right" aria-label="Move right">▶</button></div>
+ ${KB_NATIVE?'':'<div class="etools l2" id="etools">'+['paren','brack','frac','sqrt','nroot','sup','sub','int','sum'].map(k=>`<button class="tile" data-k="${k}" aria-label="${ELAB[k]}">${EICON[k]}</button>`).join('')+'<button class="tile" data-k="left" aria-label="Move left">◀</button><button class="tile" data-k="right" aria-label="Move right">▶</button></div>'}
  <div class="kb" id="kb"${KB_NATIVE?' hidden':''}></div>
  `;
  bindTabs();
@@ -2819,9 +2921,11 @@ Butter:{bg:"#f8f1cf",card:"#fffbe8",ink:"#54492a",mut:"#8f8559",pill:"#ede2a8",a
 Cocoa:{bg:"#3d3029",card:"#4c3d34",ink:"#f6e9dc",mut:"#c4ad9a",pill:"#5d4a3e",acc:"#e8bf94",d:1},
 Dusk:{bg:"#3b3547",card:"#4a4358",ink:"#f0e8f7",mut:"#bdb2cc",pill:"#5a5169",acc:"#c9b0ee",d:1},
 Night:{bg:"#000000",card:"#000000",ink:"#f2ebe0",mut:"#9a9288",pill:"#0f0f0f",acc:"#c9b0ee",d:1}};
-const FONTS={Serif:"Georgia,'Times New Roman',serif",Sans:"system-ui,-apple-system,Roboto,sans-serif",Handwritten:"'Segoe Print','Bradley Hand',cursive"};
+const FONTS={Serif:"Georgia,'Times New Roman',serif",Sans:"system-ui,-apple-system,Roboto,sans-serif",Readable:"'Roboto','Arial',system-ui,sans-serif"};
 const ACCS=["#e8a0b4","#f2b48a","#f1d27a","#a9d4a0","#8fc7c0","#94b8e0","#b9a3e3","#d9b08c"];
-let T={p:'Beige',a:'',f:'Serif',s:1};try{Object.assign(T,JSON.parse(localStorage.getItem('cetheme')||'{}'))}catch(e){}
+let T={p:'Beige',a:'',f:'Readable',s:1};try{Object.assign(T,JSON.parse(localStorage.getItem('cetheme')||'{}'))}catch(e){}
+// Migrate the removed handwritten option so existing installs immediately use the readable font.
+if(T.f==='Handwritten')T.f='Readable';
 function syncNativeSystemBars(isDark){
  try{
   const p=nativePlugin('SystemBars');
@@ -2851,24 +2955,26 @@ function applyT(){
  if(el.closest('input,textarea,[contenteditable="true"]'))return;
  if(el.closest('main.fl,main.va,#pv'))e.preventDefault()},true));
 const ICO_SHARE='<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>';
+const ICO_KEYBOARD='<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9h.01M9 9h.01M12 9h.01M15 9h.01M18 9h.01M6 12h.01M9 12h.01M12 12h.01M15 12h.01M18 12h.01M8 15.5h8"/></svg>';
 let SHARE_CSS=null;
 const shareCSS=()=>{if(SHARE_CSS!==null)return SHARE_CSS;let out='';for(const sh of document.styleSheets){try{for(const r of sh.cssRules)out+=r.cssText+'\n'}catch(_){}}return SHARE_CSS=out.replace(/\]\]>/g,'] ]>')};
 function shareCardInner(d){
  const {vs,where,mn}=formulaParts(d);
  let h=`<div class="sc-name">${esc(d.n)}</div>`;
- vs.forEach((v,i)=>{if(!String(v.f||'').trim())return;h+=`<div class="sc-block">${vs.length>1?`<div class="sc-label">${esc(v.label||`Formula ${i+1}`)}</div>`:''}${fx(v.f,'formula')}</div>`});
+ vs.forEach((v,i)=>{
+  const expression=String(v.f||'').trim();if(!expression&&!v.beam)return;
+  h+=`<div class="sc-block">${vs.length>1?`<div class="sc-label">${esc(v.label||`Formula ${i+1}`)}</div>`:''}${expression?fx(expression,'formula'):''}${v.beam?`<div class="sc-diagram">${beamDiagramHTML(v.beam)}</div>`:''}</div>`
+ });
  if(where.length)h+=`<div class="sc-sec"><div class="sc-h">Where</div>${where.map(w=>`<div class="sc-line">${wH(w)}</div>`).join('')}</div>`;
  if(mn.length)h+=`<div class="sc-sec"><div class="sc-h">Mnemonics</div>${mn.map(m=>`<div class="sc-line">“${mnB(m)}”</div>`).join('')}</div>`;
- const beams=vs.map((v,i)=>({v,i})).filter(x=>x.v.beam);
- if(beams.length)h+=`<div class="sc-sec"><div class="sc-h">Diagram</div>${beams.map(({v,i})=>`<div class="sc-diagram">${vs.length>1?`<div class="sc-label">${esc(v.label||`Formula ${i+1}`)}</div>`:''}${beamDiagramHTML(v.beam)}</div>`).join('')}</div>`;
  return h}
 async function renderFormulaPNG(d){
  const W=760,SC=2,cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
- const acc=g('--acc')||'#8a5a2b',accd=g('--accd')||acc;
- const vars=`--bg:#fffdf8;--card:#fffdf8;--ink:#1d1b16;--mut:#5e5a50;--pill:#efe7d3;--tb:#d8cfba;--acc:${acc};--accd:${accd};--onacc:#fff;--ff:${g('--ff')||'serif'}`;
+ const bg=g('--bg')||'#f2e8d5',card=g('--card')||bg,ink=g('--ink')||'#4a3b2a',mut=g('--mut')||ink,pill=g('--pill')||card,tb=g('--tb')||pill,acc=g('--acc')||'#8a5a2b',accd=g('--accd')||acc,onacc=g('--onacc')||ink;
+ const vars=`--bg:${bg};--card:${card};--ink:${ink};--mut:${mut};--pill:${pill};--tb:${tb};--acc:${acc};--accd:${accd};--onacc:${onacc};--ff:${g('--ff')||'serif'}`;
  const host=document.createElement('div');host.className='sharecard';host.setAttribute('xmlns','http://www.w3.org/1999/xhtml');
  const base=`${vars};width:${W}px;`;host.style.cssText=base+'position:fixed;left:-20000px;top:0;';
- host.innerHTML=shareCardInner(d);document.body.appendChild(host);
+ host.innerHTML=`<div class="sc-paper">${shareCardInner(d)}</div>`;document.body.appendChild(host);
  try{
   fitFx(host);if(document.fonts&&document.fonts.ready)await document.fonts.ready;
   const H=Math.ceil(host.getBoundingClientRect().height);host.style.cssText=base;
@@ -2876,7 +2982,7 @@ async function renderFormulaPNG(d){
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><foreignObject x="0" y="0" width="${W}" height="${H}"><style><![CDATA[${shareCSS()}]]></style>${xml}</foreignObject></svg>`;
   const img=new Image();img.decoding='async';
   await new Promise((ok,no)=>{img.onload=ok;img.onerror=()=>no(new Error('Could not draw the formula card.'));img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)});
-  const cv=document.createElement('canvas');cv.width=W*SC;cv.height=H*SC;const cx=cv.getContext('2d');cx.fillStyle='#fffdf8';cx.fillRect(0,0,cv.width,cv.height);cx.scale(SC,SC);cx.drawImage(img,0,0,W,H);
+  const cv=document.createElement('canvas');cv.width=W*SC;cv.height=H*SC;const cx=cv.getContext('2d');cx.fillStyle=bg;cx.fillRect(0,0,cv.width,cv.height);cx.scale(SC,SC);cx.drawImage(img,0,0,W,H);
   return await new Promise((ok,no)=>cv.toBlob(b=>b?ok(b):no(new Error('Could not create the PNG image.')),'image/png'))
  }finally{host.remove()}}
 const CRC_T=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
@@ -2915,53 +3021,98 @@ async function shareFormulas(items){
  }catch(e){if(e&&(e.name==='AbortError'||/cancel/i.test(String(e.message||''))))return;showAppToast('Could not share: '+String((e&&e.message)||e),true)}}
 // ----- native Android keyboard mode for the equation editor -----
 let KB_NATIVE=false;try{KB_NATIVE=localStorage.getItem('cekbnative')==='1'}catch(_){}
-let NP_VV=null,NP_INPUT=null;const NP_OFF_KEY='cenpoff';
+let NP_VV=null,NP_WINRESIZE=null,NP_INPUT=null;
 function nativeKbCleanup(){
  const old=document.getElementById('npbar');if(old)old.remove();NP_INPUT=null;
- if(NP_VV){try{window.visualViewport.removeEventListener('resize',NP_VV);window.visualViewport.removeEventListener('scroll',NP_VV)}catch(_){}NP_VV=null}}
+ if(NP_VV){try{window.visualViewport.removeEventListener('resize',NP_VV);window.visualViewport.removeEventListener('scroll',NP_VV)}catch(_){}NP_VV=null}
+ if(NP_WINRESIZE){try{window.removeEventListener('resize',NP_WINRESIZE)}catch(_){}NP_WINRESIZE=null}
+ const a=document.getElementById('app');if(a)a.style.removeProperty('--npbar-space')}
 function nativeKbFocus(){if(!NP_INPUT)return;try{NP_INPUT.focus({preventScroll:true})}catch(_){try{NP_INPUT.focus()}catch(__){}}}
 function nativeKbMount(o){
  nativeKbCleanup();const {E,redraw,bm,tl,tlf,next}=o;
- let cat='ops',off=0;try{off=Math.max(0,Number(localStorage.getItem(NP_OFF_KEY))||0)}catch(_){}
- const STRUCT=[['paren','()','Parentheses'],['brack','[]','Square brackets'],['frac','a/b','Fraction'],['sqrt','√','Square root'],['nroot','ⁿ√','Nth root']];
- const OPS=BGR['Operators & Numbers'].filter(x=>!NUMS.has(x)&&!'()[]'.includes(x));
- const GRK=[...BGR.Greek.filter(x=>x===x.toLowerCase()),...BGR.Greek.filter(x=>x!==x.toLowerCase())];
+ let cat='ops';
+ const STRUCT=[
+  ['int','Integral with limits',EICON.int],['sum','Sigma notation with limits',EICON.sum],
+  ['sqrt','Square root',EICON.sqrt],['nroot','Nth root',EICON.nroot],
+  ['pm','Plus/minus','+-'],['mp','Minus/plus','-+'],['paren','Parentheses','()'],['brack','Square brackets','[]'],
+  ['frac','Fraction',EICON.frac],['sup','Superscript / exponent',EICON.sup],['sub','Subscript',EICON.sub]
+ ];
+ const OPS=BGR['Operators & Numbers'].filter(x=>!NUMS.has(x)&&!'()[]'.includes(x)&&!['∫','Σ','±','∓'].includes(x));
+ const GRK=BGR.Greek.slice();
  const CATS_NP=[['ops','Operators'],['trg','Trig/Log'],['grk','Greek Letters']];
  const bar=document.createElement('div');bar.id='npbar';bar.className='npbar';
- bar.innerHTML=`<div class="nphandle" id="nphandle" role="slider" aria-label="Drag to move this bar up or down"><i></i></div><div class="nppills" id="nppills"></div><div class="npkeys" id="npkeys"></div><input id="nkin" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="Formula input">`;
+ bar.innerHTML='<div class="nppills" id="nppills"></div><div class="npnav" aria-label="Formula cursor navigation"><button type="button" class="tile" data-np-nav="left" aria-label="Move cursor left" title="Move cursor left">&lt;</button><button type="button" class="tile" data-np-nav="right" aria-label="Move cursor right" title="Move cursor right">&gt;</button></div><div class="npkeys" id="npkeys"></div><input id="nkin" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="Formula input">';
  document.body.appendChild(bar);
  const pills=bar.querySelector('#nppills'),keys=bar.querySelector('#npkeys'),inp=bar.querySelector('#nkin');NP_INPUT=inp;
  const draw=()=>{
   pills.innerHTML=CATS_NP.map(([k,l])=>`<button type="button" class="nppill${k===cat?' on':''}" data-npc="${k}">${l}</button>`).join('');
-  keys.innerHTML=cat==='ops'?STRUCT.map(([k,t,l])=>`<button type="button" class="tile" data-k="${k}" aria-label="${l}">${esc(t)}</button>`).join('')+OPS.map(tl).join(''):cat==='trg'?BGR['Trig/Log'].map(tlf).join(''):GRK.map(tl).join('');
-  keys.scrollLeft=0};
+  if(cat==='ops'){
+   const special=STRUCT.map(([k,label,content])=>{
+    const value=k==='pm'?'±':k==='mp'?'∓':null;
+    return value!==null?`<button type="button" class="tile npstruct" data-s="${value}" aria-label="${label}" title="${label}">${content}</button>`:`<button type="button" class="tile npstruct" data-k="${k}" aria-label="${label}" title="${label}">${content}</button>`
+   }).join('');
+   keys.innerHTML=special+OPS.map(tl).join('')
+  }else keys.innerHTML=cat==='trg'?BGR['Trig/Log'].map(tlf).join(''):GRK.map(tl).join('');
+  keys.scrollLeft=0
+ };
  draw();
- const place=()=>{const vv=window.visualViewport,inset=vv?Math.max(0,Math.round(window.innerHeight-vv.height-vv.offsetTop)):0;off=Math.max(0,Math.min(off,Math.round(window.innerHeight*.6)));bar.style.setProperty('--npb',(inset+off)+'px')};
- place();if(window.visualViewport){NP_VV=place;window.visualViewport.addEventListener('resize',place);window.visualViewport.addEventListener('scroll',place)}
- const h=bar.querySelector('#nphandle');let drag=null;
- h.addEventListener('pointerdown',e=>{drag={y:e.clientY,off};try{h.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()});
- h.addEventListener('pointermove',e=>{if(!drag)return;off=drag.off+(drag.y-e.clientY);place()});
- const endDrag=()=>{if(!drag)return;drag=null;try{localStorage.setItem(NP_OFF_KEY,String(Math.round(off)))}catch(_){}};
- h.addEventListener('pointerup',endDrag);h.addEventListener('pointercancel',endDrag);
- bar.addEventListener('mousedown',e=>{if(e.target!==inp)e.preventDefault()}); // keep the soft keyboard open while tapping keys
+ const place=()=>{
+  const vv=window.visualViewport;
+  const inset=vv?Math.max(0,Math.round(window.innerHeight-vv.height-vv.offsetTop)):0;
+  bar.style.setProperty('--npb',inset+'px');
+  const appEl=document.getElementById('app');if(appEl)appEl.style.setProperty('--npbar-space',Math.ceil(bar.getBoundingClientRect().height+12)+'px');
+ };
+ place();
+ if(window.visualViewport){NP_VV=place;window.visualViewport.addEventListener('resize',place);window.visualViewport.addEventListener('scroll',place)}
+ NP_WINRESIZE=place;window.addEventListener('resize',place);
+ bar.addEventListener('mousedown',e=>{if(e.target!==inp)e.preventDefault()});
  const et=document.getElementById('etools');if(et)et.addEventListener('mousedown',e=>e.preventDefault());
+ const openRootFromRT=(indexed)=>{
+  const {row,i}=E.c;if(i<2||!isC(row[i-1],'t')||!isC(row[i-2],'r'))return false;
+  const node={k:'sqrt',c:[],...(indexed?{ix:[]}:{}),_typedRoot:true};
+  row.splice(i-2,2,node);E.c=indexed?{row:node.ix,i:0}:{row:node.c,i:0};return true
+ };
+ const typedText=row=>row.every(n=>n&&n.k==='c')?row.map(n=>n.s).join(''):null;
+ const put=ch=>{
+  if(ch==='\n'||ch==='\r')return;
+  if(ch==='-')ch='−';else if(ch==='*')ch='×';else if(ch==='/'){eStruct(E,'frac');return}
+  if(ch==='$'){eIns(E,'∫');return}
+  if(ch==='^'){if(openRootFromRT(true))return;eStruct(E,'sup');return}
+  if(ch==='_'){eStruct(E,'sub');return}
+  if(ch==='('){
+   if(openRootFromRT(false))return;
+   const p=eMap(E.t).get(E.c.row);
+   if(p&&p.par&&p.par._typedRoot&&p.par.ix===E.c.row){
+    // The literal n in rt^n() is a blank-index placeholder; numeric/other indices are kept.
+    if(typedText(E.c.row)==='n')E.c.row.splice(0,E.c.row.length);
+    E.c={row:p.par.c,i:0};return
+   }
+  }
+  if(ch===')'){
+   const p=eMap(E.t).get(E.c.row);
+   if(p&&p.par&&p.par._typedRoot&&p.par.c===E.c.row){E.c={row:p.prow,i:p.pi+1};return}
+  }
+  eIns(E,ch)
+ };
  bar.addEventListener('click',e=>{
   const pc=e.target.closest('[data-npc]');if(pc){cat=pc.dataset.npc;draw();return}
+  const nav=e.target.closest('[data-np-nav]');if(nav){if(nav.dataset.npNav==='left')eLeft(E);else eRight(E);bm('');redraw();nativeKbFocus();return}
   const b=e.target.closest('button');if(!b)return;
-  if(b.dataset.k){eStruct(E,b.dataset.k)}
+  if(b.dataset.k)eStruct(E,b.dataset.k);
   else if(b.dataset.s!==undefined){if(b.dataset.fn)eFn(E,b.dataset.s);else eIns(E,b.dataset.s)}
   else return;
-  bm('');redraw();nativeKbFocus()});
- // The hidden field always holds two zero-width markers so Backspace is detectable; typed text is moved into the formula.
+  bm('');redraw();nativeKbFocus()
+ });
  const SENT='\u200b\u200b',reset=()=>{inp.value=SENT;try{inp.setSelectionRange(SENT.length,SENT.length)}catch(_){}};
- const put=ch=>{if(ch==='\n'||ch==='\r')return;if(ch==='-')ch='−';else if(ch==='*')ch='×';else if(ch==='/'){eStruct(E,'frac');return}else if(ch==='^'){eStruct(E,'sup');return}else if(ch==='_'){eStruct(E,'sub');return}eIns(E,ch)};
  inp.addEventListener('input',()=>{const v=inp.value;
   if(v.length<SENT.length)eBack(E);
   else if(v!==SENT){for(const ch of v.replace(/\u200b/g,''))put(ch)}
   else return;
-  bm('');redraw();reset()});
+  bm('');redraw();reset();place()
+ });
  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();next()}});
- reset()}
+ reset();place()
+}
 // ===== Support the creator: put your own links here (label + https address). Leave the list empty to show "not set up yet". =====
 const SUPPORT={message:'FormuLater is made and kept up to date by one person. A small gift really means a lot. Thank You!',links:[
  {label:'Support me on Ko-Fi',url:'https://ko-fi.com/cyg1903'},
@@ -2992,7 +3143,7 @@ function settings(){
  app.querySelectorAll('[data-k]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=g.dataset.k;T[k]=k=='s'?+b.dataset.v:b.dataset.v;applyT();g.querySelectorAll('button').forEach(x=>x.classList.toggle('sel',x===b))}));
  document.getElementById('manageStorage').onclick=()=>storageScreen();gid('supBtn').onclick=supportSheet;
  gid('checkAppUpdates').onclick=()=>{if(APP_UPDATE.available)downloadAppUpdate();else checkAppUpdates(true)};renderUpdateUI();checkAppUpdates(false);
- document.getElementById('rt').onclick=()=>{T={p:'Beige',a:'',f:'Serif',s:1};applyT();settings()};
+ document.getElementById('rt').onclick=()=>{T={p:'Beige',a:'',f:'Readable',s:1};applyT();settings()};
  const tg=(id,k)=>gid(id).onclick=()=>{N[k]=!N[k];gid(id).querySelector('small').textContent=N[k]?'On':'Off';gid(id).classList.toggle('sel',N[k]);applyN()};
  tg('kw','w');tg('nm','n');
  gid('ni').oninput=e=>{N.i=+e.target.value;gid('iv').textContent=N.i+'%';if(!N.n){N.n=true;gid('nm').querySelector('small').textContent='On';gid('nm').classList.add('sel')}applyN()};
