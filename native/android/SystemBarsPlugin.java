@@ -2,6 +2,7 @@ package com.formulater.app;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
@@ -31,12 +32,11 @@ public class SystemBarsPlugin extends Plugin {
         Boolean requested = call.getBoolean("darkIcons");
         final boolean darkIcons = requested == null || requested;
         String requestedColor = call.getString("backgroundColor");
-        int barColor = Color.parseColor("#f2e8d5");
-        // Only accept a plain six-digit CSS hex color supplied by the app theme.
-        if (requestedColor != null && requestedColor.matches("#[0-9a-fA-F]{6}")) {
-            barColor = Color.parseColor(requestedColor);
-        }
-        final int systemBarColor = barColor;
+        // The web app supplies the active theme color whenever a theme is applied.
+        // Do not force a static fallback: it would leave native bars mismatched if
+        // the app launches in another theme before the first theme sync completes.
+        final boolean hasThemeColor = requestedColor != null && requestedColor.matches("#[0-9a-fA-F]{6}");
+        final int systemBarColor = hasThemeColor ? Color.parseColor(requestedColor) : 0;
         Activity activity = getActivity();
         if (activity == null) {
             call.reject("System bars are not available right now.");
@@ -47,13 +47,16 @@ public class SystemBarsPlugin extends Plugin {
             try {
                 Window window = activity.getWindow();
                 WindowCompat.setDecorFitsSystemWindows(window, false);
-                // Use an opaque theme-matched color. Some Android skins (including
-                // recent-apps previews) render transparent bars as black/white.
-                window.setStatusBarColor(systemBarColor);
-                window.setNavigationBarColor(systemBarColor);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    window.setStatusBarContrastEnforced(false);
-                    window.setNavigationBarContrastEnforced(false);
+                // Keep system surfaces bound to the active theme. If no valid theme
+                // color was supplied, preserve the current native window colors.
+                if (hasThemeColor) {
+                    window.setBackgroundDrawable(new ColorDrawable(systemBarColor));
+                    window.setStatusBarColor(systemBarColor);
+                    window.setNavigationBarColor(systemBarColor);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        window.setStatusBarContrastEnforced(false);
+                        window.setNavigationBarContrastEnforced(false);
+                    }
                 }
 
                 View decor = window.getDecorView();

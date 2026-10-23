@@ -190,6 +190,42 @@ public class FormulaFolderPlugin extends Plugin {
         }
     }
 
+    @PluginMethod
+    public void shareFile(PluginCall call) {
+        String data = call.getString("data");
+        String name = call.getString("name", "FormuLater.png");
+        String mime = call.getString("mime", "application/octet-stream");
+        if (data == null) {
+            call.reject("No file data was supplied.");
+            return;
+        }
+        try {
+            String safe = name.replaceAll("[^A-Za-z0-9._ -]", "_");
+            if (safe.trim().isEmpty()) safe = "FormuLater.bin";
+            byte[] bytes = android.util.Base64.decode(data, android.util.Base64.DEFAULT);
+            File dir = new File(getContext().getCacheDir(), "shared");
+            if (!dir.exists() && !dir.mkdirs()) throw new IllegalStateException("Could not prepare the share folder.");
+            File file = new File(dir, safe);
+            try (FileOutputStream out = new FileOutputStream(file, false)) {
+                out.write(bytes);
+                out.flush();
+            }
+            Uri uri = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".fileprovider", file);
+            Intent send = new Intent(Intent.ACTION_SEND);
+            send.setType(mime);
+            send.putExtra(Intent.EXTRA_STREAM, uri);
+            send.putExtra(Intent.EXTRA_SUBJECT, "FormuLater");
+            send.putExtra(Intent.EXTRA_TITLE, safe);
+            send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            send.setClipData(android.content.ClipData.newRawUri(safe, uri));
+            Intent chooser = Intent.createChooser(send, "Share FormuLater");
+            chooser.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivityForResult(call, chooser, "sharePicked");
+        } catch (Exception e) {
+            call.reject("Could not open the share menu: " + e.getMessage(), e);
+        }
+    }
+
     @ActivityCallback
     private void sharePicked(PluginCall call, ActivityResult result) {
         if (call == null) return;

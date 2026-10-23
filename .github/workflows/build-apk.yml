@@ -116,8 +116,10 @@ jobs:
           s = p.read_text()
           if 'import android.os.Bundle;' not in s:
               s = s.replace('package com.formulater.app;', 'package com.formulater.app;\n\nimport android.os.Bundle;')
-          if 'import android.graphics.Color;' not in s:
-              s = s.replace('import android.os.Bundle;', 'import android.os.Bundle;\nimport android.graphics.Color;\nimport android.os.Build;\nimport android.view.Window;\nimport androidx.core.view.WindowCompat;')
+          if 'import android.view.Window;' not in s:
+              s = s.replace('import android.os.Bundle;', 'import android.os.Bundle;\nimport android.view.Window;')
+          if 'import androidx.core.view.WindowCompat;' not in s:
+              s = s.replace('import android.os.Bundle;', 'import android.os.Bundle;\nimport androidx.core.view.WindowCompat;')
           pattern = r'public class MainActivity extends BridgeActivity\s*\{\s*\}'
           replacement = ("public class MainActivity extends BridgeActivity {\n"
               "    @Override\n"
@@ -130,16 +132,6 @@ jobs:
               "    private void configureEdgeToEdge() {\n"
               "        Window window = getWindow();\n"
               "        WindowCompat.setDecorFitsSystemWindows(window, false);\n"
-              "        int themeBarColor = Color.parseColor(\"#f2e8d5\");\n"
-              "        window.setStatusBarColor(themeBarColor);\n"
-              "        window.setNavigationBarColor(themeBarColor);\n"
-              "        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {\n"
-              "            window.setStatusBarContrastEnforced(false);\n"
-              "            window.setNavigationBarContrastEnforced(false);\n"
-              "        }\n"
-              "        androidx.core.view.WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());\n"
-              "        controller.setAppearanceLightStatusBars(true);\n"
-              "        controller.setAppearanceLightNavigationBars(true);\n"
               "    }\n"
               "}")
           if re.search(pattern, s):
