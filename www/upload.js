@@ -46,11 +46,10 @@ function uplCSS(){if(document.getElementById('upcss'))return;const s=document.cr
 #up .ubusy{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:40}
 #up .ubusy.show{display:flex}
 #up .ubusy>div{background:var(--card);border:2px solid var(--tb);border-radius:18px;padding:18px 24px;text-align:center;width:min(320px,86%);display:flex;flex-direction:column;gap:6px;align-items:stretch}
-#up .ubusy .pc{font:700 22px var(--ff);margin-top:2px}
-#up .ubusy .pc small{font:500 13px var(--ff);color:var(--mut);margin-left:6px}
-#up .ubusy .bar{height:10px;border-radius:6px;background:var(--pill);margin-top:6px;overflow:hidden;position:relative}
-#up .ubusy .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .2s}
-#up .ubusy .bar.ind::after{content:'';position:absolute;top:0;bottom:0;width:35%;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation:uind 1.1s linear infinite}
+#up .ubusy .bar{height:24px;border-radius:999px;border:1px solid var(--tb);background:var(--pill);margin-top:6px;overflow:hidden;position:relative}
+#up .ubusy .bar i{position:absolute;left:0;top:0;bottom:0;display:block;height:100%;width:0;background:var(--acc);transition:width .2s;z-index:1}
+#up .ubusy .bar #ubq{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 13px/1 var(--ff);color:var(--ink);z-index:3;text-shadow:0 1px 0 var(--card),0 -1px 0 var(--card)}
+#up .ubusy .bar.ind::after{content:'';position:absolute;top:0;bottom:0;width:35%;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation:uind 1.1s linear infinite;z-index:2}
 @keyframes uind{from{left:-35%}to{left:100%}}
 #up .ubusy .uhn{font-size:12.5px;color:var(--mut);min-height:16px;line-height:1.35}
 #up .ubusy .ub{margin-top:6px}
@@ -160,7 +159,7 @@ function uplDoc(){
  ${multi?`<div class="uslid"><div class="lb" id="unl"></div><div class="usr"><input type="range" id="unr" min="1" max="${rem}" value="${UPL.n}"${rem<2?' disabled':''} aria-label="Number of pages to read"><button class="ub pri" id="unb"></button></div></div>`:''}`:''}
  </div><div class="uv" id="uvw">${UPL.src?'<div class="upw" id="upw"></div>':`<div class="uempty"><div style="font-size:42px">📄</div><div>Open a PDF or photo (JPG/JPEG, PNG, WebP, GIF, BMP) that contains formulas</div><button class="ub pri" id="uo2">Open PDF / photo</button></div>`}</div></div>
  <input type="file" id="uf" accept="application/pdf,.pdf,image/jpeg,.jpg,.jpeg,image/png,.png,image/webp,.webp,image/gif,.gif,image/bmp,.bmp" hidden>
- <div class="ubusy" id="ubz"><div><span id="ubt">Working…</span><div class="bar" id="ubb"><i id="ubp"></i></div><div class="pc"><span id="ubq">0%</span><small id="ube">0:00</small></div><div class="uhn" id="ubh"></div><button class="ub stop" id="ubs">Stop &amp; use pages read so far</button><button class="ub" id="ubc">Cancel</button></div></div>`;
+ <div class="ubusy" id="ubz"><div><span id="ubt">Working…</span><div class="bar" id="ubb"><i id="ubp"></i><span id="ubq">0%</span></div><div class="uhn" id="ubh"></div><button class="ub stop" id="ubs">Stop &amp; use pages read so far</button><button class="ub" id="ubc">Cancel</button></div></div>`;
  uq('#uc').onclick=uplClose;uq('#ubc').onclick=uplCancel;uq('#ubs').onclick=uplStop;
  const pick=()=>uq('#uf').click();const openBtn=uq('#uo');if(openBtn)openBtn.onclick=pick;const o2=uq('#uo2');if(o2)o2.onclick=pick;const rs=uq('#ursum');if(rs)rs.onclick=()=>{UPL.returnToSummary=false;uplSummary()};
  const rm=uq('#urmf');if(rm)rm.onclick=uplRemoveFile;
@@ -184,10 +183,10 @@ function uplDoc(){
   uplChips();
  }
 }
-// progress overlay: bar + percent + elapsed time + Cancel. The value only ever goes up within one job.
+// progress overlay: progress bar with centered percent + Cancel. The value only ever goes up within one job.
 // If nothing moves for a few seconds the bar animates and a hint appears, so it never looks frozen.
 function uplBusy(on,t,p){
- if(on&&!UPL.busy){UPL.pmax=0;UPL.t0=Date.now();UPL.lastProg=Date.now();UPL.bt=null}
+ if(on&&!UPL.busy){UPL.pmax=0;UPL.lastProg=Date.now();UPL.bt=null}
  UPL.busy=!!on;
  if(!on){clearInterval(UPL.tm);UPL.tm=0}
  const z=uq('#ubz');if(!z)return;
@@ -198,8 +197,7 @@ function uplBusy(on,t,p){
  busyTick()}
 function busyTick(){
  if(!UPL.busy)return;
- const e=Math.floor((Date.now()-UPL.t0)/1000),idle=Date.now()-UPL.lastProg;
- const E=uq('#ube');if(E)E.textContent=Math.floor(e/60)+':'+String(e%60).padStart(2,'0');
+ const idle=Date.now()-UPL.lastProg;
  const b=uq('#ubb');if(b)b.classList.toggle('ind',idle>2500);
  const h=uq('#ubh');if(h)h.textContent=idle>45000?'No response from the reader for a while. Press Cancel and try again (or read fewer pages).':idle>15000?'Still working… this device is a bit slow. You can wait, or press Cancel.':'';
  const J=UPL.job,s=uq('#ubs');if(s)s.style.display=J&&J.canStop&&J.done>0?'block':'none'}

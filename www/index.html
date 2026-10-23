@@ -195,7 +195,7 @@ input,textarea,select{border:2px solid var(--tb);border-bottom-width:4px;border-
 .quizprefs-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}.quizprefs-head strong{font-size:15px}
 #quizBatchRange{width:100%;height:24px;padding:0;margin:0;background:transparent;border:0;accent-color:var(--accd)}
 .quizrangeends{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}.quizhint{font-size:12px;line-height:1.35;color:var(--mut);margin:0}.tile:disabled{opacity:.58;cursor:not-allowed}
-#pv{position:fixed;left:50%;top:20%;transform:translateX(-50%) scale(.92);width:min(88vw,380px);z-index:9;background:var(--card);border:2px solid var(--tb);border-bottom-width:5px;border-radius:22px;padding:18px;text-align:center;opacity:0;pointer-events:none;transition:opacity .15s,transform .2s}
+#pv{position:fixed;left:50%;top:20%;transform:translateX(-50%) scale(.92);width:min(88vw,380px);z-index:1005;background:var(--card);border:2px solid var(--tb);border-bottom-width:5px;border-radius:22px;padding:18px;text-align:center;opacity:0;pointer-events:none;transition:opacity .15s,transform .2s}
 #pv.show{opacity:1;transform:translateX(-50%)}
 #nv{position:fixed;inset:0;z-index:99;pointer-events:none;background:#ff9a3c;mix-blend-mode:multiply;opacity:0;transition:opacity .3s}
 input[type=range]{border:0;padding:0;background:none;accent-color:var(--acc);width:100%}
@@ -414,6 +414,16 @@ textarea.el{flex-shrink:0;overflow:hidden;resize:none;display:block;min-height:5
 .localprimary{width:100%;padding:17px 20px;border-radius:18px;border:2px solid var(--accd);border-bottom-width:5px;background:var(--acc);color:var(--onacc);font:700 18px var(--ff)}
 .authfine{font-size:12px;line-height:1.5;text-align:center;color:var(--mut);margin:0 10px}
 .app-toast{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;right:12px;max-width:640px;margin:0 auto;background:var(--card);color:var(--ink);border:1px solid var(--accd);border-bottom-width:4px;border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.18);font:600 14px/1.4 var(--ff);text-align:center}.app-toast.err{border-color:#b04d58;color:#b04d58}
+
+#shareProgress{position:fixed;inset:0;z-index:11000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.42)}
+#shareProgress.show{display:flex}
+#shareProgress .sp-card{width:min(360px,92vw);padding:20px 18px;background:var(--card);color:var(--ink);border:2px solid var(--tb);border-bottom-width:5px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:13px}
+#shareProgress .sp-title{text-align:center;font:700 16px/1.4 var(--ff);overflow-wrap:anywhere}
+#shareProgress .sp-track{height:24px;position:relative;overflow:hidden;border-radius:999px;border:1px solid var(--tb);background:var(--pill)}
+#shareProgress .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--acc);transition:width .18s ease}
+#shareProgress .sp-percent{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 13px/1 var(--ff);color:var(--ink);z-index:2;text-shadow:0 1px 0 var(--card),0 -1px 0 var(--card)}
+#shareProgress .sp-track.busy::after{content:'';position:absolute;top:0;bottom:0;width:35%;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation:spind 1.1s linear infinite;z-index:1;pointer-events:none}
+@keyframes spind{from{left:-35%}to{left:100%}}
 .authlink{display:block;width:100%;border:0;background:none;color:var(--mut);text-decoration:underline;font:14px var(--ff);padding:10px;text-align:center;cursor:pointer}
 .save-success{border:1px solid #7dbb79;background:#dff3d9;color:#276b36;border-radius:12px;padding:10px 12px;font:600 14px/1.4 var(--ff);text-align:center}
 .navhint{margin:8px 12px 10px;padding:9px 11px;border-radius:10px;background:color-mix(in srgb,var(--acc) 13%,var(--card));border:1px solid var(--tb);color:var(--mut);font:12px/1.4 var(--ff);text-align:center;transition:opacity .3s ease,transform .3s ease}
@@ -688,7 +698,7 @@ main.memv .kp .kr .tile.ph{visibility:hidden;pointer-events:none}
 .npnav .tile{min-width:42px;min-height:38px;padding:3px 12px;font-size:19px;line-height:1}
 .npkeys{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px}
 .npkeys .tile{flex:none;min-width:46px;min-height:46px;padding:4px 10px;font-size:19px}
-.npkeys .npstruct{display:flex;align-items:center;justify-content:center;gap:2px}
+.npkeys .npstruct{display:flex;align-items:center;justify-content:center;gap:2px}.npkeys .npstruct>svg{display:block;width:28px;height:32px;flex:none}
 .npkeys .npstruct .fx{font-size:21px;line-height:1}
 #nkin{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;border:0;padding:0;margin:0;pointer-events:none}
 
@@ -705,11 +715,46 @@ main.memv .kp .kr .tile.ph{visibility:hidden;pointer-events:none}
 .sgnote{font-size:13px;line-height:1.45;color:var(--mut);margin:0 0 6px}
 
 /* Keep the flashcard options chevron at the bottom center in every orientation. */
-main.fl .fbar{position:fixed;left:0;right:0;bottom:var(--sab);z-index:6;display:flex;align-items:center;justify-content:center;flex:none;width:auto;margin:0;padding:0;align-self:auto;pointer-events:none}
+main.fl .fbar{position:fixed;left:0;right:0;bottom:calc(var(--sab) + 9px);z-index:6;display:flex;align-items:center;justify-content:center;flex:none;width:auto;margin:0;padding:0;align-self:auto;pointer-events:none}
 main.fl .fbar .up{pointer-events:auto;margin:0 auto;padding:10px 40px 4px;min-height:48px;display:flex;align-items:center;justify-content:center}
 
 /* Clear numeric glyphs and consistent digit widths for formulas, answers, and beam dimensions. */
 .formula,.formula2,.q,.ans,.tile,.fx,.beam-diagram text,.beam-value,.beam-field input[type=number],.beam-field input[type=text],.beam-field select,.cn,.name,.where,.mw .mb,.mt,.blk,.cnt{font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
+/* Recent UX polish: group the formula keyboard controls as a stable bottom dock. */
+.builder-keyboard-dock{margin-top:auto;display:flex;flex:0 0 auto;flex-direction:column;gap:8px;min-width:0;padding-bottom:4px}
+.builder-keyboard-spacers{display:flex;flex-direction:column;gap:7px;flex:none;min-height:0}
+.builder-keyboard-spacers .kr{flex:none}
+.builder-keyboard-spacers.has-spacers{padding-top:7px}
+.builder-editor-actions{display:flex;align-items:center;gap:8px;min-width:0}
+.builder-editor-actions .msg{min-width:0}
+.builder-keyboard-dock .etools{flex:none}
+.builder-keyboard-dock .kb{width:100%;flex:none}
+.builder-keyboard-dock .kb-spacer{flex:none}
+.greek-guide-left{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:3px}
+.greek-guide-shortcuts{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.greek-guide-upper{align-self:center}
+.beam-field .beam-direction-picker{width:100%;min-width:0;padding:9px 10px;font:14px var(--ff);border-radius:11px;background:var(--bg)}
+.beam-tool-label{display:block;line-height:1.12;overflow-wrap:anywhere}
+.beam-tool-label small{display:block;font-size:10px;line-height:1.2;font-weight:700;margin-top:2px}
+.beam-diagram .beam-moment-symbol{stroke:currentColor;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.left-side-help{margin-bottom:8px;line-height:1.5}
+.case-sensitive-help{line-height:1.5;padding:0 2px 4px}
+/* View All: put the formula name first and use the same airy equation/Where separation as a flashcard. */
+main.va .vc:not(.emptyall){display:flex;flex-direction:column;justify-content:flex-start;align-content:stretch;grid-template-columns:none;grid-auto-rows:auto;column-gap:0;row-gap:0;gap:0;padding:26px 24px 24px;min-width:0}
+main.va .vc .name{flex:none;text-align:center;font-size:24px;line-height:1.25;overflow-wrap:anywhere;margin:2px 0 22px}
+main.va .vc .fxw.formula2{display:flex;flex:0 1 auto;align-items:center;justify-content:center;width:100%;max-width:100%;min-width:0;min-height:94px;box-sizing:border-box;text-align:center;font-size:clamp(26px,5.8vw,38px);padding:12px 0 24px;margin:0 0 18px;overflow-x:auto;overflow-y:hidden}
+main.va .vc .formula2 .fx{max-width:none;min-width:max-content;width:max-content;justify-content:center;flex:none;margin-inline:auto}
+main.va .vc .variant-stack{display:flex;flex-direction:column;gap:14px;margin:0 0 18px}
+main.va .vc .variant-block{padding:14px 12px;gap:12px}
+main.va .vc .variant-block .fxw.formula2{display:block;text-align:center;margin:0;padding:6px 0 10px}
+main.va .vc .formula-beam-diagram{margin:0 0 16px}
+main.va .vc .where{width:100%;align-self:stretch;grid-column:auto;margin:0;padding:18px 0 0;border-top:1px solid var(--pill);border-left:0;font-size:clamp(15px,3.8vw,19px);line-height:1.65;overflow-wrap:anywhere}
+main.va .vc .mnh{margin-top:18px;text-align:left}
+main.va .vc .mh{padding-top:15px;border-top:1px solid var(--pill)}
+.menu-update{background:var(--acc)!important;color:var(--onacc)!important;border-color:var(--accd)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 24%,transparent),0 4px 0 var(--accd)!important}
+.menu-update small{color:inherit!important;opacity:.82;font-weight:600}
+.menu-update:active{transform:scale(.97);box-shadow:0 0 0 2px color-mix(in srgb,var(--acc) 20%,transparent),0 2px 0 var(--accd)!important}
+
 </style></head>
 <body>
 <header><button class="back" id="back" hidden>‹</button><h1 id="title">FormuLater</h1><button class="back" id="mb" hidden>☰</button></header>
@@ -849,7 +894,7 @@ function renderUpdateUI(){
 function updateMenuNotice(){
  let b=gid('menuUpdateBanner');
  if(state.view!=='menu'||!APP_UPDATE.available){if(b)b.remove();return}
- if(!b){b=document.createElement('button');b.id='menuUpdateBanner';b.className='pill menu-update';b.onclick=downloadAppUpdate;app.prepend(b)}
+ if(!b){b=document.createElement('button');b.id='menuUpdateBanner';b.className='pill menu-update';b.onclick=downloadAppUpdate;const settingsButton=app.querySelector('[data-m="set"]');if(settingsButton)settingsButton.after(b);else app.append(b)}
  b.innerHTML=`<span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small>`;
 }
 async function checkAppUpdates(force=false){
@@ -918,7 +963,7 @@ async function downloadAppUpdate(){
 }
 function menu(){
  fade();app.classList.add('ctr');state={view:'menu'};back.hidden=true;mb.hidden=true;title.textContent='FormuLater';
- app.innerHTML=`${APP_UPDATE.available?`<button class="pill menu-update" id="menuUpdateBanner"><span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small></button>`:''}<button class="pill" data-m="start">Play</button><button class="pill" data-m="up">Build and Edit Formulas</button><button class="pill" data-m="set">Settings</button>`;
+ app.innerHTML=`<button class="pill" data-m="start">Play</button><button class="pill" data-m="up">Build and Edit Formulas</button><button class="pill" data-m="set">Settings</button>${APP_UPDATE.available?`<button class="pill menu-update" id="menuUpdateBanner"><span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small></button>`:''}`;
  const updateBanner=gid('menuUpdateBanner');if(updateBanner)updateBanner.onclick=downloadAppUpdate;
  app.querySelector('[data-m=start]').onclick=()=>start();
  app.querySelector('[data-m=up]').onclick=()=>upload();
@@ -1096,10 +1141,10 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
   if(Math.abs(dx)>80&&(quizFlow||list.length>1))go(dx<0?1:-1);else{drg.style.transition='transform .3s cubic-bezier(.2,.8,.2,1)';drg.style.transform=''}};
  sc.onclick=e=>{const b=e.target.closest('[data-star]');if(!b)return;const d=list[idx];toggleS(cat,d);sc.querySelectorAll('[data-star]').forEach(x=>x.innerHTML=STARI(isS(cat,d)))};
  // ---- bottom sheet ----
- let all=[],P=null,TAP=null,FLASH_SELECT_MODE=false;const FLASH_SELECTED=new Set();
+ let all=[],P=null,FLASH_SELECT_MODE=false;const FLASH_SELECTED=new Set();
  const saveFlashGridOrder=reordered=>{const full=ordered(cat),queue=[...reordered];if(ONLY){const next=full.map(d=>(!subcat||d.s===subcat)&&isS(cat,d)?(queue.shift()||d):d);saveOrd(cat,next)}else if(subcat){saveOrd(cat,full.map(d=>d.s===subcat?(queue.shift()||d):d))}else saveOrd(cat,reordered)};
  const hidePV=()=>pv.classList.remove('show');
- const closeS=()=>{if(TAP){clearTimeout(TAP.timer);TAP=null}bs.classList.remove('show');bo.classList.remove('show');hidePV()};
+ const closeS=()=>{bs.classList.remove('show');bo.classList.remove('show');hidePV()};
  const dismissFlashEditHint=()=>{FLASH_EDIT_HINT_DISMISSED=hintDone('FLASH_EDIT_HINT_DISMISSED');const h=gid('editHint');if(h){h.classList.add('fade');setTimeout(()=>{if(h.isConnected)h.remove()},320)}};
  const openFlashFormulaActions=(d,pos)=>{
   dismissFlashEditHint();const hasSubcategories=categoryKeys().some(c=>subcategoriesFor(c).length>0);
@@ -1111,13 +1156,13 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
  const draw=()=>{all=ordered(cat).filter(d=>!subcat||d.s===subcat);const cn=list[idx],shown=all.filter(d=>!ONLY||isS(cat,d)),batch=getFlashQuizBatch(),options=FLASH_QUIZ_BATCH_OPTIONS;
   const savedSheetProgress=getFlashQuizProgress(),canResume=savedSheetProgress&&savedSheetProgress.cat===cat&&(savedSheetProgress.subcat||'')===subcat;
   bs.onclick=null;
-  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))}</b><div class="quiz-controls"><button class="back" id="bst" aria-label="Show starred cards" title="Starred cards">${STARI(ONLY)}</button><button class="pill" id="quizModeBtn">${quizFlow?(quizFlow.phase==='quiz'?'Resume Quiz':'Pause Quiz Mode'):(canResume?'Resume Quiz':'Quiz')}</button><button class="pill g" id="flashSelectModeBtn">${FLASH_SELECT_MODE?'Done selecting':'Select multiple'}</button><button class="formula-action-icon" id="flashShareCurrent" type="button" aria-label="Share current formula as image" title="Share current formula">${ICO_SHARE}</button></div></div><div class="quizprefs"><div class="quizprefs-head"><span>Quiz after every</span><strong><span id="quizBatchLabel">${batch}</span> flashcards</strong></div><input id="quizBatchRange" type="range" min="0" max="${options.length-1}" step="1" value="${Math.max(0,options.indexOf(batch))}" aria-label="Number of flashcards before quiz"><div class="quizrangeends"><span>3 cards</span><span>50 cards</span></div><p class="quizhint">Choices: 3, 5, 10, 15, 20 … 50 cards.</p>${quizFlow?'<p class="quizhint">Your batch and quiz progress are saved on this device.</p>':'<p class="quizhint">Study a set, then answer a memorization-style quiz before the next set.</p>'}</div>${FLASH_EDIT_HINT_DISMISSED||FLASH_SELECT_MODE?'':'<div class="navhint" id="editHint">Double tap a number for formula options · hold to preview or drag to reorder</div>'}${FLASH_SELECT_MODE?'<div class="msg">Tap numbers to select or deselect formulas.</div>':''}<div class="bg" id="bgr">${shown.map(d=>{const k=all.indexOf(d);return `<button class="blk${d===cn?' cur':''}${isS(cat,d)?' st':''}${FLASH_SELECTED.has(d)?' selected':''}" data-k="${k}">${k+1}</button>`}).join('')}</div>${FLASH_SELECTED.size?`<div class="quiz-controls"><span>${FLASH_SELECTED.size} selected</span><button class="pill g" id="flashSelectAll">Select all</button><button class="pill on" id="flashMoveSelected">Move selected</button><button class="pill g" id="flashShareSelected">Share selected</button><button class="pill g" id="flashClearSelected">Clear</button></div>`:''}`;
+  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))}</b><div class="quiz-controls"><button class="back" id="bst" aria-label="Show starred cards" title="Starred cards">${STARI(ONLY)}</button><button class="pill" id="quizModeBtn">${quizFlow?(quizFlow.phase==='quiz'?'Resume Quiz':'Pause Quiz Mode'):(canResume?'Resume Quiz':'Quiz')}</button><button class="pill g" id="flashSelectModeBtn">${FLASH_SELECT_MODE?'Done':'Select'}</button><button class="formula-action-icon" id="flashShareCurrent" type="button" aria-label="Share current formula as image" title="Share current formula">${ICO_SHARE}</button></div></div><div class="quizprefs"><div class="quizprefs-head"><span>Quiz after every</span><strong><span id="quizBatchLabel">${batch}</span> flashcards</strong></div><input id="quizBatchRange" type="range" min="0" max="${options.length-1}" step="1" value="${Math.max(0,options.indexOf(batch))}" aria-label="Number of flashcards before quiz"><div class="quizrangeends"><span>3 cards</span><span>50 cards</span></div><p class="quizhint">Choices: 3, 5, 10, 15, 20 … 50 cards.</p>${quizFlow?'<p class="quizhint">Your batch and quiz progress are saved on this device.</p>':'<p class="quizhint">Study a set, then answer a memorization-style quiz before the next set.</p>'}</div>${FLASH_EDIT_HINT_DISMISSED||FLASH_SELECT_MODE?'':'<div class="navhint" id="editHint">Tap a number to open formula · hold to preview or drag to reorder</div>'}${FLASH_SELECT_MODE?'<div class="msg">Tap numbers to select or deselect formulas.</div>':''}<div class="bg" id="bgr">${shown.map(d=>{const k=all.indexOf(d);return `<button class="blk${d===cn?' cur':''}${isS(cat,d)?' st':''}${FLASH_SELECTED.has(d)?' selected':''}" data-k="${k}">${k+1}</button>`}).join('')}</div>${FLASH_SELECTED.size?`<div class="quiz-controls"><span>${FLASH_SELECTED.size} selected</span><button class="pill g" id="flashSelectAll">Select all</button>${FLASH_SELECTED.size===1?'<button class="pill g" id="flashEditSelected">Edit formula</button>':''}<button class="pill g" id="flashMoveSelected">Move selected</button><button class="pill g" id="flashClearSelected">Clear</button></div>`:''}`;
   gid('bst').onclick=()=>{const c=list[idx];ONLY=!ONLY;list=base();if(!list.length){ONLY=false;list=base()}idx=Math.max(0,list.indexOf(c));if(quizFlow){quizFlow.batchStart=idx;quizFlow.batchEnd=Math.min(list.length-1,idx+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null}fill();draw()};
   if(gid('flashSelectModeBtn'))gid('flashSelectModeBtn').onclick=()=>{FLASH_SELECT_MODE=!FLASH_SELECT_MODE;draw()};
-  if(gid('flashShareCurrent'))gid('flashShareCurrent').onclick=()=>{closeS();shareFormulas([list[idx]])};
+  if(gid('flashShareCurrent'))gid('flashShareCurrent').onclick=()=>{const targets=FLASH_SELECTED.size?[...FLASH_SELECTED]:[list[idx]];closeS();shareFormulas(targets)};
   if(gid('flashSelectAll'))gid('flashSelectAll').onclick=()=>{if(shown.every(d=>FLASH_SELECTED.has(d)))shown.forEach(d=>FLASH_SELECTED.delete(d));else shown.forEach(d=>FLASH_SELECTED.add(d));draw()};
-  if(gid('flashShareSelected'))gid('flashShareSelected').onclick=()=>shareFormulas([...FLASH_SELECTED]);
-  if(gid('flashClearSelected'))gid('flashClearSelected').onclick=()=>{FLASH_SELECTED.clear();draw()};
+    if(gid('flashClearSelected'))gid('flashClearSelected').onclick=()=>{FLASH_SELECTED.clear();draw()};
+  if(gid('flashEditSelected'))gid('flashEditSelected').onclick=()=>{const d=[...FLASH_SELECTED][0];if(!d)return;const pos=list.indexOf(d),keep=d.n;closeS();DR=null;buildEd('edit',d);DR.ret=()=>flash(cat,Math.max(0,pos),keep,null,subcat)};
   if(gid('flashMoveSelected'))gid('flashMoveSelected').onclick=()=>{const keep=list[idx]?.n;openMovePicker([...FLASH_SELECTED],()=>{FLASH_SELECTED.clear();FLASH_SELECT_MODE=false;closeS();flash(cat,idx,keep,null,subcat)},false)};
   const range=gid('quizBatchRange'),label=gid('quizBatchLabel');range.oninput=()=>{const v=setFlashQuizBatchIndex(range.value);label.textContent=v;if(quizFlow){quizFlow.batchSize=v;quizFlow.batchStart=idx;quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null;quizFlow.batchEnd=Math.min(list.length-1,idx+v-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);saveFlowState('flash');fill()}else{const saved=getFlashQuizProgress();if(saved&&saved.cat===cat&&(saved.subcat||'')===subcat){saved.batchSize=v;saved.batchStart=idx;saved.batchEnd=Math.min(list.length-1,idx+v-1);saved.cardIndex=idx;saved.cardName=list[idx]?.n||null;saved.batchNames=list.slice(idx,saved.batchEnd+1).map(d=>d.n);saved.phase='flash';saved.quizPos=0;saved.currentQ=null;saved.only=ONLY;saved.paused=true;saveFlashQuizProgress(saved)}}};
   gid('quizModeBtn').onclick=()=>{if(quizFlow&&quizFlow.phase==='quiz'){startBatchQuiz();return}if(quizFlow){saveFlowState('flash');const p=getFlashQuizProgress();if(p){p.paused=true;saveFlashQuizProgress(p)}quizFlow=null;closeS();fill();return}const saved=getFlashQuizProgress();if(saved&&saved.cat===cat&&(saved.subcat||'')===subcat){if(typeof saved.only==='boolean'&&saved.only!==ONLY){ONLY=saved.only;list=base()}quizFlow={batchSize:setFlashQuizBatch(saved.batchSize||getFlashQuizBatch()),batchStart:Number.isInteger(saved.batchStart)?saved.batchStart:idx,phase:saved.phase||'flash',batchNames:saved.batchNames,quizPos:saved.quizPos,currentQ:saved.currentQ};const first=Array.isArray(saved.batchNames)&&saved.batchNames.length?list.findIndex(d=>d.n===saved.batchNames[0]):-1;if(first>=0)quizFlow.batchStart=first;const savedCard=saved.cardName?list.findIndex(d=>d.n===saved.cardName):-1;if(savedCard>=0)idx=savedCard;quizFlow.batchStart=Math.max(0,Math.min(quizFlow.batchStart,list.length-1));quizFlow.batchEnd=Math.min(list.length-1,quizFlow.batchStart+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);if(quizFlow.phase==='quiz'){closeS();startBatchQuiz();return}}else quizFlow={batchSize:getFlashQuizBatch(),batchStart:idx,phase:'flash'};quizFlow.batchEnd=Math.min(list.length-1,quizFlow.batchStart+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);closeS();fill()};
@@ -1125,11 +1170,11 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
  gid('up').onclick=()=>{draw();void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show')};
  bo.onclick=closeS;
  bs.onpointerdown=e=>{const b=e.target.closest('.blk');if(!b)return;P={b,x:e.clientX,y:e.clientY,m:FLASH_SELECT_MODE?'select':'w'};
-  if(!FLASH_SELECT_MODE)P.t=setTimeout(()=>{if(!P)return;P.m='h';DRAG=true;dismissFlashEditHint();const d=all[+b.dataset.k];pv.innerHTML=`<div class="name">${esc(d.n)}</div>${formulaVersionsHTML(d,'formula')}`;fitFx(pv);pv.classList.add('show');if(navigator.vibrate)navigator.vibrate(15)},350);
+  P.t=setTimeout(()=>{if(!P)return;P.m='h';DRAG=true;dismissFlashEditHint();const d=all[+b.dataset.k];pv.innerHTML=`<div class="name">${esc(d.n)}</div>${formulaVersionsHTML(d,'formula')}`;fitFx(pv);pv.classList.add('show');if(navigator.vibrate)navigator.vibrate(15)},350);
   b.setPointerCapture(e.pointerId)};
  bs.onpointermove=e=>{if(!P)return;const dx=e.clientX-P.x,dy=e.clientY-P.y,m=Math.hypot(dx,dy);
   if(P.m=='w'&&m>10){clearTimeout(P.t);P.m='s'}
-  else if(P.m=='h'&&m>12&&!ONLY){P.m='d';FLASH_REORDER_HINT_DISMISSED=hintDone('FLASH_REORDER_HINT_DISMISSED');const hint=gid('reorderHint');if(hint){hint.classList.add('fade');setTimeout(()=>{if(hint.isConnected)hint.remove()},320)}hidePV();P.b.classList.add('drag')}
+  else if(P.m=='h'&&m>12&&!ONLY&&!FLASH_SELECT_MODE){P.m='d';FLASH_REORDER_HINT_DISMISSED=hintDone('FLASH_REORDER_HINT_DISMISSED');const hint=gid('reorderHint');if(hint){hint.classList.add('fade');setTimeout(()=>{if(hint.isConnected)hint.remove()},320)}hidePV();P.b.classList.add('drag')}
   if(P.m!='d')return;
   const g=gid('bgr'),b=P.b,bl=[...g.children],bi=bl.indexOf(b);
   const cs=getComputedStyle(g),cols=cs.gridTemplateColumns.split(' ').length,gr=g.getBoundingClientRect(),ref=bl.find(x=>x!==b)||b;
@@ -1146,7 +1191,7 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
  bs.onpointerup=bs.onpointercancel=e=>{if(!P)return;clearTimeout(P.t);const p=P;P=null;DRAG=false;hidePV();
   if(p.m==='select'&&e.type==='pointerup'){const d=all[+p.b.dataset.k];if(d){FLASH_SELECTED.has(d)?FLASH_SELECTED.delete(d):FLASH_SELECTED.add(d)}draw();return}
   if(p.m=='d'){const ord=[...gid('bgr').children].map(x=>all[+x.dataset.k]);saveFlashGridOrder(ord);const c=list[idx];list=base();idx=Math.max(0,list.indexOf(c));if(quizFlow){quizFlow.batchStart=idx;quizFlow.batchEnd=Math.min(list.length-1,idx+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(d=>d.n);quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null}fill();draw()}
-  else if(p.m=='w'&&e.type=='pointerup'){const d=all[+p.b.dataset.k],now=Date.now();if(TAP&&TAP.d===d&&now-TAP.t<320){clearTimeout(TAP.timer);TAP=null;openFlashFormulaActions(d,list.indexOf(d));return}if(TAP)clearTimeout(TAP.timer);TAP={d,t:now,timer:setTimeout(()=>{TAP=null;const j=list.indexOf(d);closeS();if(j>=0&&j!==idx){idx=j;if(quizFlow){quizFlow.batchStart=idx;quizFlow.batchEnd=Math.min(list.length-1,idx+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(x=>x.n);quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null}fill();drg.animate([{opacity:0,transform:'scale(.94)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'})}},300)}}};
+  else if(p.m=='w'&&e.type=='pointerup'){const d=all[+p.b.dataset.k],j=list.indexOf(d);if(j>=0&&j!==idx){closeS();idx=j;if(quizFlow){quizFlow.batchStart=idx;quizFlow.batchEnd=Math.min(list.length-1,idx+quizFlow.batchSize-1);quizFlow.batchNames=list.slice(quizFlow.batchStart,quizFlow.batchEnd+1).map(x=>x.n);quizFlow.phase='flash';quizFlow.quizPos=0;quizFlow.currentQ=null}fill();drg.animate([{opacity:0,transform:'scale(.94)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'})}}};
  if(autoResumeQuiz)startBatchQuiz();
 }
 // ===== KEYBOARD SHORTHAND -> clean formula =====
@@ -1154,6 +1199,7 @@ function flash(cat,i0,nm,quizFlow=null,subcat=''){
 const GREEK_N={alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',iota:'ι',kappa:'κ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',omicron:'ο',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',upsilon:'υ',phi:'φ',chi:'χ',psi:'ψ',omega:'ω',varepsilon:'ϵ',vartheta:'ϑ',varpi:'ϖ',varrho:'ϱ',varsigma:'ς',varphi:'ϕ',digamma:'ϝ'};
 const SYM_N={pm:'±',mp:'∓',times:'×',div:'÷',infty:'∞',inf:'∞',int:'∫',sqrt:'√',deg:'°',prime:'′',neq:'≠',leq:'≤',geq:'≥',approx:'≈',cdot:'·'};
 const greekSymbol=name=>{
+ if(String(name||'')==='sn')return 'Σ';
  if(name==='SigmaN')return 'Σ';
  const g=GREEK_N[String(name||'').toLowerCase()];
  if(g)return name[0]!==name[0].toLowerCase()?g.toUpperCase():g;
@@ -1196,7 +1242,7 @@ function sh2f(src){
  let s=String(src||'');
  // rt^n() is a template for an nth root with both its index and radicand blank.
  s=s.replace(/(?:sqrt|rt)\s*\^\s*n\s*\(\s*\)/gi,'√^()()');
- s=s.replace(/\\SigmaN(?![A-Za-z])/g,'Σ'); // \SigmaN is summation; \Sigma alone is uppercase Greek sigma.
+ s=s.replace(/\\SigmaN(?![A-Za-z])/g,'Σ'); // Legacy summation alias; new shorthand is \sn.
  s=s.replace(/\\([A-Za-z]+)/g,(m,w)=>greekSymbol(w)||m);
  s=s.replace(/sqrt(?=\s*\()/gi,'√').replace(/(^|[^A-Za-z])rt(?=\s*[\^(])/g,'$1√').replace(/√\s+/g,'√');
  s=s.replace(/\+-|\+−/g,'±').replace(/-\+|−\+/g,'∓').replace(/\*/g,'×').replace(/[–—-]/g,'−');
@@ -1216,8 +1262,18 @@ function sh2f(src){
  return s}
 // shorthand -> canonical stored formula (what every screen typesets)
 const canonF=t=>toStr(build(lex(sh2f(t))));
-const shGuide=()=>{const ex=[['1/2','fraction'],['(a+b)/(c+d)','fraction'],['a_b','subscript'],['a^b','superscript'],['a^(bc)','group with ( )'],['rt()','square root'],['rt^n()','nth root · blank index and radicand'],['+-  -+','plus/minus (±) and minus/plus (∓)'],['\\greekname / \\Greekname','All Greek letters are supported, \\greekname is lowercase letter and \\Greekname is uppercase letter'],['$ab','integral'],['$^a_b(dc)','integral with limits'],['\\SigmaN^(n)_(x=1) (expression)','summation with limits']];
- return `<details class="guide"><summary><span>⌨ Typing guide</span><i class="chev"></i></summary><div class="gnote">Type this on the keyboard and it is turned into the clean form shown on the right.</div>${ex.map(([c,n])=>{let h='';try{h=fx(sh2f(c.replace(/\s{2,}/g,' ')),'')}catch(e){}return `<div class="gr"><div><code>${esc(c)}</code><div class="gnote" style="padding:2px 0 0">${n}</div></div><i>→</i>${h}</div>`}).join('')}</details>`};
+function syntaxGuideRowsHTML(rows){
+ return rows.map(([c,n])=>{
+  if(c==='__GREEK_ALIAS__'){
+   let h='';try{h=fx(sh2f('\\greekname or \\Greekname'),'')}catch(e){}
+   return `<div class="gr"><div class="greek-guide-left"><div class="greek-guide-shortcuts"><code>\\greekname or</code><code class="greek-guide-upper">\\Greekname</code></div><div class="gnote" style="padding:2px 0 0">${esc(n)}</div></div><i>→</i>${h}</div>`
+  }
+  let h='';try{h=fx(sh2f(c.replace(/\s{2,}/g,' ')),'')}catch(e){}
+  return `<div class="gr"><div><code>${esc(c)}</code><div class="gnote" style="padding:2px 0 0">${esc(n)}</div></div><i>→</i>${h}</div>`
+ }).join('')
+}
+const shGuide=()=>{const ex=[['1/2','fraction'],['(a+b)/(c+d)','fraction'],['a_b','subscript'],['a^b','superscript'],['a^(bc)','group with ( )'],['rt()','square root'],['rt^n()','nth root · blank index and radicand'],['+-  -+','plus/minus (±) and minus/plus (∓)'],['__GREEK_ALIAS__','All Greek letters are supported. \\greekname makes a lowercase letter; \\Greekname makes an uppercase letter.'],['$ab','integral'],['$^a_b(dc)','integral with limits'],['\\sn^(n)_(x=1) (expression)','summation with limits']];
+ return `<details class="guide"><summary><span>⌨ Typing guide</span><i class="chev"></i></summary><div class="gnote">Type this on the keyboard and it is turned into the clean form shown on the right.</div>${syntaxGuideRowsHTML(ex)}</details>`};
 // ===== FORMULA TYPESETTING (fractions, roots, exponents, subscripts) =====
 const SUPM={'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'−','⁺':'+','ⁿ':'n','ⁱ':'i','ˣ':'x'};
 const SUBM={'₀':'0','₁':'1','₂':'2','₃':'3','₄':'4','₅':'5','₆':'6','₇':'7','₈':'8','₉':'9','₋':'−','₊':'+','ᵥ':'v','ₛ':'s','ₐ':'a','ₙ':'n','ₘ':'m','ₜ':'t','ₒ':'o','ₓ':'x','ᵢ':'i','ᵣ':'r','ᵤ':'u','ₑ':'e','ₖ':'k','ₗ':'l','ₚ':'p','ⱼ':'j','ₕ':'h'};
@@ -1378,11 +1434,12 @@ function beamDiagramHTML(raw,interactive=false){
   return cands.find(c=>pts.every(q=>Math.abs(q-c)>12))??cands[0];
  };
  const sName=esc(beamSetupName(b)),circle=b.section==='circle';
+ const beamSvgLabel=value=>{const str=String(value??''),re=/_\(([^)]+)\)|_([A-Za-z0-9]+)/g;let out='',at=0,m;while((m=re.exec(str))){out+=esc(str.slice(at,m.index));out+=`<tspan baseline-shift="sub" font-size="75%">${esc(m[1]||m[2])}</tspan>`;at=re.lastIndex}return out+esc(str.slice(at))};
  const alpha=n=>{let out='';for(n=Math.max(0,n);n>=0;n=Math.floor(n/26)-1)out=String.fromCharCode(65+(n%26))+out;return out};
  const orderedSupports=[...(b.supports||[])].map((S,i)=>({S,i})).sort((a,z)=>a.S.pos-z.S.pos||a.i-z.i);
  const autoPointLabel=i=>{const rank=orderedSupports.findIndex(x=>x.i===i);return alpha(Math.max(0,rank))};
- const pointLabel=(S,i)=>esc(S.label&&S.label.trim()?S.label:autoPointLabel(i));
- const supportLabelPlacement=(sp,x)=>{if(sp.type==='fixed'){const wx=wallX(sp.pos),right=sp.pos>=100;return right?{x:wx+WALL_W+13,y:BY,textAnchor:'start'}:{x:wx-13,y:BY,textAnchor:'end'}}return {x,y:127,textAnchor:'middle'}};
+ const pointLabel=(S,i)=>beamSvgLabel(S.label&&S.label.trim()?S.label:autoPointLabel(i));
+ const supportLabelPlacement=(sp,x)=>{if(sp.type==='fixed'){const wx=wallX(sp.pos),right=sp.pos>=100;return right?{x:wx+WALL_W+13,y:BY,textAnchor:'start'}:{x:wx-13,y:BY,textAnchor:'end'}}const hasReaction=b.loads.some(l=>l.type==='resultant'&&Math.abs(l.pos-sp.pos)<0.01);if(hasReaction){const rightEdge=sp.pos>=99.99,leftEdge=sp.pos<=0.01,side=rightEdge?-1:leftEdge?1:(sp.pos>50?-1:1);return {x:x+side*22,y:BB+13,textAnchor:side<0?'end':'start'}}return {x,y:127,textAnchor:'middle'}};
  const reactionSupportFor=l=>l.type==='resultant'?(b.supports||[]).find(sp=>Math.abs(sp.pos-l.pos)<0.01):null;
  const supportBaseY=sp=>sp.type==='fixed'?BY+WALL_H/2:sp.type==='roller'?BB+18.5:BB+16;
  let out='';
@@ -1405,7 +1462,7 @@ function beamDiagramHTML(raw,interactive=false){
    out+=`<line class="line" x1="${a}" y1="${top}" x2="${z}" y2="${top}"/>`;
    for(let i=0;i<=6;i++)out+=arrow(a+(z-a)*i/6,top,tip,l.dir);
    if(!down)grow(UB+22);
-   out+=`<text x="${lx}" y="${down?UT-8:UB+15}" text-anchor="middle" font-size="11">${esc(l.mag||'w')}</text>`;
+   out+=`<text x="${lx}" y="${down?UT-8:UB+15}" text-anchor="middle" font-size="11">${beamSvgLabel(l.mag||'w')}</text>`;
   }else{
    const base=down?BT-1:BB+1,s=vShape(l),width=z-a;let pts;
    if(s.profile==='pyramid')pts=[[a,0],[a+width*s.peak,1],[z,0]];
@@ -1421,7 +1478,7 @@ function beamDiagramHTML(raw,interactive=false){
    }
    const edge=curve.reduce((m,p)=>down?Math.min(m,p[1]):Math.max(m,p[1]),down?999:-999);
    const ly=down?edge-7:edge+15;if(!down)grow(ly+4);
-   out+=`<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11">${esc(l.mag||'w')}</text>`;
+   out+=`<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11">${beamSvgLabel(l.mag||'w')}</text>`;
   }
   if(interactive)out+='</g>'
  });
@@ -1430,7 +1487,7 @@ function beamDiagramHTML(raw,interactive=false){
   const down=l.type==='resultant'?false:l.dir!=='up';
   if(l.type==='moment'){
    const x=px(l.pos),clockwise=l.dir!=='counterclockwise';
-   out+=`<text class="beam-moment-symbol" x="${x}" y="${BY+9}" text-anchor="middle" font-size="26">${clockwise?'↻':'↺'}</text><text x="${x}" y="${BT-7}" text-anchor="middle" font-size="11">${esc(l.mag||'M')}</text>`;
+   const arc=clockwise?`M ${x-17} ${BY+13} A 23 23 0 1 1 ${x+8} ${BY-21}`:`M ${x+17} ${BY+13} A 23 23 0 1 0 ${x-8} ${BY-21}`;const head=clockwise?`M ${x+1} ${BY-22} L ${x+8} ${BY-21} L ${x+7} ${BY-13}`:`M ${x-1} ${BY-22} L ${x-8} ${BY-21} L ${x-7} ${BY-13}`;out+=`<path class="beam-moment-symbol" d="${arc}"/><path class="beam-moment-symbol" d="${head}"/><text x="${x}" y="${BY-31}" text-anchor="middle" font-size="11">${beamSvgLabel(l.mag||'M')}</text>`;
   }else{
    // Point loads landing on a distributed load end at that load's edge, not on the beam.
    const x=px(l.pos),under=b.loads.filter(m=>isDist(m)&&sameSide(m,l)&&l.pos>=m.start&&l.pos<=m.end),reactionSupport=reactionSupportFor(l);
@@ -1440,11 +1497,11 @@ function beamDiagramHTML(raw,interactive=false){
     yt=down?land-1:land+1;y0=down?yt-34:yt+34;ly=down?y0-6:y0+13;
    }else if(reactionSupport){
     // A reaction on a support sits just below its base, rather than running through the beam/support symbol.
-    y0=140;yt=supportBaseY(reactionSupport)+4;
-    lx=x+(l.pos<50?14:-14);ly=137;
+    y0=160;yt=supportBaseY(reactionSupport)+5;
+    grow(y0+5);lx=x+(l.pos<50?14:-14);ly=140;
    }else{y0=down?26:140;yt=down?BT-1:BB+1;ly=down?y0-6:y0+13;if(l.type==='resultant'){lx=x+(l.pos<50?14:-14);ly=137}}
    if(!down&&ly>0)grow(ly+4);
-   out+=arrow(x,y0,yt,l.type==='resultant'?'up':l.dir)+`<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-size="11">${esc(l.mag||(l.type==='resultant'?'R':'P'))}</text>`;
+   out+=arrow(x,y0,yt,l.type==='resultant'?'up':l.dir)+`<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-size="11">${beamSvgLabel(l.mag||(l.type==='resultant'?'R':'P'))}</text>`;
   }
   if(interactive)out+='</g>'
  });
@@ -2226,29 +2283,29 @@ function viewAll(cat,j0,keepName,subcat=''){
  };
  const drawNav=()=>{
   ALL=ordered(cat).filter(d=>!subcat||d.s===subcat);const shown=ALL.filter(d=>!VONLY||isS(cat,d));
-  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))} <button class="back nav-star-inline" id="nvstar" aria-label="Show starred formulas only" title="Show starred formulas only">${STARI(VONLY)}</button></b><div class="quiz-controls"><button class="pill g" id="nvselect">${SELECT_MODE?'Done selecting':'Select multiple'}</button><button class="formula-action-icon" id="nvShareAll" type="button" aria-label="Share visible formulas as images" title="Share formulas">${ICO_SHARE}</button></div></div>${VA_REORDER_HINT_DISMISSED||VONLY?'':'<div class="navhint" id="reorderHint">Hold and drag a number to reorder the formulas</div>'}${VA_EDIT_HINT_DISMISSED||SELECT_MODE?'':'<div class="navhint" id="editHint">Double tap a number for formula options · hold to preview or drag to reorder</div>'}${SELECT_MODE?'<div class="msg">Tap any number to select or deselect it.</div>':''}${shown.length?`<div class="bg" id="bgr">${shown.map((d,i)=>{const current=L[idx]===d;return `<button class="blk${current?' cur':''}${isS(cat,d)?' st':''}${SELECTED.has(d)?' selected':''}" data-k="${i}">${i+1}</button>`}).join('')}</div>`:'<div class="msg">No formulas in this selection.</div>'}${SELECTED.size?`<div class="quiz-controls"><span>${SELECTED.size} selected</span><button class="pill g" id="nvselectall">Select all</button><button class="pill on" id="nvMoveSelected">Move selected</button><button class="pill g" id="nvShareSelected">Share selected</button><button class="pill g" id="nvclearselected">Clear</button></div>`:''}`;
+  bs.innerHTML=`<div class="bh"><b>${esc(categoryName(cat)+(subcat?' · '+subcat:''))} <button class="back nav-star-inline" id="nvstar" aria-label="Show starred formulas only" title="Show starred formulas only">${STARI(VONLY)}</button></b><div class="quiz-controls"><button class="pill g" id="nvselect">${SELECT_MODE?'Done':'Select'}</button><button class="formula-action-icon" id="nvShareAll" type="button" aria-label="Share visible formulas as images" title="Share formulas">${ICO_SHARE}</button></div></div>${VA_REORDER_HINT_DISMISSED||VONLY?'':'<div class="navhint" id="reorderHint">Hold and drag a number to reorder the formulas</div>'}${VA_EDIT_HINT_DISMISSED||SELECT_MODE?'':'<div class="navhint" id="editHint">Tap a number to open formula · hold to preview or drag to reorder</div>'}${SELECT_MODE?'<div class="msg">Tap any number to select or deselect it.</div>':''}${shown.length?`<div class="bg" id="bgr">${shown.map((d,i)=>{const current=L[idx]===d;return `<button class="blk${current?' cur':''}${isS(cat,d)?' st':''}${SELECTED.has(d)?' selected':''}" data-k="${i}">${i+1}</button>`}).join('')}</div>`:'<div class="msg">No formulas in this selection.</div>'}${SELECTED.size?`<div class="quiz-controls"><span>${SELECTED.size} selected</span><button class="pill g" id="nvselectall">Select all</button>${SELECTED.size===1?'<button class="pill g" id="nvEditSelected">Edit formula</button>':''}<button class="pill g" id="nvMoveSelected">Move selected</button><button class="pill g" id="nvclearselected">Clear</button></div>`:''}`;
   gid('nvstar').onclick=()=>{const keep=L[idx]?.n;closeSheet();VONLY=!VONLY;viewAll(cat,0,keep,subcat)};
   gid('nvselect').onclick=()=>{SELECT_MODE=!SELECT_MODE;drawNav();bindNavPointerEvents()};
-  gid('nvShareAll').onclick=()=>{closeSheet();shareFormulas([...shown])};
+  gid('nvShareAll').onclick=()=>{closeSheet();shareFormulas(ordered(cat))};
   if(gid('nvselectall'))gid('nvselectall').onclick=()=>{if(shown.every(d=>SELECTED.has(d)))shown.forEach(d=>SELECTED.delete(d));else shown.forEach(d=>SELECTED.add(d));drawNav();bindNavPointerEvents()};
-  if(gid('nvShareSelected'))gid('nvShareSelected').onclick=()=>shareFormulas([...SELECTED]);
   if(gid('nvclearselected'))gid('nvclearselected').onclick=()=>{SELECTED.clear();drawNav();bindNavPointerEvents()};
+  if(gid('nvEditSelected'))gid('nvEditSelected').onclick=()=>{const d=[...SELECTED][0];if(!d)return;const pos=L.indexOf(d);closeSheet();DR=null;buildEd('edit',d);DR.ret=()=>viewAll(cat,Math.max(0,pos),d.n,subcat)};
   if(gid('nvMoveSelected'))gid('nvMoveSelected').onclick=()=>openMovePicker([...SELECTED],()=>{SELECTED.clear();SELECT_MODE=false;closeSheet();viewAll(cat,0,L[idx]?.n,subcat)},false);
  };
  const openNavigator=()=>{VA_HINT_DISMISSED=hintDone('VA_HINT_DISMISSED');const h=gid('cnHint');if(h){h.classList.add('fade');setTimeout(()=>{if(h.isConnected)h.remove()},520)}drawNav();bindNavPointerEvents();void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show')};
  bo.onclick=closeSheet;
- let P=null,NAV=[],TAP=null;
+ let P=null,NAV=[];
  const bindNavPointerEvents=()=>{
  bs.onpointerdown=e=>{
   const b=e.target.closest('.blk');if(!b)return;
   ALL=ordered(cat).filter(d=>!subcat||d.s===subcat);NAV=ALL.filter(d=>!VONLY||isS(cat,d));P={b,x:e.clientX,y:e.clientY,m:SELECT_MODE?'select':'w'};
-  if(!SELECT_MODE)P.t=setTimeout(()=>{if(!P)return;P.m='h';DRAG=true;dismissVAEditHint();showPreview(NAV[+b.dataset.k])},350);
+  P.t=setTimeout(()=>{if(!P)return;P.m='h';DRAG=true;dismissVAEditHint();showPreview(NAV[+b.dataset.k])},350);
   try{b.setPointerCapture(e.pointerId)}catch(_){}
  };
  bs.onpointermove=e=>{
   if(!P)return;const dx=e.clientX-P.x,dy=e.clientY-P.y,m=Math.hypot(dx,dy);
   if(P.m=='w'&&m>10){clearTimeout(P.t);P.m='s'}
-  else if(P.m=='h'&&m>12){P.m='d';VA_EDIT_HINT_DISMISSED=hintDone('VA_EDIT_HINT_DISMISSED');VA_REORDER_HINT_DISMISSED=hintDone('VA_REORDER_HINT_DISMISSED');const hint=gid('reorderHint');if(hint){hint.classList.add('fade');setTimeout(()=>{if(hint.isConnected)hint.remove()},320)}hidePreview();P.b.classList.add('drag')}
+  else if(P.m=='h'&&m>12&&!SELECT_MODE){P.m='d';VA_EDIT_HINT_DISMISSED=hintDone('VA_EDIT_HINT_DISMISSED');VA_REORDER_HINT_DISMISSED=hintDone('VA_REORDER_HINT_DISMISSED');const hint=gid('reorderHint');if(hint){hint.classList.add('fade');setTimeout(()=>{if(hint.isConnected)hint.remove()},320)}hidePreview();P.b.classList.add('drag')}
   if(P.m!='d')return;
   const g=gid('bgr');if(!g)return;const b=P.b,bl=[...g.children],bi=bl.indexOf(b);if(bi<0)return;
   const cs=getComputedStyle(g),cols=cs.gridTemplateColumns.split(' ').length,gr=g.getBoundingClientRect(),ref=bl.find(x=>x!==b)||b;
@@ -2271,11 +2328,7 @@ function viewAll(cat,j0,keepName,subcat=''){
    const reordered=[...g.children].map(x=>NAV[+x.dataset.k]);const keep=L[idx]?.n;
    visibleOrderSave(reordered);closeSheet();viewAll(cat,0,keep,subcat)
   } else if(p.m=='w'&&e.type=='pointerup'){
-   const d=NAV[+p.b.dataset.k],now=Date.now();
-   if(TAP&&TAP.d===d&&now-TAP.t<320){clearTimeout(TAP.timer);TAP=null;const pos=L.indexOf(d);openFormulaActions(d,pos);return}
-   if(TAP)clearTimeout(TAP.timer);
-   // single tap: jump to that formula (a short wait lets a second tap turn it into "edit")
-   TAP={d,t:now,timer:setTimeout(()=>{TAP=null;const j=L.indexOf(d);closeSheet();if(j>=0&&j!==idx){idx=j;put(0,1);trk.animate([{opacity:.88,transform:'scale(.99)'},{opacity:1,transform:'none'}],{duration:220,easing:'ease-out'})}},300)};
+   const d=NAV[+p.b.dataset.k],j=L.indexOf(d);closeSheet();if(j>=0&&j!==idx){idx=j;put(0,1);trk.animate([{opacity:.88,transform:'scale(.99)'},{opacity:1,transform:'none'}],{duration:220,easing:'ease-out'})}
   }
  };
  };
@@ -2361,7 +2414,7 @@ function eIns(E,s){const{row,i}=E.c;
  const nodes=build(lex(s));row.splice(i,0,...nodes);E.c={row,i:i+nodes.length};eAutoParseTail(E)}
 function eAutoParseTail(E){
  const {row}=E.c;let i=E.c.i;
- // Recognize the \\SigmaN summation alias while allowing \\Sigma to render immediately.
+ // Recognize the legacy \\SigmaN alias while allowing \\Sigma to render immediately; new input uses \\sn.
  if(i>=2&&row[i-2]&&row[i-2]._pendingSigmaN&&isC(row[i-1],'N')){row.splice(i-2,2,{k:'c',s:'Σ'});E.c.i=i-1;return}
  if(i>=1&&row[i-1]&&row[i-1]._pendingSigmaN)delete row[i-1]._pendingSigmaN;
  // Parse the contiguous plain-text run before the caret, even when earlier siblings are structures.
@@ -2460,10 +2513,11 @@ function openRenameHeader(current,onSave){
 function openSyntaxGuide(){
  const bs=gid('bs'),bo=gid('bo');bs.onpointerdown=bs.onpointermove=bs.onpointerup=bs.onpointercancel=null;
  const close=()=>{bs.classList.remove('show');bo.classList.remove('show');bs.onclick=null;bo.onclick=null};
- const rows=[['rt()','Square root'],['rt^n()','Nth root (blank index and radicand)'],['+-','Plus/minus (±)'],['-+','Minus/plus (∓)'],['\\greekname / \\Greekname','All Greek letters are supported, \\greekname is lowercase letter and \\Greekname is uppercase letter'],['$','Integral without limits'],['$^(n)_(n)','Integral with limits'],['\\SigmaN','Summation without limits'],['\\SigmaN^(n)_(x=1) (expression)','Summation from x=1 to n']];
- bs.innerHTML=`<div class="bh"><b>Syntax guide</b><button class="back" data-sg="close" aria-label="Close">✕</button></div><p class="sgnote">Type these shortcuts in the formula box. They turn into the clean form shown on the right.</p>${rows.map(([c,n])=>{let h='';try{h=fx(sh2f(c),'')}catch(e){}return `<div class="gr"><div><code>${esc(c)}</code><div class="gnote" style="padding:2px 0 0">${esc(n)}</div></div><i>→</i>${h}</div>`}).join('')}<button class="pill" data-sg="close" style="justify-content:center;margin-top:8px">Close</button>`;
+ const rows=[['rt()','Square root'],['rt^n()','Nth root (blank index and radicand)'],['+-','Plus/minus (±)'],['-+','Minus/plus (∓)'],['__GREEK_ALIAS__','All Greek letters are supported. \\greekname makes a lowercase letter; \\Greekname makes an uppercase letter.'],['$','Integral without limits'],['$^(n)_(n)','Integral with limits'],['\\sn','Summation without limits'],['\\sn^(n)_(x=1) (expression)','Summation from x=1 to n']];
+ bs.innerHTML=`<div class="bh"><b>Syntax guide</b><button class="back" data-sg="close" aria-label="Close">✕</button></div><p class="sgnote">Type these shortcuts in the formula box. They turn into the clean form shown on the right.</p>${syntaxGuideRowsHTML(rows)}<button class="pill" data-sg="close" style="justify-content:center;margin-top:8px">Close</button>`;
  bs.onclick=e=>{if(e.target.closest('[data-sg]'))close()};bo.onclick=close;
- void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show');fitFx(bs)}
+ void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show');fitFx(bs)
+}
 const showGuideBtn=()=>{mb.hidden=false;mb.textContent='?';mb.setAttribute('aria-label','Syntax guide');mb.style.color='var(--accd)';mb.classList.toggle('kb-guide-highlight',KB_NATIVE);mb.onclick=openSyntaxGuide};
 const BUILDER_RENAME_HINT_KEY='ceBuilderRenameHintDismissed';
 const builderRenameHintOff=()=>{try{return localStorage.getItem(BUILDER_RENAME_HINT_KEY)==='1'}catch(_){return true}};
@@ -2573,7 +2627,7 @@ function beamLoadCardHTML(L,i,snap=true,beamDraft=null){
  const title=L.type==='point'?'Point load':L.type==='resultant'?'Reaction (R)':L.type==='uniform'?'Rectangular (uniform) load':L.type==='moment'?(L.dir==='counterclockwise'?'Moment (Counterclockwise)':'Moment (Clockwise)'):'Varying distributed load';
  const pos=(key,label)=>`<label class="beam-field">${label} · <span class="beam-value" data-beam-out="${i}:${key}">${Number(L[key])}%</span><input type="range" min="0" max="100" step="${snap?5:1}" value="${Number(L[key])}" data-load-index="${i}" data-load-key="${key}"></label>`;
  const mag=`<label class="beam-field">Load label / magnitude<input type="text" maxlength="24" value="${escA(L.mag||'') }" placeholder="P or w" data-load-index="${i}" data-load-key="mag"></label>`;
- const dir=L.type==='resultant'?'':L.type==='moment'?`<label class="beam-field">Rotation<select data-load-index="${i}" data-load-key="dir"><option value="counterclockwise"${L.dir==='counterclockwise'?' selected':''}>Moment (Counterclockwise)</option><option value="clockwise"${L.dir!=='counterclockwise'?' selected':''}>Moment (Clockwise)</option></select></label>`:`<label class="beam-field">Direction<select data-load-index="${i}" data-load-key="dir"><option value="down"${L.dir!=='up'?' selected':''}>Downward</option><option value="up"${L.dir==='up'?' selected':''}>Upward</option></select></label>`;
+ const dir=L.type==='resultant'?'':L.type==='moment'?`<div class="beam-field"><span>Rotation</span><button class="dd beam-direction-picker" data-load-dir="${i}" type="button"><span>${L.dir==='counterclockwise'?'Moment (CCW)':'Moment (CW)'}</span><i class="chev"></i></button></div>`:`<div class="beam-field"><span>Direction</span><button class="dd beam-direction-picker" data-load-dir="${i}" type="button"><span>${L.dir==='up'?'Upward':'Downward'}</span><i class="chev"></i></button></div>`;
  let fields='';
  if(L.type==='point')fields=pos('pos','Position')+mag+dir;
  else if(L.type==='resultant')fields=pos('pos','Position')+mag;
@@ -2661,15 +2715,15 @@ function openBeamEditor(F,returnStep){
   if(item.startsWith('load-')){addLoad(item.slice(5),pos);return}
  };
  const paletteItemLabel=item=>({
-'preset-double-fixed':'Double fixed beam','preset-fixed-left':'Fixed at left','preset-fixed-right':'Fixed at right','preset-simple':'Hinge + roller','support-fixed':'Fixed end','support-hinge':'Hinge / pin','support-roller':'Roller support','load-point':'Point load','load-resultant':'Reaction (R)','load-uniform':'Rectangular load','load-varying':'Varying load','load-triangle-left':'Triangle · peak left','load-triangle-right':'Triangle · peak right','load-moment':'Applied moment','load-moment-ccw':'Moment (Counterclockwise)','load-moment-cw':'Moment (Clockwise)','section-rect':'Rectangular section','section-circle':'Circular section'
+'preset-double-fixed':'Double fixed beam','preset-fixed-left':'Fixed at left','preset-fixed-right':'Fixed at right','preset-simple':'Hinge + roller','support-fixed':'Fixed end','support-hinge':'Hinge / pin','support-roller':'Roller support','load-point':'Point load','load-resultant':'Reaction (R)','load-uniform':'Rectangular load','load-varying':'Varying load','load-triangle-left':'Triangle · peak left','load-triangle-right':'Triangle · peak right','load-moment':'Applied moment','load-moment-ccw':'Moment (CCW)','load-moment-cw':'Moment (CW)','section-rect':'Rectangular section','section-circle':'Circular section'
  }[item]||'Beam tool');
  state={view:'up',step:3,bk:prior};back.hidden=false;mb.hidden=true;title.textContent='Beam Builder';
- const tile=(item,icon,label)=>`<div class="beam-palette-item" role="button" tabindex="0" data-palette-item="${item}"><span class="beam-tool-icon">${icon}</span><span>${label}</span></div>`;
+ const tile=(item,icon,label)=>`<div class="beam-palette-item" role="button" tabindex="0" data-palette-item="${item}"><span class="beam-tool-icon">${icon}</span><span class="beam-tool-label">${label}</span></div>`;
  const advancedHTML=()=>{
   const snap=draft.snap!==false;
   return `<div class="beam-fields"><label class="beam-field">Overall span label<input id="beamSpanLabel" type="text" maxlength="24" value="${escA(draft.spanLabel||'L')}" placeholder="L"></label><label class="beam-field"><span>Snap supports and loads to 5% increments</span><input id="beamSnap" type="checkbox" ${snap?'checked':''}></label></div>
   <div class="beam-field" style="justify-content:center">${draft.supports.length} support${draft.supports.length===1?'':'s'} · ${draft.loads.length} load${draft.loads.length===1?'':'s'} · up to 8 supports / 12 loads</div>
-  <div class="lbl">Supports · default point labels follow left-to-right order</div><div id="beamSupports" class="beam-loadlist">${draft.supports.length?draft.supports.map((S,i)=>{const ordered=[...draft.supports].map((v,j)=>({v,j})).sort((a,b)=>a.v.pos-b.v.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=rank+1,label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return beamSupportCardHTML(S,i,snap,label)}).join(''):'<div class="beam-empty">No supports placed.</div>'}</div><div class="beam-toolrow"><button class="pill" data-add-support type="button" ${draft.supports.length>=8?'disabled':''}>＋ Add support at center</button></div>
+  <div class="lbl">Supports · default point labels follow left-to-right order</div><div id="beamSupports" class="beam-loadlist">${draft.supports.length?draft.supports.map((S,i)=>{const ordered=[...draft.supports].map((v,j)=>({v,j})).sort((a,b)=>a.v.pos-b.v.pos||a.j-b.j),rank=ordered.findIndex(x=>x.j===i);let n=rank+1,label='';while(n>0){n--;label=String.fromCharCode(65+n%26)+label;n=Math.floor(n/26)}return beamSupportCardHTML(S,i,snap,label)}).join(''):'<div class="beam-empty">No supports placed.</div>'}</div>
   <div class="lbl">Loads</div><div class="beam-loadlist" id="beamLoads">${draft.loads.length?draft.loads.map((L,i)=>beamLoadCardHTML(L,i,snap,draft)).join(''):'<div class="beam-empty">No loads placed.</div>'}</div>`;
  };
  const render=()=>{
@@ -2684,7 +2738,7 @@ function openBeamEditor(F,returnStep){
    ${tile('support-fixed','▌','Fixed end')}${tile('support-hinge','△','Hinge / pin')}${tile('support-roller','○','Roller')}
   </div></div>
   <div class="beam-palette-group"><div class="beam-palette-title">Loads</div><div class="beam-palette">
-   ${tile('load-point','↓','Point load')}${tile('load-resultant','↑','Reaction (R)')}${tile('load-uniform','↓↓↓','Rectangular load')}${tile('load-varying','▽','Varying load')}${tile('load-triangle-left','◢','Triangle · peak left')}${tile('load-triangle-right','◣','Triangle · peak right')}${tile('load-moment-ccw','↺','Moment (Counterclockwise)')}${tile('load-moment-cw','↻','Moment (Clockwise)')}
+   ${tile('load-point','↓','Point load')}${tile('load-resultant','↑','Reaction (R)')}${tile('load-uniform','↓↓↓','Rectangular load')}${tile('load-varying','▽','Varying load')}${tile('load-triangle-left','◢','Triangle · peak left')}${tile('load-triangle-right','◣','Triangle · peak right')}${tile('load-moment-ccw','↺','Moment<br><small>(CCW)</small>')}${tile('load-moment-cw','↻','Moment<br><small>(CW)</small>')}
   </div></div>
   <div class="beam-palette-group"><div class="beam-palette-title">Section</div><div class="beam-palette">
    ${tile('section-rect','▭','Rect. section')}${tile('section-circle','○','Circular section')}
@@ -2697,6 +2751,7 @@ function openBeamEditor(F,returnStep){
    const b=e.target.closest('button');if(!b)return;
    if(removalTimer&&b.id!=='cancelBeam')return;
    if(b.id==='beamAdvToggle'){advOpen=!advOpen;const p=gid('beamAdvanced');if(p)p.hidden=!advOpen;b.setAttribute('aria-expanded',String(advOpen));b.classList.toggle('open',advOpen);return}
+   if(b.dataset.loadDir!==undefined){const l=draft.loads[+b.dataset.loadDir];if(!l)return;const moment=l.type==='moment';openPick(moment?'Moment rotation':'Load direction',moment?[['counterclockwise','Moment (CCW)'],['clockwise','Moment (CW)']]:[['down','Downward'],['up','Upward']],l.dir,value=>{l.dir=value;render()});return}
    if(b.id==='restoreBeam'){draft.removed=false;render();return}
    if(b.dataset.addLoad){addLoad(b.dataset.addLoad==='point'?'point':b.dataset.addLoad==='uniform'?'uniform':b.dataset.addLoad,50);render();return}
    if(b.dataset.removeLoad!==undefined){draft.loads.splice(+b.dataset.removeLoad,1);render();return}
@@ -2828,9 +2883,12 @@ function stepF(msg){
  <div class="builder-keyboard-row"><button class="tile builder-kb-icon${KB_NATIVE?' sel':''}" id="kbSwitch" type="button" role="switch" aria-checked="${KB_NATIVE}" aria-label="Toggle native Android keyboard" title="Toggle native Android keyboard">${ICO_KEYBOARD}</button></div>
   <div class="fxw edbox" id="ed"></div>
  <div id="builderBeamPreview">${E.beam?beamDiagramHTML(E.beam):''}</div>
- <div style="display:flex;align-items:center;gap:8px"><div class="msg" id="bm" style="flex:1;text-align:left">${esc(msg||'')}</div><button class="tile" id="bc" style="min-height:34px;padding:4px 14px;font-size:14px;flex:none">Clear</button></div>
- ${KB_NATIVE?'':'<div class="etools l2" id="etools">'+['paren','brack','frac','sqrt','nroot','sup','sub','int','sum'].map(k=>`<button class="tile" data-k="${k}" aria-label="${ELAB[k]}">${EICON[k]}</button>`).join('')+'<button class="tile" data-k="left" aria-label="Move left">◀</button><button class="tile" data-k="right" aria-label="Move right">▶</button></div>'}
- <div class="kb" id="kb"${KB_NATIVE?' hidden':''}></div>
+ <div class="builder-keyboard-dock" id="builderKeyboardDock">
+  <div class="builder-keyboard-spacers" id="kbSpacers" aria-hidden="true"></div>
+  <div class="builder-editor-actions"><div class="msg" id="bm" style="flex:1;text-align:left">${esc(msg||'')}</div><button class="tile" id="bc" style="min-height:34px;padding:4px 14px;font-size:14px;flex:none">Clear</button></div>
+  ${KB_NATIVE?'':'<div class="etools l2" id="etools">'+['paren','brack','frac','sqrt','nroot','sup','sub','int','sum'].map(k=>`<button class="tile" data-k="${k}" aria-label="${ELAB[k]}">${EICON[k]}</button>`).join('')+'<button class="tile" data-k="left" aria-label="Move left">◀</button><button class="tile" data-k="right" aria-label="Move right">▶</button></div>'}
+  <div class="kb" id="kb"${KB_NATIVE?' hidden':''}></div>
+ </div>
  `;
  bindTabs();
  const ub=gid('upl');if(ub)ub.onclick=async()=>{try{if(!window.uplOpen)await new Promise((ok,no)=>{const s=document.createElement('script');s.src='upload.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)});uplOpen()}catch(e){bm0('Could not open the uploader')}};
@@ -2865,8 +2923,9 @@ function stepF(msg){
   // A fixed six-row key area prevents the ABC / 123 / Greek / Trig layouts from
   // changing the page height. Without these inert spacer rows, the mode buttons
   // jump up and down as each layout has a different number of key rows.
-  const spacerRows=Array.from({length:Math.max(0,6-usedRows)},()=>'<div class="kr kb-spacer" aria-hidden="true"><span class="tile ph"></span></div>').join('');
-  kb.innerHTML=top+spacerRows+`<div class="kr">
+  const spacerRows=KB_NATIVE?'':Array.from({length:Math.max(0,6-usedRows)},()=>'<div class="kr kb-spacer" aria-hidden="true"><span class="tile ph"></span></div>').join('');
+  const spacerDock=gid('kbSpacers');if(spacerDock){spacerDock.innerHTML=spacerRows;spacerDock.classList.toggle('has-spacers',!!spacerRows)}
+  kb.innerHTML=top+`<div class="kr">
    <button class="tile w fn${kmode=='abc'?' on':''}" data-m="abc" aria-label="QWERTY keyboard">ABC</button>
    <button class="tile w fn${kmode=='num'?' on':''}" data-m="num" aria-label="Numbers and operators">123</button>
    <button class="tile w fn${kmode=='grk'?' on':''}" data-m="grk" aria-label="Greek letters">αβ</button>
@@ -2903,8 +2962,8 @@ function stepD(msg){
  <div class="lbl">Mnemonic for Formula ${DR.active+1}</div>${mnBox('um',E.m,'Mnemonic (optional) · capital letters turn bold')}
   <div class="lbl">Memorization options</div>
   <button class="pill${E.ld&&has?' sel':''}" id="tg1"${has?'':' disabled'}>Ask for the left side too<small>${has?(E.ld?'On':'Off'):'No left side'}</small></button>
-  <div class="msg left-side-help" style="text-align:left;margin-top:-6px">${has?`<div><b>Off:</b> “${esc(pre)}” is shown and only the rest is answered.</div><div><b>On:</b> You build “${esc(pre)}” too.</div>`:'This formula has no simple left side, so everything is answered.'}</div>
-  <button class="pill${E.ci?'':' sel'}" id="tg2">Strict capital / small letters<small>${E.ci?'Off':'On'}</small></button>
+  <div class="msg left-side-help" style="text-align:left;margin-top:-2px;margin-bottom:12px">${has?`<div><b>Off:</b> “${esc(pre)}” is shown and only the rest is answered.</div><div><b>On:</b> You build “${esc(pre)}” too.</div>`:'This formula has no simple left side, so everything is answered.'}</div>
+  <button class="pill${E.ci?'':' sel'}" id="tg2">Case sensitive<small>${E.ci?'Off':'On'}</small></button><div class="msg case-sensitive-help" style="text-align:left;margin-top:-2px;margin-bottom:10px">When On, variables in memorization and quizzes must match the formula’s uppercase/lowercase letters exactly. When Off, capitalization is ignored.</div>
  <div class="${msg&&/(successfully|saved ✓|updated ✓)/i.test(msg)?'save-success':'msg'}" id="bm">${esc(msg||'')}</div>
  <div class="nav"><button class="pill" id="pb">‹ Formula</button><button class="pill on" id="us" style="flex:2;justify-content:center">${ed?'Update':'Save'}</button></div>
  ${ed?`<button class="pill" id="ud" style="justify-content:center;color:#b04d58">Delete (move to trash)</button>`:''}`;
@@ -2963,11 +3022,11 @@ Butter:{bg:"#f8f1cf",card:"#fffbe8",ink:"#54492a",mut:"#8f8559",pill:"#ede2a8",a
 Cocoa:{bg:"#3d3029",card:"#4c3d34",ink:"#f6e9dc",mut:"#c4ad9a",pill:"#5d4a3e",acc:"#e8bf94",d:1},
 Dusk:{bg:"#3b3547",card:"#4a4358",ink:"#f0e8f7",mut:"#bdb2cc",pill:"#5a5169",acc:"#c9b0ee",d:1},
 Night:{bg:"#000000",card:"#000000",ink:"#f2ebe0",mut:"#9a9288",pill:"#0f0f0f",acc:"#c9b0ee",d:1}};
-const FONTS={Serif:"Georgia,'Times New Roman',serif",Sans:"system-ui,-apple-system,Roboto,sans-serif",Readable:"'Roboto','Arial',system-ui,sans-serif"};
+const FONTS={Serif:"Georgia,'Times New Roman',serif",Sans:"system-ui,-apple-system,Roboto,sans-serif",Readable:"Verdana,'Trebuchet MS',Tahoma,sans-serif"};
 const ACCS=["#e8a0b4","#f2b48a","#f1d27a","#a9d4a0","#8fc7c0","#94b8e0","#b9a3e3","#d9b08c"];
-let T={p:'Beige',a:'',f:'Readable',s:1};try{Object.assign(T,JSON.parse(localStorage.getItem('cetheme')||'{}'))}catch(e){}
-// Migrate the removed handwritten option so existing installs immediately use the readable font.
-if(T.f==='Handwritten')T.f='Readable';
+let T={p:'Beige',a:'',f:'Serif',s:1};try{Object.assign(T,JSON.parse(localStorage.getItem('cetheme')||'{}'))}catch(e){}
+// Move the previous default (misnamed Readable/Sans) to the new Serif default once.
+try{if(localStorage.getItem('ceFontStyleMigrated')!=='1'){if(T.f==='Handwritten'||T.f==='Readable'||!FONTS[T.f])T.f='Serif';localStorage.setItem('ceFontStyleMigrated','1')}else if(!FONTS[T.f])T.f='Serif'}catch(_){if(T.f==='Handwritten'||!FONTS[T.f])T.f='Serif'}
 function syncNativeSystemBars(isDark){
  try{
   const p=nativePlugin('SystemBars');
@@ -3021,7 +3080,9 @@ async function renderFormulaPNG(d){
   fitFx(host);if(document.fonts&&document.fonts.ready)await document.fonts.ready;
   const H=Math.ceil(host.getBoundingClientRect().height);host.style.cssText=base;
   const xml=new XMLSerializer().serializeToString(host);
-  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><foreignObject x="0" y="0" width="${W}" height="${H}"><style><![CDATA[${shareCSS()}]]></style>${xml}</foreignObject></svg>`;
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><foreignObject x="0" y="0" width="${W}" height="${H}"><style><![CDATA[${shareCSS()}]]>
+
+</style>${xml}</foreignObject></svg>`;
   const img=new Image();img.decoding='async';
   await new Promise((ok,no)=>{img.onload=ok;img.onerror=()=>no(new Error('Could not draw the formula card.'));img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)});
   const cv=document.createElement('canvas');cv.width=W*SC;cv.height=H*SC;const cx=cv.getContext('2d');cx.fillStyle=bg;cx.fillRect(0,0,cv.width,cv.height);cx.scale(SC,SC);cx.drawImage(img,0,0,W,H);
@@ -3048,19 +3109,35 @@ async function shareBinary(name,mime,bytes){
  const file=new File([bytes],name,{type:mime});
  if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:name});return 'web'}
  const url=URL.createObjectURL(new Blob([bytes],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);return 'download'}
+let SHARE_PROGRESS_EL=null;
+function shareProgress(p,label){
+ if(!SHARE_PROGRESS_EL){SHARE_PROGRESS_EL=document.createElement('div');SHARE_PROGRESS_EL.id='shareProgress';SHARE_PROGRESS_EL.innerHTML='<div class="sp-card" role="status" aria-live="polite"><div class="sp-title" id="shareProgressTitle">Preparing formula images…</div><div class="sp-track"><i class="sp-fill" id="shareProgressFill"></i><span class="sp-percent" id="shareProgressPct">0%</span></div></div>';document.body.appendChild(SHARE_PROGRESS_EL)}
+ SHARE_PROGRESS_EL.classList.add('show');const n=Math.max(0,Math.min(100,Math.round(p)));const t=gid('shareProgressTitle'),f=gid('shareProgressFill'),q=gid('shareProgressPct'),track=SHARE_PROGRESS_EL.querySelector('.sp-track');if(t)t.textContent=label;if(f)f.style.width=n+'%';if(q)q.textContent=n+'%';if(track)track.classList.toggle('busy',/^Rendering image/.test(label))
+}
+function shareProgressHide(){if(SHARE_PROGRESS_EL)SHARE_PROGRESS_EL.classList.remove('show')}
 async function shareFormulas(items){
  items=[...new Set((items||[]).filter(Boolean))];
  if(!items.length){showAppToast('Select at least one formula to share.',true);return}
- showAppToast(items.length>1?`Preparing ${items.length} images…`:'Preparing image…');
+ shareProgress(0,items.length>1?`Preparing ${items.length} formula images…`:'Preparing formula image…');
  try{
-  const files=[],used=new Set();
-  for(const d of items){
+  const files=[],used=new Set(),total=items.length;
+  for(let i=0;i<items.length;i++){
+   const d=items[i];shareProgress((i/total)*82,`Rendering image ${i+1} of ${total}…`);
    const blob=await renderFormulaPNG(d);let base=String(d.n||'Formula').replace(/[^A-Za-z0-9 _-]+/g,'_').trim().slice(0,60)||'Formula',nm=base+'.png',k=2;
    while(used.has(nm.toLowerCase()))nm=`${base} (${k++}).png`;used.add(nm.toLowerCase());
-   files.push({name:nm,bytes:new Uint8Array(await blob.arrayBuffer())})}
-  const how=files.length===1?await shareBinary(files[0].name,'image/png',files[0].bytes):await shareBinary('FormuLater-formulas.zip','application/zip',makeZip(files));
-  if(how==='download')showAppToast(files.length===1?'Sharing is unavailable here, so the image was downloaded.':'Sharing is unavailable here, so the ZIP file was downloaded.')
- }catch(e){if(e&&(e.name==='AbortError'||/cancel/i.test(String(e.message||''))))return;showAppToast('Could not share: '+String((e&&e.message)||e),true)}}
+   files.push({name:nm,bytes:new Uint8Array(await blob.arrayBuffer())});shareProgress(((i+1)/total)*82,`Created image ${i+1} of ${total}`);
+   await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
+  }
+  let shareName=files[0].name,shareMime='image/png',shareBytes=files[0].bytes;
+  if(files.length>1){shareProgress(90,`Packing ${files.length} images into a ZIP file…`);shareBytes=makeZip(files);shareName='FormuLater-formulas.zip';shareMime='application/zip';shareProgress(97,'ZIP ready. Opening share menu…')}
+  else shareProgress(97,'Image ready. Opening share menu…');
+  // Hide before handing control to Android's share chooser so the overlay cannot cover it.
+  shareProgressHide();
+  const how=await shareBinary(shareName,shareMime,shareBytes);
+  if(how==='download')showAppToast(files.length===1?'Sharing is unavailable here, so the image was downloaded.':'Sharing is unavailable here, so the ZIP file was downloaded.');
+ }catch(e){shareProgressHide();if(e&&(e.name==='AbortError'||/cancel/i.test(String(e.message||''))))return;showAppToast('Could not share: '+String((e&&e.message)||e),true)}
+ finally{shareProgressHide()}
+}
 // ----- native Android keyboard mode for the equation editor -----
 let KB_NATIVE=false;try{KB_NATIVE=localStorage.getItem('cekbnative')==='1'}catch(_){}
 let NP_VV=null,NP_WINRESIZE=null,NP_INPUT=null,NP_PLACE=null,NP_KEEP_RAF=0;
@@ -3077,7 +3154,7 @@ function nativeKbMount(o){
  const STRUCT=[
   ['int','Integral with limits',EICON.int],['sum','Sigma notation with limits',EICON.sum],
   ['sqrt','Square root',EICON.sqrt],['nroot','Nth root',EICON.nroot],
-  ['pm','Plus/minus','+-'],['mp','Minus/plus','-+'],['paren','Parentheses','()'],['brack','Square brackets','[]'],
+  ['pm','Plus/minus','<svg viewBox="0 0 24 32" width="28" height="32" aria-hidden="true"><path d="M12 3v8M8 7h8M7 22h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'],['mp','Minus/plus','<svg viewBox="0 0 24 32" width="28" height="32" aria-hidden="true"><path d="M7 7h10M12 17v9M7.5 21.5h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'],['paren','Parentheses','()'],['brack','Square brackets','[]'],
   ['frac','Fraction',EICON.frac],['sup','Superscript / exponent',EICON.sup],['sub','Subscript',EICON.sub]
  ];
  const OPS=BGR['Operators & Numbers'].filter(x=>!NUMS.has(x)&&!'()[]'.includes(x)&&!['∫','Σ','±','∓'].includes(x));
@@ -3202,7 +3279,7 @@ function settings(){
  app.querySelectorAll('[data-k]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=g.dataset.k;T[k]=k=='s'?+b.dataset.v:b.dataset.v;applyT();g.querySelectorAll('button').forEach(x=>x.classList.toggle('sel',x===b))}));
  document.getElementById('manageStorage').onclick=()=>storageScreen();gid('supBtn').onclick=supportSheet;
  gid('checkAppUpdates').onclick=()=>{if(APP_UPDATE.available)downloadAppUpdate();else checkAppUpdates(true)};renderUpdateUI();checkAppUpdates(false);
- document.getElementById('rt').onclick=()=>{T={p:'Beige',a:'',f:'Readable',s:1};applyT();settings()};
+ document.getElementById('rt').onclick=()=>{T={p:'Beige',a:'',f:'Serif',s:1};applyT();settings()};
  const tg=(id,k)=>gid(id).onclick=()=>{N[k]=!N[k];gid(id).querySelector('small').textContent=N[k]?'On':'Off';gid(id).classList.toggle('sel',N[k]);applyN()};
  tg('kw','w');tg('nm','n');
  gid('ni').oninput=e=>{N.i=+e.target.value;gid('iv').textContent=N.i+'%';if(!N.n){N.n=true;gid('nm').querySelector('small').textContent='On';gid('nm').classList.add('sel')}applyN()};
