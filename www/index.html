@@ -821,28 +821,25 @@ async function checkAppUpdates(force=false){
   if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo))throw new Error('The GitHub repository configured for this build is invalid.');
   const tag=String(UPDATE_CONFIG.tag||'latest-apk');
   const apiBase=`https://api.github.com/repos/${repo}`;
-  const rr=await fetch(`${apiBase}/releases/tags/${encodeURIComponent(tag)}`,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
+  // Use only the GitHub Releases API response for update metadata. Fetching
+  // browser_download_url for a release asset from a WebView can fail CORS.
+  // The build workflow embeds the version JSON in rel.body as an HTML comment.
+  const rr=await fetch(`${apiBase}/releases/tags/${encodeURIComponent(tag)}`,{cache:'no-store'});
   if(rr.status===404){APP_UPDATE={status:'none',available:false,checkedAt:now};try{localStorage.setItem(updateCacheKey(),JSON.stringify(APP_UPDATE))}catch(_){}renderUpdateUI();return}
   if(!rr.ok)throw new Error(rr.status===403?'GitHub’s unauthenticated API rate limit was reached. Try again later.':`GitHub returned HTTP ${rr.status}.`);
   const rel=await rr.json();
   const assets=Array.isArray(rel.assets)?rel.assets:[];
   const apk=assets.find(a=>String(a.name).toLowerCase()==='formulater.apk');
-  const meta=assets.find(a=>String(a.name).toLowerCase()==='formulater-version.json');
-  if(!apk||!meta)throw new Error('The latest release is missing its APK or version metadata. Run the project’s latest Build APK workflow and try again.');
-  let latest=null,assetError=null;
-  for(const item of [
-   {url:meta.browser_download_url,headers:{}},
-   {url:meta.url,headers:{Accept:'application/octet-stream'}}
-  ]){
-   try{
-    const mr=await fetch(item.url,{cache:'no-store',headers:item.headers});
-    if(!mr.ok)throw new Error(`Version metadata download returned HTTP ${mr.status}.`);
-    const txt=await mr.text();
-    try{latest=JSON.parse(txt)}catch(_){throw new Error('The version metadata is not valid JSON.')}
-    if(latest&&latest.buildSha)break;
-   }catch(e){assetError=e}
+  if(!apk)throw new Error('The latest release is missing FormuLater.apk. Run the project’s Build APK workflow and try again.');
+  const body=String(rel.body||'');
+  const marker=body.match(/<!--\s*FORMULATER_UPDATE_METADATA\s*([\s\S]*?)\s*-->/i);
+  let latest=null;
+  if(marker){
+   try{latest=JSON.parse(marker[1].trim())}catch(_){throw new Error('The latest release contains invalid build metadata. Re-run the Build APK workflow.')}
   }
-  if(!latest||!latest.buildSha)throw assetError||new Error('Could not read the release version metadata.');
+  if(!latest||!latest.buildSha){
+   throw new Error('This release does not contain embedded update metadata yet. Publish a new APK using the updated Build APK workflow, then install that build once.');
+  }
   const available=String(latest.buildSha)!==String(UPDATE_CONFIG.buildSha)||String(latest.signingMode||'')!==String(UPDATE_CONFIG.signingMode||'');
   const warning=(available&&(UPDATE_CONFIG.signingMode!=='release'||latest.signingMode!=='release'))
    ?'This APK is not configured with a persistent release-signing key. Android may refuse to install it over an existing build. Export your formulas before any uninstall/reinstall, and configure the same signing key for future releases.'

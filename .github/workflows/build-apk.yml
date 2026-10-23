@@ -57,7 +57,13 @@ jobs:
           sw.write_text(sw_text)
           release=dict(config)
           release['builtAt']=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          (root/'FormuLater-version.json').write_text(json.dumps(release,indent=2)+'\n')
+          release_json=json.dumps(release,indent=2)+'\n'
+          (root/'FormuLater-version.json').write_text(release_json)
+          # Keep update metadata in the release API response body so Android WebView
+          # can read it without fetching a cross-origin release asset.
+          (root/'FormuLater-release-body.md').write_text(
+              '<!-- FORMULATER_UPDATE_METADATA\n'+json.dumps(release,separators=(',',':'))+'\n-->\n'
+          )
           print(f"Embedded update identity for {repo} at {config['buildSha']} ({config['version']}, signing={mode})")
           PYCODE
       - name: Add offline Greek OCR language model
@@ -283,6 +289,7 @@ jobs:
         with:
           tag_name: latest-apk
           name: Latest APK
+          body_path: FormuLater-release-body.md
           files: |
             FormuLater.apk
             FormuLater-version.json
