@@ -1,0 +1,12 @@
+node_modules/
+android/
+ios/
+build/
+.gradle/
+.idea/
+target/
+*.keystore
+*.jks
+key.txt
+local.properties
+.DS_Store

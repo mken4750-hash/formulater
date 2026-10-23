@@ -1,0 +1,8 @@
+{
+  "appId": "com.formulater.app",
+  "appName": "FormuLater",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#f2e8d5"
+  }
+}
