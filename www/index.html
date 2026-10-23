@@ -821,7 +821,7 @@ async function checkAppUpdates(force=false){
   if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo))throw new Error('The GitHub repository configured for this build is invalid.');
   const tag=String(UPDATE_CONFIG.tag||'latest-apk');
   const apiBase=`https://api.github.com/repos/${repo}`;
-  const rr=await fetch(`${apiBase}/releases/tags/${encodeURIComponent(tag)}`,{cache:'no-store',headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+  const rr=await fetch(`${apiBase}/releases/tags/${encodeURIComponent(tag)}`,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
   if(rr.status===404){APP_UPDATE={status:'none',available:false,checkedAt:now};try{localStorage.setItem(updateCacheKey(),JSON.stringify(APP_UPDATE))}catch(_){}renderUpdateUI();return}
   if(!rr.ok)throw new Error(rr.status===403?'GitHub’s unauthenticated API rate limit was reached. Try again later.':`GitHub returned HTTP ${rr.status}.`);
   const rel=await rr.json();
@@ -832,7 +832,7 @@ async function checkAppUpdates(force=false){
   let latest=null,assetError=null;
   for(const item of [
    {url:meta.browser_download_url,headers:{}},
-   {url:meta.url,headers:{Accept:'application/octet-stream','X-GitHub-Api-Version':'2022-11-28'}}
+   {url:meta.url,headers:{Accept:'application/octet-stream'}}
   ]){
    try{
     const mr=await fetch(item.url,{cache:'no-store',headers:item.headers});
