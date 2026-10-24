@@ -43,10 +43,11 @@ function uplCSS(){if(document.getElementById('upcss'))return;const s=document.cr
 #up .ubody>*{flex-shrink:0}
 #up .ubody img{max-width:100%;max-height:90px;border-radius:8px;border:2px solid var(--tb);background:#fff;align-self:flex-start}
 #up .ubody .lbl{color:var(--mut);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:6px 4px 0}
-#up .ubusy{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:40}
+#up .ubusy{position:absolute;inset:0;background:rgba(0,0,0,.34);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:24px;z-index:40}
 #up .ubusy.show{display:flex}
-#up .ubusy>div{background:var(--card);border:2px solid var(--tb);border-radius:18px;padding:18px 24px;text-align:center;width:min(320px,86%);display:flex;flex-direction:column;gap:6px;align-items:stretch}
-#up .ubusy .bar{height:24px;border-radius:999px;border:1px solid var(--tb);background:var(--pill);margin-top:6px;overflow:hidden;position:relative}
+#up .ubusy>div{background:var(--card);color:var(--ink);border:2px solid var(--tb);border-bottom-width:5px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.25);padding:20px 18px;text-align:center;width:min(360px,92vw);display:flex;flex-direction:column;gap:13px;align-items:stretch}
+#up .ubusy #ubt{font:700 16px/1.4 var(--ff);overflow-wrap:anywhere}
+#up .ubusy .bar{height:24px;border-radius:999px;border:1px solid var(--tb);background:var(--pill);margin-top:0;overflow:hidden;position:relative}
 #up .ubusy .bar i{position:absolute;left:0;top:0;bottom:0;display:block;height:100%;width:0;background:var(--acc);transition:width .2s;z-index:1}
 #up .ubusy .bar #ubq{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 13px/1 var(--ff);color:var(--ink);z-index:3;text-shadow:0 1px 0 var(--card),0 -1px 0 var(--card)}
 #up .ubusy .bar.ind::after{content:'';position:absolute;top:0;bottom:0;width:35%;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation:uind 1.1s linear infinite;z-index:2}

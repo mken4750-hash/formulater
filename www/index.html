@@ -420,6 +420,9 @@ textarea.el{flex-shrink:0;overflow:hidden;resize:none;display:block;min-height:5
 
 #shareProgress{position:fixed;inset:0;z-index:11000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.34);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
 #shareProgress .sp-cancel{align-self:center;min-width:120px;justify-content:center}
+#shareProgress .sp-cancel[hidden]{display:none}
+#shareProgress .sp-sub{text-align:center;font:500 12.5px/1.4 var(--ff);color:var(--mut);margin-top:-4px}
+#shareProgress .sp-sub:empty{display:none}
 #shareProgress.show{display:flex}
 #shareProgress .sp-card{width:min(360px,92vw);padding:20px 18px;background:var(--card);color:var(--ink);border:2px solid var(--tb);border-bottom-width:5px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:13px}
 #shareProgress .sp-title{text-align:center;font:700 16px/1.4 var(--ff);overflow-wrap:anywhere}
@@ -456,7 +459,10 @@ textarea.el{flex-shrink:0;overflow:hidden;resize:none;display:block;min-height:5
 .conflictpreview{border:1px solid var(--tb);border-radius:12px;padding:10px;margin-top:6px;max-height:30dvh;overflow:auto}
 .conflictpreview .where{font-size:13px}
 .conflictactions{display:grid;grid-template-columns:1fr;gap:8px}
-.conflictactions .pill{justify-content:center;text-align:center}
+.conflictcomparison,.conflictactions,#app>.lbl,#app>.msg{flex:none}
+.conflictactions .pill{justify-content:center;text-align:center;flex-direction:column;gap:3px;align-items:center}
+.conflictactions .pill small{font-weight:500;font-size:12.5px;line-height:1.35}
+.conflictactions .pill:disabled{opacity:.5}
 .conflictcomparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
 .conflictcard{min-width:0;border:2px solid var(--tb);border-bottom-width:4px;border-radius:15px;background:var(--card);padding:10px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
 .conflictcard .conflict-name{font-weight:700;text-align:center;overflow-wrap:anywhere}
@@ -932,13 +938,20 @@ function renderUpdateUI(){
  const status=gid('appUpdateStatus');
  if(status){status.textContent=updateStatusText();status.classList.toggle('warn',APP_UPDATE.available&&!!APP_UPDATE.warning);status.classList.toggle('good',APP_UPDATE.status==='current')}
  const check=gid('checkAppUpdates');if(check){const st=APP_UPDATE.status;check.disabled=st==='checking';check.style.opacity=st==='checking'?'.65':'';check.textContent=st==='checking'?'Checking GitHub…':APP_UPDATE.available?'Download Update':st==='current'?'Check again for updates':'Check for updates'}
- updateMenuNotice();
+ updateMenuNotice();refreshConflictBanner();
 }
 function updateMenuNotice(){
  let b=gid('menuUpdateBanner');
  if(state.view!=='menu'||!APP_UPDATE.available){if(b)b.remove();return}
  if(!b){b=document.createElement('button');b.id='menuUpdateBanner';b.className='pill menu-update';b.onclick=downloadAppUpdate;const settingsButton=app.querySelector('[data-m="set"]');if(settingsButton)settingsButton.after(b);else app.append(b)}
  b.innerHTML=`<span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small>`;
+}
+function refreshConflictBanner(){
+ if(state.view!=='menu')return;
+ const old=gid('menuConflictBanner');if(old)old.remove();
+ const h=conflictBannerHTML();if(!h)return;
+ const t=document.createElement('div');t.innerHTML=h;const b=t.firstElementChild;b.onclick=()=>conflictReview(0);
+ const anchor=gid('menuUpdateBanner')||app.querySelector('[data-m="set"]');if(anchor)anchor.after(b);else app.append(b)
 }
 async function checkAppUpdates(force=false){
  if(!force&&APP_UPDATE.status==='checking')return;
@@ -1006,8 +1019,9 @@ async function downloadAppUpdate(){
 }
 function menu(){
  fade();app.classList.add('ctr');state={view:'menu'};back.hidden=true;mb.hidden=true;title.textContent='FormuLater';
- app.innerHTML=`<button class="pill" data-m="start">Play</button><button class="pill" data-m="up">Build and Edit Formulas</button><button class="pill" data-m="set">Settings</button>${APP_UPDATE.available?`<button class="pill menu-update" id="menuUpdateBanner"><span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small></button>`:''}`;
+ app.innerHTML=`<button class="pill" data-m="start">Play</button><button class="pill" data-m="up">Build and Edit Formulas</button><button class="pill" data-m="set">Settings</button>${APP_UPDATE.available?`<button class="pill menu-update" id="menuUpdateBanner"><span>Update available</span><small>${esc(APP_UPDATE.latestVersion||'New version')} · Tap to download</small></button>`:''}${conflictBannerHTML()}`;
  const updateBanner=gid('menuUpdateBanner');if(updateBanner)updateBanner.onclick=downloadAppUpdate;
+ const conflictBanner=gid('menuConflictBanner');if(conflictBanner)conflictBanner.onclick=()=>conflictReview(0);
  app.querySelector('[data-m=start]').onclick=()=>start();
  app.querySelector('[data-m=up]').onclick=()=>upload();
  app.querySelector('[data-m=set]').onclick=()=>settings();
@@ -1032,6 +1046,10 @@ function cats(mode){
 }
 function openStudyCategory(mode,cat){if(!subcategoriesFor(cat).length)startStudySet(mode,cat,'');else subcats(mode,cat)}
 function startStudySet(mode,cat,subcat=''){
+ if(!ordered(cat).some(d=>!subcat||d.s===subcat))return startStudySetNow(mode,cat,subcat);
+ flcOpen(mode,cat,subcat,()=>startStudySetNow(mode,cat,subcat))
+}
+function startStudySetNow(mode,cat,subcat=''){
  const hasFormulas=ordered(cat).some(d=>!subcat||d.s===subcat);
  if(!hasFormulas){fade();app.classList.add('ctr');state={view:'emptyCategory',bk:()=>subcat?subcats(mode,cat):cats(mode)};back.hidden=false;mb.hidden=true;title.textContent=categoryName(cat)+(subcat?' · '+subcat:'');app.innerHTML=`<div class="q">No formulas here yet</div><p class="msg" style="text-align:center">You can add formulas in Build & Edit Formulas, then move them into this category or subcategory.</p><button class="pill" id="emptyBack">Back to categories</button><button class="pill on" id="emptyBuild">Build & Edit Formulas</button>`;gid('emptyBack').onclick=()=>subcat?subcats(mode,cat):cats(mode);gid('emptyBuild').onclick=()=>buildEd('new');return}
  if(mode==='all'){viewAll(cat,0,lastGet('all',cat),subcat)}
@@ -1625,7 +1643,70 @@ function formulaParts(d){
  vs.forEach(v=>{(v.w||[]).forEach(w=>{const t=String(w||'').trim();if(t&&!where.includes(t))where.push(t)});const m=String(v.m||'').trim();if(m&&!mn.includes(m))mn.push(m)});
  return {vs,where,mn}
 }
+// ===== FORMULA CACHE: rendered formula HTML + fitted sizes are remembered (in memory and in IndexedDB) =====
+// The cache is keyed by the formula's own content, so editing one formula only re-renders that one, and it is
+// thrown away completely when the app / built-in formula catalog changes (then a loading screen rebuilds it).
+const FLC={sig:'',html:Object.create(null),fit:Object.create(null),done:Object.create(null),updated:false,dirty:false,timer:0,db:null,ready:null};
+function flcHash(str){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<str.length;i++){const c=str.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(36)}
+try{FLC.sig='1|'+flcHash(JSON.stringify(RAW))+'|'+[UPDATE_CONFIG.buildSha,UPDATE_CONFIG.buildNumber,UPDATE_CONFIG.version].join('|')}catch(_){FLC.sig='1|x'}
+const flcKey=(d,cls)=>flcHash(JSON.stringify([d.label,d.f,d.w,d.m,d.ld,d.ci,d.variants,d.beam,cls]));
+function flcOpenDB(){return new Promise((ok,no)=>{try{const r=indexedDB.open('formulater-cache',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error);r.onblocked=()=>no(new Error('blocked'))}catch(e){no(e)}})}
+FLC.ready=(async()=>{
+ try{
+  FLC.db=await flcOpenDB();
+  const rec=await new Promise((ok,no)=>{const q=FLC.db.transaction('kv','readonly').objectStore('kv').get('cache');q.onsuccess=()=>ok(q.result);q.onerror=()=>no(q.error)});
+  if(rec&&rec.sig===FLC.sig){FLC.html=Object.assign(FLC.html,rec.html||{});FLC.fit=Object.assign(FLC.fit,rec.fit||{});FLC.done=Object.assign(FLC.done,rec.done||{})}
+  else if(rec){FLC.updated=true;FLC.dirty=true;flcSaveSoon()}
+ }catch(_){FLC.db=null}
+})();
+function flcSaveSoon(){FLC.dirty=true;clearTimeout(FLC.timer);FLC.timer=setTimeout(flcSave,900)}
+function flcSave(){
+ if(!FLC.db||!FLC.dirty)return;FLC.dirty=false;
+ try{
+  const fk=Object.keys(FLC.fit);if(fk.length>8000){const keep={};fk.slice(fk.length-4000).forEach(k=>keep[k]=FLC.fit[k]);FLC.fit=keep}
+  FLC.db.transaction('kv','readwrite').objectStore('kv').put({sig:FLC.sig,html:FLC.html,fit:FLC.fit,done:FLC.done},'cache')
+ }catch(_){}
+}
+addEventListener('pagehide',flcSave);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flcSave()});
 function formulaVersionsHTML(d,cls='formula2'){
+ const k=flcKey(d,cls);let h=FLC.html[k];
+ if(h===undefined){h=formulaVersionsHTMLRaw(d,cls);FLC.html[k]=h;flcSaveSoon()}
+ return h
+}
+// Opens a study screen. If its formulas are not cached yet (first time, or the formulas changed) a loading screen
+// builds + caches them first; afterwards the screen opens instantly.
+const flcTick=()=>new Promise(r=>setTimeout(r,0));
+const flcPaint=()=>new Promise(r=>{let d=false;const f=()=>{if(!d){d=true;r()}};try{requestAnimationFrame(()=>requestAnimationFrame(f))}catch(_){}setTimeout(f,80)});
+let FLC_BUSY=false;
+async function flcOpen(mode,cat,subcat,run){
+ if(FLC_BUSY)return;
+ FLC_BUSY=true;
+ try{
+  try{await Promise.race([FLC.ready,new Promise(r=>setTimeout(r,1500))])}catch(_){}
+  const items=ordered(cat).filter(d=>!subcat||d.s===subcat),cls=mode==='flash'?'formula':'formula2';
+  const keys=items.map(d=>flcKey(d,cls));
+  const missing=keys.reduce((n,k)=>n+(FLC.html[k]===undefined?1:0),0);
+  let base='';try{base=getComputedStyle(document.body).fontSize}catch(_){}
+  const doneKey=[mode,cat,subcat,innerWidth,base].join('|'),sig=flcHash(keys.join(',')),needFit=mode==='all'&&FLC.done[doneKey]!==sig;
+  const first=FLC.done[mode+'|'+cat+'|'+subcat]!==sig;
+  if(missing<=2&&!needFit&&!(first&&items.length>25)){run();FLC.done[mode+'|'+cat+'|'+subcat]=sig;return}
+  const title=FLC.updated?'Updating formulas…':'Loading formulas…',sub=FLC.updated?'New formulas were found. This only happens once.':'First time only. Next time this opens instantly.';
+  loaderShow(title,0,{sub});await flcPaint();
+  const total=items.length||1,step=12;
+  for(let i=0;i<items.length;i+=step){
+   for(let j=i;j<Math.min(items.length,i+step);j++)if(FLC.html[keys[j]]===undefined)formulaVersionsHTML(items[j],cls);
+   loaderShow(title,Math.min(60,(Math.min(items.length,i+step)/total)*60),{sub});await flcTick();
+  }
+  loaderShow(title,70,{sub,busy:true});await flcPaint();
+  run();
+  FLC.done[mode+'|'+cat+'|'+subcat]=sig;
+  if(mode==='all')FLC.done[doneKey]=sig;
+  FLC.updated=false;flcSaveSoon();
+  loaderShow(title,100,{sub});await flcTick();
+ }catch(e){try{run()}catch(_){}}
+ finally{loaderHide();FLC_BUSY=false}
+}
+function formulaVersionsHTMLRaw(d,cls='formula2'){
  const {vs,where,mn}=formulaParts(d);
  if(vs.length===1){
   const v=vs[0],lines=(v.w||[]).map(w=>String(w||'').trim()).filter(Boolean);
@@ -1644,7 +1725,17 @@ function fitOne(w,keep){
  if(!keep){w.style.fontSize='';w.classList.remove('wr')}
  let fs=parseFloat(getComputedStyle(w).fontSize);
  while(f.scrollWidth>w.clientWidth&&fs>11){fs-=1;w.style.fontSize=fs+'px';if(fs<=17)w.classList.add('wr')}}
-const fitFx=root=>root.querySelectorAll('.fxw').forEach(w=>fitOne(w));
+const fitFx=root=>{
+ const ws=[...root.querySelectorAll('.fxw')];if(!ws.length)return;
+ let fontsOk=true;try{fontsOk=!document.fonts||document.fonts.status==='loaded'}catch(_){}
+ // 1) reset, 2) read everything, 3) write cached sizes, 4) only measure formulas that are not cached yet (no layout thrash)
+ ws.forEach(w=>{w.style.fontSize='';w.classList.remove('wr')});
+ const baseOf={},info=ws.map(w=>{const c=w.className;if(!(c in baseOf))baseOf[c]=getComputedStyle(w).fontSize;const cw=w.clientWidth;return {w,cw,k:cw?flcHash(w.innerHTML)+'|'+c+'|'+baseOf[c]+'|'+cw:''}});
+ const todo=[];
+ info.forEach(x=>{if(!x.cw)return;const h=FLC.fit[x.k];if(h===undefined){todo.push(x);return}const p=h.split('|');if(+p[0])x.w.style.fontSize=p[0]+'px';if(p[1]==='1')x.w.classList.add('wr')});
+ todo.forEach(x=>{fitOne(x.w);if(fontsOk){FLC.fit[x.k]=(parseFloat(x.w.style.fontSize)||0)+'|'+(x.w.classList.contains('wr')?1:0);FLC.dirty=true}});
+ if(todo.length&&fontsOk)flcSaveSoon()
+};
 // ===== PHASE 2: MEMORIZATION =====
 const GR={Variables:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),Greek:"α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω".split(" "),"Trig/Log":["sin","cos","tan","cot","sec","csc","ln","log"],"Operators & Numbers":["+","−","×","÷","=","±","∓","∫","Σ","!",",","′","0","1","2","3","4","5","6","7","8","9","."]};
 const NUMS=new Set("0 1 2 3 4 5 6 7 8 9 .".split(" ")),TRIG=/^(sin|cos|tan|csc|sec|cot)/;
@@ -1657,7 +1748,7 @@ const symH=(k,arr,tl)=>{
 let MODE='manual';try{MODE=localStorage.getItem('cemode')==='auto'?'auto':'manual'}catch(e){}
 const sb=document.getElementById('sb'),ov=document.getElementById('ov');
 let prog={};try{prog=JSON.parse(localStorage.getItem('ceprog')||'{}')}catch(e){}
-const save=()=>{try{localStorage.setItem('ceprog',JSON.stringify(prog))}catch(e){}};
+const save=()=>{try{localStorage.setItem('ceprog',JSON.stringify(prog))}catch(e){};try{recordProgIds()}catch(_){}};
 const STR=['frac','sqrt'],LAB={frac:'<span class="fx"><span class="fr"><span class="n">□</span><span class="d">□</span></span></span>',sqrt:`<span class="fx"><span class="sq">${SQSVG}<span class="sqb">□</span></span></span>`};
 function rnH(nodes,lf,st){return rnG(nodes,lf,st,rnHOne,1)} // fraction bars, radical signs and brackets stay visible; their contents are the answer slots
 function rnHOne(nodes,ix,lf,st){const n=nodes[ix];
@@ -2069,8 +2160,25 @@ function sanitizeBuiltin(raw,allowedCats=Object.keys(CATS)){
 function sameFormulaData(a,b,importMeta={}){const av=formulaVersions(a),bv=formulaVersions(b),incomingName=importMeta[b.c]?.name||categoryName(b.c);if(a.c!==b.c||(a.s||'')!==(b.s||'')||categoryName(a.c)!==incomingName||normalName(a.n)!==normalName(b.n)||av.length!==bv.length)return false;return bv.every(v=>{const m=av.find(y=>normalFormula(y.f)===normalFormula(v.f));return !!m&&JSON.stringify(m.w||[])===JSON.stringify(v.w||[])&&String(m.m||'')===String(v.m||'')&&JSON.stringify(normalizeBeam(m.beam))===JSON.stringify(normalizeBeam(v.beam))})}
 function findFormulaConflict(x){
  const idHit=USER.find(d=>d.id&&x.id&&d.id===x.id);if(idHit)return idHit;
- return USER.find(d=>normalName(d.n)===normalName(x.n))||USER.find(d=>formulaVersions(d).some(v=>formulaVersions(x).some(w=>normalFormula(v.f)&&normalFormula(v.f)===normalFormula(w.f))))||null;
+ return USER.find(d=>normalName(d.n)===normalName(x.n))||USER.find(d=>formulaVersions(d).some(v=>formulaVersions(x).some(w=>normalFormula(v.f)&&normalFormula(v.f)===normalFormula(w.f))))||USER.find(d=>(cOf(d)||d.c)===x.c&&similarName(d.n,x.n))||builtinConflict(x);
 }
+// Built-in formulas are checked too, after the user's own. Same five kinds of match; names/formulas are normalized once and remembered.
+const nnC=new Map(),nfC=new Map();
+const nname=s=>{s=String(s||'');let v=nnC.get(s);if(v===undefined){if(nnC.size>30000)nnC.clear();v=normalName(s);nnC.set(s,v)}return v};
+const nform=s=>{s=String(s||'');let v=nfC.get(s);if(v===undefined){if(nfC.size>30000)nfC.clear();v=normalFormula(s);nfC.set(s,v)}return v};
+const fsOf=d=>[d.f,...(Array.isArray(d.variants)?d.variants.map(v=>v&&v.f):[])];
+function findBuiltinBy(pred){for(const c in CATS){const L=CATS[c];for(let i=0;i<L.length;i++){const d=L[i];if(d.b&&pred(d,c))return d}}return null}
+function builtinConflict(x){
+ const xn=nname(x.n),xf=new Set(fsOf(x).map(nform).filter(Boolean));
+ return findBuiltinBy(d=>nname(d.n)===xn)||findBuiltinBy(d=>fsOf(d).some(f=>{const k=nform(f);return !!k&&xf.has(k)}))||findBuiltinBy((d,c)=>c===x.c&&similarName(d.n,x.n))||null
+}
+// Same five kinds of match as the update check (see conflictKind), worded for an imported formula.
+const IMPORT_KIND_TEXT={
+ nameformula:['Same name, same formula','A saved formula has the same name and the same formula, but its details are different.'],
+ name:['Same name, different formula','A saved formula has the same name, but the formula itself is different.'],
+ simformula:['Similar name, same formula','A saved formula has the same formula under a slightly different name.'],
+ formula:['Different name, same formula','A saved formula has the same formula under another name.'],
+ similar:['Similar name, different formula','A saved formula has a name close to this one, but the formulas are different.']};
 // Matching name or matching formula already exists: nothing is replaced. Only a missing Where / Mnemonic is filled in from the import.
 function fillBlanks(ex,x){
  const ch={};
@@ -2079,7 +2187,7 @@ function fillBlanks(ex,x){
  if(!Object.keys(ch).length)return false;
  if(ex.b)patchF(ex,ch);else{Object.assign(ex,ch,{updatedAt:Date.now()});saveU()}
  return true}
-const autoMergeOK=(x,ex,importMeta={})=>(ex.c===x.c&&(ex.s||'')===(x.s||'')&&categoryName(ex.c)===(importMeta[x.c]?.name||categoryName(x.c))&&formulaVersions(ex).some(v=>formulaVersions(x).some(w=>normalFormula(v.f)===normalFormula(w.f)))&&normalName(ex.n)!==normalName(x.n));
+const autoMergeOK=(x,ex,importMeta={})=>(!ex.b&&ex.c===x.c&&(ex.s||'')===(x.s||'')&&categoryName(ex.c)===(importMeta[x.c]?.name||categoryName(x.c))&&formulaVersions(ex).some(v=>formulaVersions(x).some(w=>normalFormula(v.f)===normalFormula(w.f)))&&normalName(ex.n)!==normalName(x.n));
 function applyImportedFormula(existing,incoming,how,options={}){
  if(options.useImportedName===true)applyImportedCategoryNames(options.importMeta||{});
  if(how==='skip'||!existing)return 'skipped';
@@ -2156,7 +2264,7 @@ function importFormulaBundle(input){
   };
   const decide=(x,ex,action,options={})=>{const r=applyImportedFormula(ex,x,action,{...options,importMeta:importCategories});if(r==='updated')updated++;else skipped++};
   const importOptionsFromSheet=()=>({moveLocation:!!gid('importMoveLocation')?.checked,useImportedName:!!gid('importUseNames')?.checked,createSubcategory:!!gid('importCreateSubcategory')?.checked,importMeta:importCategories});
-  const applyRemaining=(action,options=LAST_IMPORT_OPTIONS)=>{if(options.useImportedName===true)applyImportedCategoryNames(importCategories);while(idx<items.length){const x=items[idx++],ex=findFormulaConflict(x);if(!ex){insert(x,options);continue}if(sameFormulaData(ex,x,importCategories)){skipped++;continue}if(autoMergeOK(x,ex,importCategories)){if(fillBlanks(ex,x))updated++;else skipped++}else decide(x,ex,action,options)}finish()};
+  const applyRemaining=(action,options=LAST_IMPORT_OPTIONS)=>{if(options.useImportedName===true)applyImportedCategoryNames(importCategories);while(idx<items.length){const x=items[idx++],ex=findFormulaConflict(x);if(!ex){insert(x,options);continue}if((ex.b&&action!=='skip')||conflictKind(ex,x,cOf(ex)||ex.c,x.c)==='similar'){idx--;return next()}if(sameFormulaData(ex,x,importCategories)){skipped++;continue}if(autoMergeOK(x,ex,importCategories)){if(fillBlanks(ex,x))updated++;else skipped++}else decide(x,ex,action,options)}finish()};
   // Built-in formulas also honor the importing user's category-name and placement choices.
   const builtinLocationDiff=()=>bitems.some(x=>{
    const ex=Object.values(CATS).flat().find(q=>q.b&&q.k0===x.k0);if(!ex)return false;
@@ -2187,17 +2295,17 @@ function importFormulaBundle(input){
     if(autoMergeOK(x,ex,importCategories)){if(fillBlanks(ex,x))updated++;else skipped++;continue}
     const sameName=normalName(ex.n)===normalName(x.n),rename=sameName?suggestedFormulaName(x.n,x.c,ex):x.n;
     const savedCategory=categoryName(cOf(ex)||ex.c),incomingCategory=importCategories[x.c]?.name||categoryName(x.c),savedSub=ex.s||'(no subcategory)',incomingSub=x.s||'(no subcategory)';
-    const labelDiff=savedCategory!==incomingCategory,locationDiff=(cOf(ex)||ex.c)!==x.c||(ex.s||'')!==(x.s||'');
-    bs.innerHTML=`<div class="bh"><b>Compare similar formulas</b></div><div class="msg">${idx} of ${items.length} · A matching name or formula already exists. Choose how the imported category and subcategory should be handled.</div><div class="conflictcomparison"><section class="conflictcard"><div class="variant-label">Formula 1 · Saved</div><div class="conflict-name">${esc(ex.n)}</div><div class="msg">Category: ${esc(savedCategory)}<br>Subcategory: ${esc(savedSub)}</div>${formulaVersionsHTML(ex,'formula2')}<button class="pill on" data-imp="skip">Keep saved formula</button></section><section class="conflictcard"><div class="variant-label">Formula 2 · Imported</div><div class="conflict-name">${esc(x.n)}</div><div class="msg">Category: ${esc(incomingCategory)}<br>Subcategory: ${esc(incomingSub)}</div>${formulaVersionsHTML(x,'formula2')}<button class="pill on" data-imp="replace">Replace with imported formula</button></section></div>
+    const labelDiff=savedCategory!==incomingCategory,locationDiff=(cOf(ex)||ex.c)!==x.c||(ex.s||'')!==(x.s||''),ckt=(IMPORT_KIND_TEXT[conflictKind(ex,x,cOf(ex)||ex.c,x.c)]||['Matching name or formula','A saved formula has a matching name or formula.']).map((t,i)=>i&&ex.b?t.replace('A saved formula','A built-in formula'):t);
+    bs.innerHTML=`<div class="bh"><b>Compare similar formulas</b></div><div class="msg"><b>${idx} of ${items.length} · ${esc(ckt[0])}</b><br>${esc(ckt[1])} Choose how the imported category and subcategory should be handled.</div><div class="conflictcomparison"><section class="conflictcard"><div class="variant-label">Formula 1 · ${ex.b?'Built-in':'Saved'}</div><div class="conflict-name">${esc(ex.n)}</div><div class="msg">Category: ${esc(savedCategory)}<br>Subcategory: ${esc(savedSub)}</div>${formulaVersionsHTML(ex,'formula2')}<button class="pill on" data-imp="skip">${ex.b?'Keep built-in formula':'Keep saved formula'}</button></section><section class="conflictcard"><div class="variant-label">Formula 2 · Imported</div><div class="conflict-name">${esc(x.n)}</div><div class="msg">Category: ${esc(incomingCategory)}<br>Subcategory: ${esc(incomingSub)}</div>${formulaVersionsHTML(x,'formula2')}<button class="pill on" data-imp="replace" ${ex.b?'disabled title="Built-in formulas are not overwritten by an import."':''}>Replace with imported formula</button></section></div>
     <div class="import-location-options"><div class="lbl">Category and subcategory options</div>
     <label class="icheck"><input type="checkbox" id="importUseNames" ${labelDiff?'checked':''}> Use category names from the imported file (rename globally)</label>
     <label class="icheck"><input type="checkbox" id="importMoveLocation" ${locationDiff?'checked':''}> Move formula to its imported category / subcategory</label>
     <label class="icheck"><input type="checkbox" id="importCreateSubcategory" ${x.s?'checked':''}> Create missing imported subcategories when needed</label></div>
     <div class="import-rename"><label for="importRename">${sameName?'Both formulas have the same name. Rename the imported copy if keeping both.':'Name for the imported formula when keeping both'}</label><input id="importRename" maxlength="240" value="${escA(rename)}" autocomplete="off"><small>Both formulas remain separate. The name must be unique in the destination category.</small><div class="msg" id="importRenameMsg"></div></div>
-    <div class="conflictactions"><button class="pill" data-imp="both">Keep both formulas</button><button class="pill" data-imp="merge" ${ex.b?'disabled title="Merge is available for user-created formulas."':''}>Merge into one card</button><button class="pill" data-imp="update">Update details; retain saved fields when import fields are blank</button></div><label class="icheck"><input type="checkbox" id="importApplyAll"> Apply the selected options and choice to remaining conflicts</label><button class="pill g" data-imp="cancel">Cancel import</button>`;
+    <div class="conflictactions"><button class="pill" data-imp="both">Keep both formulas</button><button class="pill" data-imp="merge" ${ex.b?'disabled title="Merge is available for user-created formulas."':''}>Merge into one card</button><button class="pill" data-imp="update" ${ex.b?'disabled title="Built-in formulas are not overwritten by an import."':''}>Update details; retain saved fields when import fields are blank</button></div><label class="icheck"><input type="checkbox" id="importApplyAll"> Apply the selected options and choice to remaining conflicts</label><button class="pill g" data-imp="cancel">Cancel import</button>`;
     fitFx(bs);bo.onclick=()=>{};void bs.offsetWidth;bs.classList.add('show');bo.classList.add('show');
     bs.onclick=e=>{
-     const b=e.target.closest('[data-imp]');if(!b)return;const action=b.dataset.imp;
+     const b=e.target.closest('[data-imp]');if(!b||b.disabled)return;const action=b.dataset.imp;
      if(action==='cancel'){abort();return}
      const ren=gid('importRename'),msg=gid('importRenameMsg'),opts=importOptionsFromSheet();LAST_IMPORT_OPTIONS=opts;
      if(action==='both'){
@@ -3212,12 +3320,19 @@ async function shareBinary(name,mime,bytes){
  const file=new File([bytes],name,{type:mime});
  if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:name});return 'web'}
  const url=URL.createObjectURL(new Blob([bytes],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);return 'download'}
-let SHARE_PROGRESS_EL=null,SHARE_CANCELLED=false;
-function shareProgress(p,label){
- if(!SHARE_PROGRESS_EL){SHARE_PROGRESS_EL=document.createElement('div');SHARE_PROGRESS_EL.id='shareProgress';SHARE_PROGRESS_EL.innerHTML='<div class="sp-card" role="status" aria-live="polite"><div class="sp-title" id="shareProgressTitle">Preparing formula images…</div><div class="sp-track"><i class="sp-fill" id="shareProgressFill"></i><span class="sp-percent" id="shareProgressPct">0%</span></div><button class="pill g sp-cancel" id="shareProgressCancel" type="button">Cancel</button></div>';document.body.appendChild(SHARE_PROGRESS_EL);SHARE_PROGRESS_EL.querySelector('#shareProgressCancel').onclick=()=>{SHARE_CANCELLED=true;shareProgressHide()}}
- SHARE_PROGRESS_EL.classList.add('show');const n=Math.max(0,Math.min(100,Math.round(p)));const t=gid('shareProgressTitle'),f=gid('shareProgressFill'),q=gid('shareProgressPct'),track=SHARE_PROGRESS_EL.querySelector('.sp-track');if(t)t.textContent=label;if(f)f.style.width=n+'%';if(q)q.textContent=n+'%';if(track)track.classList.toggle('busy',/^Rendering image/.test(label))
+// ===== Shared loading screen: blurred backdrop + card + progress bar (used by sharing, formula loading, uploads) =====
+let SHARE_PROGRESS_EL=null,SHARE_CANCELLED=false,LOADER_CANCEL=null;
+function loaderShow(label,p,o){
+ o=o||{};
+ if(!SHARE_PROGRESS_EL){SHARE_PROGRESS_EL=document.createElement('div');SHARE_PROGRESS_EL.id='shareProgress';SHARE_PROGRESS_EL.innerHTML='<div class="sp-card" role="status" aria-live="polite"><div class="sp-title" id="shareProgressTitle">Loading…</div><div class="sp-track"><i class="sp-fill" id="shareProgressFill"></i><span class="sp-percent" id="shareProgressPct">0%</span></div><div class="sp-sub" id="shareProgressSub"></div><button class="pill g sp-cancel" id="shareProgressCancel" type="button">Cancel</button></div>';document.body.appendChild(SHARE_PROGRESS_EL);SHARE_PROGRESS_EL.querySelector('#shareProgressCancel').onclick=()=>{const f=LOADER_CANCEL;LOADER_CANCEL=null;if(f)f();loaderHide()}}
+ LOADER_CANCEL=typeof o.cancel==='function'?o.cancel:null;
+ SHARE_PROGRESS_EL.classList.add('show');
+ const n=Math.max(0,Math.min(100,Math.round(p||0)));const t=gid('shareProgressTitle'),f=gid('shareProgressFill'),q=gid('shareProgressPct'),sub=gid('shareProgressSub'),cb=gid('shareProgressCancel'),track=SHARE_PROGRESS_EL.querySelector('.sp-track');
+ if(t)t.textContent=label;if(f)f.style.width=n+'%';if(q)q.textContent=n+'%';if(sub)sub.textContent=o.sub||'';if(cb)cb.hidden=!LOADER_CANCEL;if(track)track.classList.toggle('busy',!!o.busy)
 }
-function shareProgressHide(){if(SHARE_PROGRESS_EL)SHARE_PROGRESS_EL.classList.remove('show')}
+function loaderHide(){LOADER_CANCEL=null;if(SHARE_PROGRESS_EL)SHARE_PROGRESS_EL.classList.remove('show')}
+function shareProgress(p,label){loaderShow(label,p,{cancel:()=>{SHARE_CANCELLED=true},busy:/^Rendering image/.test(label)})}
+function shareProgressHide(){loaderHide()}
 async function shareFormulas(items){
  items=[...new Set((items||[]).filter(Boolean))];
  if(!items.length){showAppToast('Select at least one formula to share.',true);return}
@@ -3431,9 +3546,127 @@ addEventListener('popstate',()=>{
   if(r&&r.then)r.then(()=>{NATIVE=true},()=>{NATIVE=false});else NATIVE=true
  }catch(e){}
 })();
+// ===== AFTER AN UPDATE: compare the new built-in formulas with the formulas the user made =====
+const CU={snap:'ceCatalogSnap',pend:'ceConflictPending',done:'ceConflictDone',ids:'ceProgIds'};
+const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(_){return d}};
+const idKey=d=>d.b?d.k0:d.id;
+function recordProgIds(){const o={};for(const c in CATS)o[c]=CATS[c].map(idKey);sv(CU.ids,o)}
+// Quiz progress is stored as positions in the list. When new built-ins shift those positions, move the marks with their formulas.
+function remapProgress(){
+ const old=lsGet(CU.ids,null);if(!old)return;
+ for(const c in prog){const was=old[c];if(!Array.isArray(was)||!Array.isArray(prog[c])||!CATS[c])continue;const now=CATS[c].map(idKey);
+  prog[c]=[...new Set(prog[c].map(i=>was[i]).filter(Boolean).map(k=>now.indexOf(k)).filter(i=>i>=0))]}
+ save()
+}
+function catalogNow(){const o={};for(const c in RAW)for(const e of RAW[c])o[c+':'+String(e.name||'').trim()]=flcHash(JSON.stringify([e.formula,e.where,e.mnemonics]));return o}
+const CATALOG_SIG=()=>flcHash(JSON.stringify(RAW))+'|'+[UPDATE_CONFIG.buildSha,UPDATE_CONFIG.buildNumber,UPDATE_CONFIG.version].join('|');
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=Array.from({length:n+1},(_,i)=>i);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+function similarName(a,b){const x=nname(a),y=nname(b);if(!x||!y||x===y)return false;if(Math.min(x.length,y.length)>=6&&(x.includes(y)||y.includes(x)))return true;if(Math.abs(x.length-y.length)/Math.max(x.length,y.length)>0.15)return false;return 1-lev(x,y)/Math.max(x.length,y.length)>=0.85}
+const CONFLICT_KINDS={
+ nameformula:['Same name, same formula','You already have this exact formula. The update includes it too.'],
+ name:['Same name, different formula','You made a formula with the same name as a new built-in one, but the formula itself is different.'],
+ simformula:['Similar name, same formula','Your formula and a new built-in one are the same, just named a little differently.'],
+ formula:['Different name, same formula','Your formula is the same as a new built-in one, just with another name.'],
+ similar:['Similar name, different formula','Your formula has a name close to a new built-in one, but the formulas are not the same.']};
+const kindSame=k=>k==='nameformula'||k==='simformula'||k==='formula';
+function conflictKind(u,b,cu,cb){
+ const sameN=normalName(u.n)===normalName(b.n);
+ const sameF=formulaVersions(u).some(v=>formulaVersions(b).some(w=>normalFormula(v.f)&&normalFormula(v.f)===normalFormula(w.f)));
+ const simN=!sameN&&cu===cb&&similarName(u.n,b.n);
+ return sameN&&sameF?'nameformula':sameN?'name':sameF&&simN?'simformula':sameF?'formula':simN?'similar':''
+}
+const findBuiltin=k0=>{for(const c in CATS){const d=CATS[c].find(x=>x.b&&x.k0===k0);if(d)return {d,c}}return null};
+function pendingConflicts(){
+ const out=[];
+ for(const x of lsGet(CU.pend,[])){const u=USER.find(d=>d.id===x.uid),f=findBuiltin(x.k0);if(!u||!f)continue;const kind=conflictKind(u,f.d,cOf(u),f.c);if(kind)out.push({u,b:f.d,kind,uid:x.uid,k0:x.k0})}
+ return out
+}
+function conflictBannerHTML(){
+ const n=pendingConflicts().length;if(!n)return '';
+ return `<button class="pill menu-update" id="menuConflictBanner"><span>Check formulas</span><small>${n} of your formulas ${n===1?'looks':'look'} like new built-in ${n===1?'one':'ones'} · Tap to review</small></button>`
+}
+// Which new/changed built-ins look like something the user already made?
+function analyzeConflicts(){
+ const snap=lsGet(CU.snap,null),old=snap&&snap.items||null,now=catalogNow(),done=new Set(lsGet(CU.done,[]));
+ const have=lsGet(CU.pend,[]),out=[...have];
+ for(const c of Object.keys(CATS))for(const b of CATS[c]){
+  if(!b.b||!now[b.k0]||(old&&old[b.k0]===now[b.k0]))continue;
+  for(const u of USER){
+   if(out.some(x=>x.uid===u.id&&x.k0===b.k0)||done.has(u.id+'|'+b.k0+'|'+now[b.k0]))continue;
+   if(conflictKind(u,b,cOf(u),c))out.push({uid:u.id,k0:b.k0})}}
+ sv(CU.pend,out);return out
+}
+function markConflictDone(u,k0){
+ const now=catalogNow(),done=lsGet(CU.done,[]);done.push(u.id+'|'+k0+'|'+now[k0]);sv(CU.done,done.slice(-500));
+ sv(CU.pend,lsGet(CU.pend,[]).filter(x=>!(x.uid===u.id&&x.k0===k0)))
+}
+// Replace = use the built-in (mine goes to Trash). Merge = keep mine and bring over what it is missing. Keep = leave both alone.
+function mergeBuiltinInto(u,b){
+ const ub=formulaVersions(u),bb=formulaVersions(b),has=f=>ub.some(v=>normalFormula(v.f)===normalFormula(f));
+ const matched=bb.filter(v=>has(v.f)),extra=bb.filter(v=>!has(v.f));
+ const adds=[];for(const v of extra){if(adds.some(y=>normalFormula(y.f)===normalFormula(v.f)))continue;adds.push({label:`Formula ${ub.length+adds.length+1}`,f:v.f,w:[...(v.w||[])],m:String(v.m||''),ld:v.ld===true,ci:v.ci===true,...(normalizeBeam(v.beam)?{beam:normalizeBeam(v.beam)}:{})})}
+ if(ub.length+adds.length>8)return false;
+ const patch={};
+ const known=new Set(formulaParts(u).where.map(normalName)),missing=[];
+ for(const v of matched)for(const w of (v.w||[])){const t=String(w||'').trim();if(t&&!known.has(normalName(t))){known.add(normalName(t));missing.push(t)}}
+ if(missing.length)patch.w=[...(u.w||[]),...missing].slice(0,40);
+ if(!formulaParts(u).mn.length){const m=matched.map(v=>String(v.m||'').trim()).find(Boolean);if(m)patch.m=m}
+ if(adds.length)patch.variants=[...(u.variants||[]),...adds];
+ if(Object.keys(patch).length)patchF(u,patch);
+ return true
+}
+function resolveConflict(c,how){
+ const {u,b}=c,cu=cOf(u),cb=cOf(b);
+ if(how==='replace'){moveStar(cu,u.n,cb,b.n);delF(u);showAppToast('Replaced with the built-in formula. Yours is in Trash for a while.')}
+ else if(how==='merge'){if(!mergeBuiltinInto(u,b)){showAppToast('This formula already has the maximum of eight formulas, so it cannot be merged.',true);return false}moveStar(cb,b.n,cu,u.n);delF(b);showAppToast('Merged into your formula.')}
+ markConflictDone(u,c.k0);return true
+}
+function conflictReview(pos){
+ const list=pendingConflicts();
+ fade();state={view:'conflicts'};back.hidden=false;mb.hidden=true;title.textContent='Check formulas';
+ if(!list.length){app.classList.add('ctr');app.innerHTML=`<div class="q">All checked 🎉</div><p class="msg" style="text-align:center">Your formulas and the built-in ones no longer overlap.</p><button class="pill" id="cfDone">Back to menu</button>`;gid('cfDone').onclick=()=>menu();return}
+ pos=Math.max(0,Math.min(pos||0,list.length-1));const c=list[pos],{u,b,kind}=c,same=kindSame(kind),[kt,kh]=CONFLICT_KINDS[kind];
+ const nv=formulaVersions(u).length,extra=formulaVersions(b).filter(v=>!formulaVersions(u).some(w=>normalFormula(w.f)===normalFormula(v.f))).length,canMerge=nv+extra<=8;
+ const where=x=>{const c0=cOf(x);return esc(categoryName(c0)+(x.s?' · '+x.s:''))};
+ app.innerHTML=`<div class="lbl">${pos+1} of ${list.length} · ${esc(kt)}</div><div class="msg">${esc(kh)} Look at both and choose what to do.</div>
+ <div class="conflictcomparison"><section class="conflictcard"><div class="variant-label">Yours</div><div class="conflict-name">${esc(u.n)}</div><div class="msg">${where(u)}</div>${formulaVersionsHTML(u,'formula2')}</section><section class="conflictcard"><div class="variant-label">New built-in</div><div class="conflict-name">${esc(b.n)}</div><div class="msg">${where(b)}</div>${formulaVersionsHTML(b,'formula2')}</section></div>
+ <div class="conflictactions">
+ <button class="pill" data-cf="replace"><span>Replace mine</span><small>Use the built-in one. Mine moves to Trash.</small></button>
+ <button class="pill" data-cf="merge" ${canMerge?'':'disabled'}><span>Merge</span><small>${same?'Keep mine and add any Where or Mnemonics it is missing.':'Keep mine as Formula 1 and add the built-in one as Formula '+(nv+1)+', with its Where and Mnemonics.'}</small></button>
+ <button class="pill" data-cf="keep"><span>Keep both</span><small>Don’t change anything. I won’t ask again.</small></button>
+ <button class="pill g" data-cf="later">Decide later</button></div>`;
+ fitFx(app);
+ app.onclick=e=>{const btn=e.target.closest('[data-cf]');if(!btn||btn.disabled)return;const how=btn.dataset.cf;
+  if(how==='later'){if(pos+1<list.length)conflictReview(pos+1);else menu();return}
+  if(how==='keep'){markConflictDone(u,c.k0);conflictReview(pos);return}
+  if(resolveConflict(c,how))conflictReview(pos)}
+}
+const catWait=ms=>new Promise(r=>setTimeout(r,ms));
+// Runs once after the app (and so formulas.js) has been updated. Shows the loading screen with a plain-language reason.
+async function catalogUpdate(){
+ try{
+  const snap=lsGet(CU.snap,null),sig=CATALOG_SIG();
+  const upgrading=snap?snap.sig!==sig:(HAD_PREVIOUS_APP_STATE&&USER.length>0);
+  const finish=()=>{sv(CU.snap,{sig,items:catalogNow()});recordProgIds()};
+  if(!upgrading){if(!snap)finish();return}
+  const why='Your app just got an update with new built-in formulas. We’re checking them against the ones you made so nothing gets doubled up.';
+  loaderShow('Finishing your update…',4,{sub:why,busy:true});await flcPaint();await catWait(700);
+  try{await Promise.race([FLC.ready,catWait(1500)])}catch(_){}
+  loaderShow('Reading the new formulas…',20,{sub:why,busy:true});remapProgress();await catWait(450);
+  loaderShow('Comparing them with yours…',45,{sub:why,busy:true});await flcTick();
+  const found=analyzeConflicts().length;await catWait(450);
+  // get the study screens ready now, so they open instantly afterwards
+  const cats0=Object.keys(CATS);let n=0,total=cats0.reduce((a,c)=>a+CATS[c].length,0)||1;
+  for(const c of cats0){const L=CATS[c];for(let i=0;i<L.length;i++){formulaVersionsHTML(L[i],'formula2');formulaVersionsHTML(L[i],'formula');n++;if(i%12===11){loaderShow('Getting everything ready…',45+Math.round(50*n/total),{sub:why,busy:true});await flcTick()}}}
+  finish();FLC.updated=false;flcSaveSoon();
+  loaderShow('Update finished',100,{sub:found?`${found} of your formulas look like new built-in ones. You can review them from the main menu.`:'Nothing needed your attention.'});await catWait(found?1600:900);
+ }catch(e){}
+ finally{loaderHide();if(state.view==='menu')menu()}
+}
 applyT();applyN();
 let welcomeAlreadySeen=false;try{welcomeAlreadySeen=localStorage.getItem('ceWelcomeSeen')==='1'||HAD_PREVIOUS_APP_STATE;if(welcomeAlreadySeen)localStorage.setItem('ceWelcomeSeen','1')}catch(_){}
 if(welcomeAlreadySeen)menu();else frontMenu();
+catalogUpdate();
 setTimeout(()=>checkAppUpdates(false),1200);
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 window.addEventListener('resize',()=>{if(window.builderSizeWA)window.builderSizeWA()});
