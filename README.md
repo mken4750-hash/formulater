@@ -4,6 +4,10 @@ FormuLater is an Android app for organizing engineering and math formulas. It in
 
 Formulas and study data are stored on the device. You do not need an account to use the app. An internet connection is only needed for tasks such as checking for and downloading updates.
 
+  ## Note on Built-in Formulas:
+
+    The default catalog included with the app contains Civil Engineering formulas categorized under MSTC, HPGE, and PSAD. These are provided as a starting reference.If you do not need them or prefer a clean slate, all built-in formulas can be freely deleted or modified by the user at any time.
+
 ## Features
 
 - Browse formulas in the built-in `MSTC`, `HPGE`, and `PSAD` categories.
@@ -156,6 +160,9 @@ If the app was uninstalled or its data was cleared, restore from a JSON export o
 
 **Android will not open the downloaded APK**  
 Allow your browser or file manager to install unknown apps when prompted, then open the file again.
+
+  ## Credits & Disclaimers
+    Mnemonics: I do not claim ownership or original authorship for the memory aids (mnemonics) provided in the default formula catalog. These represent common study aids and memory techniques passed down through word of mouth across the engineering student community. Full credit goes to the original, unnamed creators who developed and shared these memory tricks.
 
 ## License
 
