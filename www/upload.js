@@ -110,8 +110,8 @@ function uplShell(){
  return el}
 
 function uplOpen(){
- uplCSS();const el=uplShell();UPL.open=true;el.classList.add('show');uplDoc();if(UPL.src)uplWarmLater()}
-function uplClose(){if(UPL.job)uplCancel();UPL.open=false;const el=gid('up');if(el)el.classList.remove('show')}
+ uplCSS();const el=uplShell();UPL.open=true;if(window.nativeKbSuspend)nativeKbSuspend();el.classList.add('show');uplDoc();if(UPL.src)uplWarmLater()}
+function uplClose(){if(UPL.job)uplCancel();UPL.open=false;const el=gid('up');if(el)el.classList.remove('show');if(window.nativeKbResume)nativeKbResume()}
 function uplRemoveFile(){
  if(!UPL.src&&!UPL.pdf)return;
  if(!confirm('Remove the uploaded PDF or image? Your current boxes and unsubmitted OCR selections will be cleared.'))return;
