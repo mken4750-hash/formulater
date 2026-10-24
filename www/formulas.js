@@ -294,12 +294,1127 @@ const RAW = {
   ],
   "HPGE": [
     {
-      "name": "Continuity Equation",
+      "name": "Mass density",
+      "formula": "ρ = m/V",
+      "where": [
+        "ρ = mass density",
+        "m = mass",
+        "V = volume"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unit weight/Specific Weight",
+      "formula": "γ = W/V",
+      "where": [
+        "γ = unit weight / specific weight",
+        "W = weight",
+        "V = volume",
+        "The earlier catalog also listed γ = ρg as the relation between unit weight and density."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Specific Gravity of Soil Particle, Gs",
+      "formula": "Gs = ρs/ρw = γs/γw",
+      "where": [
+        "Gs = specific gravity of soil particles",
+        "ρs, ρw = mass densities of soil solids and water",
+        "γs, γw = unit weights of soil solids and water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Absolute / Dynamic Viscosity, μ",
+      "formula": "μ = τ/(U/y)",
+      "where": [
+        "μ = absolute / dynamic viscosity",
+        "τ = shear stress",
+        "U = velocity difference shown in the source",
+        "y = distance / layer spacing shown in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Kinematic Viscosity, υ",
+      "formula": "υ = μ/ρ",
+      "where": [
+        "υ = kinematic viscosity",
+        "μ = dynamic viscosity",
+        "ρ = mass density"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Surface Tension, σ",
+      "formula": "σ = F/L",
+      "where": [
+        "σ = surface tension",
+        "F = force",
+        "L = length along the surface"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pressure Inside a Droplet of Liquid or Inside an Air Bubble",
+      "formula": "p = 4σ/d",
+      "where": [
+        "p = pressure difference shown by the source formula",
+        "σ = surface tension",
+        "d = droplet / bubble diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Capillarity Rise/Capillary Action",
+      "formula": "h = 4σ cosθ/(γd)",
+      "where": [
+        "h = capillary rise / height",
+        "σ = surface tension",
+        "θ = contact angle",
+        "γ = unit weight of liquid",
+        "d = tube diameter",
+        "For complete wetting of clean glass, the source gives θ = 0°."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Bulk Modulus of Compressibility, EB",
+      "formula": "EB = −Δp/(ΔV/V₀) = −Δp/e",
+      "where": [
+        "EB = bulk modulus of compressibility",
+        "Δp = change in pressure",
+        "ΔV = change in volume",
+        "V₀ = original volume",
+        "e = volumetric strain as denoted in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Absolute Pressure",
+      "formula": "Pabs = Patm + Pgage",
+      "where": [
+        "Pabs = absolute pressure",
+        "Patm = atmospheric pressure",
+        "Pgage = gauge pressure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pressure Equivalences Under Normal Sea-Level Conditions",
+      "formula": "1 bar = 100 kPa; 1 atm = 101.325 kPa = 760 mmHg = 14.7 psi; Patm = 2116 lb/ft²",
+      "where": [
+        "These are the values displayed on the source slide.",
+        "The source slide groups the bar and atmosphere lines together despite their rounded values not being exactly equal; check required precision before engineering use."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pascal’s Law",
+      "formula": "p₂ = p₁ + Δp; p₂ = p₁ + Σγh",
+      "where": [
+        "p₁ = starting pressure",
+        "p₂ = pressure at the second point",
+        "Δp = pressure change",
+        "γ = unit weight of each fluid layer",
+        "h = vertical depth / layer height",
+        "Σγh = sum of unit-weight times depth contributions"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boyle’s Law",
+      "formula": "P₁V₁ = P₂V₂",
+      "where": [
+        "P₁, P₂ = absolute pressures at states 1 and 2",
+        "V₁, V₂ = volumes at states 1 and 2",
+        "Applies to the source’s constant-temperature gas-law relation."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Charles’ Law",
+      "formula": "V₁/T₁ = V₂/T₂",
+      "where": [
+        "V₁, V₂ = gas volumes",
+        "T₁, T₂ = absolute temperatures"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Gay-Lussac’s Law",
+      "formula": "P₁/T₁ = P₂/T₂",
+      "where": [
+        "P₁, P₂ = gas pressures",
+        "T₁, T₂ = absolute temperatures"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Combined Gas Law",
+      "formula": "P₁V₁/T₁ = P₂V₂/T₂",
+      "where": [
+        "P₁, P₂ = gas pressures",
+        "V₁, V₂ = gas volumes",
+        "T₁, T₂ = absolute temperatures"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Ideal Gas Law",
+      "formula": "PV = mRT",
+      "where": [
+        "P = absolute pressure",
+        "V = gas volume",
+        "m = mass of gas",
+        "R = specific gas constant",
+        "T = absolute temperature"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Gas Constant, R",
+      "formula": "R = 287 J/(kg·K)",
+      "where": [
+        "R = specific gas constant for air as listed in the source",
+        "Unit shown in the PDF: joules per kilogram-kelvin"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Absolute Temperature",
+      "formula": "SI: Tabs = Tgage + 273 (°C); English: Tabs = Tgage + 460 (°F)",
+      "where": [
+        "Tabs = absolute temperature on the respective scale",
+        "Tgage = temperature value denoted as Tgage in the PDF",
+        "The offsets (+273 and +460) are copied as shown in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydrostatic Force on Plane Surfaces",
+      "formula": "F = pc A = γ h̄ A",
+      "where": [
+        "F = resultant hydrostatic force on the plane surface",
+        "pc = pressure at the centroid",
+        "A = plane area",
+        "γ = unit weight of the fluid",
+        "h̄ = vertical depth of the area centroid below the fluid surface"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Eccentricity, e (Hydrostatic Force on Plane Surfaces)",
+      "formula": "e = Ig/(A ȳ)",
+      "where": [
+        "e = eccentricity shown in the source section",
+        "Ig = second moment of area about the centroidal axis shown",
+        "A = plane area",
+        "ȳ = depth / centroid distance as denoted in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Horizontal Component, FH",
+      "formula": "FH = γ h̄ A",
+      "where": [
+        "FH = horizontal component of hydrostatic force on a curved surface",
+        "γ = unit weight of fluid",
+        "h̄ = depth of centroid of the vertical projection",
+        "A = area of the vertical projection"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Vertical Component, FV",
+      "formula": "FV = γV",
+      "where": [
+        "FV = vertical component of hydrostatic force on a curved surface",
+        "γ = unit weight of fluid",
+        "V = volume of fluid directly above / associated with the curved surface, as represented in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Archimedes’ Principle",
+      "formula": "BF = γVD; ΣW = ΣBF",
+      "where": [
+        "BF = buoyant force",
+        "γ = unit weight of the surrounding fluid",
+        "VD = displaced fluid volume",
+        "ΣW = sum of weights",
+        "ΣBF = sum of buoyant forces for the stated balance condition"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Metacentric Radius, MBo",
+      "formula": "MBo = I/VD",
+      "where": [
+        "MBo = metacentric radius (distance from center of buoyancy to metacenter)",
+        "I = second moment of area of the displaced water-plane area about the tilt axis",
+        "VD = displaced volume"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Metacentric Height, MG",
+      "formula": "MG = MBo − GBo",
+      "where": [
+        "MG = metacentric height",
+        "MBo = metacentric radius",
+        "GBo = distance from center of gravity to center of buoyancy"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability of Floating Bodies",
+      "formula": "MBo > GBo: stable; MBo = GBo: critically stable; MBo < GBo: unstable",
+      "where": [
+        "MBo = metacentric radius",
+        "GBo = distance from center of gravity to center of buoyancy",
+        "The stability labels follow the source slide."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Sliding, FSs",
+      "formula": "FSs = μRy/FH",
+      "where": [
+        "FSs = factor of safety against sliding",
+        "μ = coefficient of friction",
+        "Ry = vertical base reaction",
+        "FH = horizontal force / resultant horizontal demand"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Overturning, FSo",
+      "formula": "FSo = RM/OM",
+      "where": [
+        "FSo = factor of safety against overturning",
+        "RM = resisting moment",
+        "OM = overturning moment"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Location x of the Vertical Base Reaction Ry from the Toe",
+      "formula": "Ry · x = RM − OM",
+      "where": [
+        "Ry = vertical base reaction",
+        "x = distance of Ry from the toe",
+        "RM = resisting moment",
+        "OM = overturning moment"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Eccentricity, e (Dam Base)",
+      "formula": "e = B/2 − x",
+      "where": [
+        "e = eccentricity of the resultant base reaction",
+        "B = base width",
+        "x = distance of the vertical base reaction from the toe"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum and Minimum Base Pressure",
+      "formula": "When e < B/6: qmax/min = −Ry/(BW)[1 ± 6e/B]; when e > B/6: qmax = −2Ry/(3xW)",
+      "where": [
+        "qmax/min = maximum / minimum base pressure as denoted in the source",
+        "Ry = vertical base reaction",
+        "B = base width",
+        "W = symbol W as printed in the source formula; the slide does not define it explicitly",
+        "e = eccentricity",
+        "x = distance of Ry from the toe",
+        "The negative signs and notation are transcribed from the source slide; verify its sign convention against the problem setup."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Equilibrium of Fluids: Horizontal Motion",
+      "formula": "tanθ = a/g",
+      "where": [
+        "θ = inclination of the free surface",
+        "a = horizontal acceleration",
+        "g = gravitational acceleration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Equilibrium of Fluids: Inclined Motion",
+      "formula": "tanθ = aH/(g ± aV) = a cosθ/(g ± a sinθ)",
+      "where": [
+        "θ = inclination of the free surface / motion angle",
+        "aH = horizontal acceleration component",
+        "aV = vertical acceleration component",
+        "a = resultant acceleration magnitude",
+        "g = gravitational acceleration",
+        "The ± sign is copied as shown; choose the sign according to the acceleration direction in the source setup."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Equilibrium of Fluids: Vertical Motion",
+      "formula": "p = γh(1 ± a/g)",
+      "where": [
+        "p = pressure due to the relative vertical motion case",
+        "γ = unit weight of fluid",
+        "h = depth",
+        "a = vertical acceleration magnitude",
+        "g = gravitational acceleration",
+        "The sign depends on acceleration direction as shown in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Equilibrium of Fluids: Rotational Motion",
+      "formula": "tanθ = v²/(gx); y = ω²x²/(2g); h = ω²r²/(2g)",
+      "where": [
+        "θ = free-surface inclination",
+        "v = tangential velocity",
+        "x = horizontal distance from the rotation axis in the shown relation",
+        "y = vertical rise relative to the reference point",
+        "ω = angular speed",
+        "r = radial distance",
+        "h = height difference",
+        "g = gravitational acceleration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Discharge or Flow Rate",
       "formula": "Q = Av",
       "where": [
+        "Q = discharge / volumetric flow rate",
+        "A = flow cross-sectional area",
+        "v = average flow velocity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Mass Flow Rate, M",
+      "formula": "M = ρQ",
+      "where": [
+        "M = mass flow rate",
+        "ρ = mass density",
+        "Q = volumetric flow rate"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Weight Flow Rate, W",
+      "formula": "W = γQ",
+      "where": [
+        "W = weight flow rate",
+        "γ = unit weight",
+        "Q = volumetric flow rate"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Continuity Equations",
+      "formula": "For incompressible flow: Q₁ = Q₂; for compressible flow: M₁ = M₂ and W₁ = W₂",
+      "where": [
+        "Q₁, Q₂ = volumetric flow rates at sections 1 and 2",
+        "M₁, M₂ = mass flow rates",
+        "W₁, W₂ = weight flow rates",
+        "The source groups mass and weight flow-rate continuity under compressible flow."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Kinetic / Velocity Head",
+      "formula": "Velocity head = v²/(2g)",
+      "where": [
+        "v = flow velocity",
+        "g = gravitational acceleration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pressure Head",
+      "formula": "Pressure head = P/γ",
+      "where": [
+        "P = pressure",
+        "γ = unit weight of fluid"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Elevation Head",
+      "formula": "Elevation head = z",
+      "where": [
+        "z = elevation above the selected datum"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Total Flow Energy Head",
+      "formula": "E = v²/(2g) + p/γ + z",
+      "where": [
+        "E = total flow energy head",
+        "v = flow velocity",
+        "g = gravitational acceleration",
+        "p = pressure",
+        "γ = unit weight of fluid",
+        "z = elevation head"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Bernoulli’s Energy Theorem",
+      "formula": "E₁ + HA − HE − HL = E₂",
+      "where": [
+        "E₁ = total energy head at section 1",
+        "E₂ = total energy head at section 2",
+        "HA = head added to the system (e.g. pump head)",
+        "HE = head extracted from the system (e.g. turbine head)",
+        "HL = head loss between sections"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Energy Grade Line, EGL",
+      "formula": "EGL = KE + PE = v²/(2g) + p/γ + z",
+      "where": [
+        "EGL = energy grade line",
+        "KE = kinetic / velocity head",
+        "PE = pressure head plus elevation head",
+        "v = flow velocity",
+        "g = gravitational acceleration",
+        "p = pressure",
+        "γ = unit weight",
+        "z = elevation head"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Grade Line, HGL",
+      "formula": "HGL = PE = p/γ + z",
+      "where": [
+        "HGL = hydraulic grade line",
+        "p = pressure",
+        "γ = unit weight of fluid",
+        "z = elevation head"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Power",
+      "formula": "P = QγE",
+      "where": [
+        "P = fluid power",
         "Q = discharge",
-        "A = flow area",
-        "v = velocity"
+        "γ = unit weight of fluid",
+        "E = energy head"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Efficiency, η",
+      "formula": "η = (Poutput/Pinput) × 100%",
+      "where": [
+        "η = efficiency in percent",
+        "Poutput = output power",
+        "Pinput = input power"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Systems with Pump",
+      "formula": "E₁ + HA = E₂",
+      "where": [
+        "E₁ = energy head before the pump",
+        "HA = head added by the pump",
+        "E₂ = energy head after the pump"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Systems with Turbine",
+      "formula": "E₁ − HE = E₂",
+      "where": [
+        "E₁ = energy head before the turbine",
+        "HE = head extracted by the turbine",
+        "E₂ = energy head after the turbine"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Coefficient of Discharge, C",
+      "formula": "C = Q/QT",
+      "where": [
+        "C = coefficient of discharge",
+        "Q = actual discharge",
+        "QT = theoretical discharge"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Coefficient of Velocity, Cv",
+      "formula": "Cv = v/vT",
+      "where": [
+        "Cv = coefficient of velocity",
+        "v = actual velocity",
+        "vT = theoretical velocity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Coefficient of Contraction, Cc",
+      "formula": "Cc = a/A",
+      "where": [
+        "Cc = coefficient of contraction",
+        "a = area of the contracted jet",
+        "A = area of the orifice",
+        "The PDF repeats the “Coefficient of Velocity, Cv” heading over this line, but the displayed symbol and ratio are Cc = a/A."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Orifice",
+      "formula": "Q = CAo√(2gh)",
+      "where": [
+        "Q = discharge through the orifice",
+        "C = coefficient of discharge",
+        "Ao = orifice area",
+        "g = gravitational acceleration",
+        "h = head above the orifice"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Rectangular Weir",
+      "formula": "Q = (2/3)C√(2g)L[(H + hv)^(3/2) − hv^(3/2)]; Q = 1.84LH^1.5; L = L′ − 0.1NH",
+      "where": [
+        "Q = discharge over a rectangular weir",
+        "C = coefficient of discharge",
+        "g = gravitational acceleration",
+        "L = effective crest length",
+        "H = head over the crest",
+        "hv = velocity head as denoted in the source",
+        "L′ = measured crest length",
+        "N = number of end contractions / notches as represented by the source notation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Triangular/V-Notch Weir",
+      "formula": "Q = (8/15)C√(2g)tan(θ/2)H^(5/2); for a standard 90° V-notch: Q = 1.4H^(5/2)",
+      "where": [
+        "Q = discharge over the V-notch weir",
+        "C = coefficient of discharge",
+        "g = gravitational acceleration",
+        "θ = notch angle",
+        "H = head above the notch apex"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Trapezoidal Sharp-Crested Weir",
+      "formula": "Q = Q□ + Q△",
+      "where": [
+        "Q = total discharge",
+        "Q□ = rectangular component of discharge",
+        "Q△ = triangular component of discharge",
+        "The source presents this relationship symbolically without separate component equations on the slide."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cipolletti Weir",
+      "formula": "Q = 1.859LH^1.5",
+      "where": [
+        "Q = discharge",
+        "L = crest length",
+        "H = head over the crest"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unsteady Flow on Orifices",
+      "formula": "t = ∫(H₂→H₁) As dH/Qnet; t = [2As/(CAo√(2g))](√H₁ − √H₂)",
+      "where": [
+        "t = time for the water level to change from H₁ to H₂",
+        "As = cross-sectional area of the tank",
+        "Qnet = net outflow rate",
+        "C = coefficient of discharge",
+        "Ao = orifice area",
+        "g = gravitational acceleration",
+        "H₁, H₂ = initial and final heads, respectively"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unsteady Flow: Two Tanks Connected by a Submerged Orifice",
+      "formula": "1/As = 1/As₁ + 1/As₂",
+      "where": [
+        "As = equivalent area used in the source equation",
+        "As₁, As₂ = cross-sectional areas of the two connected tanks",
+        "The source shows this relation for use with the preceding submerged-orifice time equation."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unsteady Flow in Weirs",
+      "formula": "t = ∫(H₂→H₁) As dH/Q; t = [2As/(CwL)](1/√H₁ − 1/√H₂)",
+      "where": [
+        "t = time for water level change",
+        "As = cross-sectional area of the tank",
+        "Q = weir discharge",
+        "Cw = weir discharge coefficient as denoted in the source",
+        "L = weir length",
+        "H₁, H₂ = heads labeled in the PDF",
+        "The bracket order is transcribed as displayed; verify sign/order for the problem’s initial and final head convention."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Reynold’s Number, Re",
+      "formula": "Re = vDρ/μ = vD/υ; D = 4R",
+      "where": [
+        "Re = Reynolds number (spelled “Reynold’s” on the source slide)",
+        "v = flow velocity",
+        "D = pipe diameter",
+        "ρ = mass density",
+        "μ = dynamic viscosity",
+        "υ = kinematic viscosity",
+        "R = hydraulic radius for a circular pipe flowing full"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Radius, R (Closed-Conduit Flow)",
+      "formula": "R = A/P; for circular pipes flowing full, D = 4R",
+      "where": [
+        "R = hydraulic radius",
+        "A = cross-sectional area of flow",
+        "P = wetted perimeter",
+        "D = pipe diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Flow Regimes by Reynolds Number",
+      "formula": "Laminar: Re < 2000; Transition: 1000 < Re < 2000; Critical: Re = 2000; Turbulent: Re > 2000",
+      "where": [
+        "Re = Reynolds number",
+        "The flow limits and overlapping transition / laminar ranges are copied as listed in the PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Darcy-Weisbach Formula",
+      "formula": "hf = fLv²/(2gD)",
+      "where": [
+        "hf = friction head loss",
+        "f = Darcy friction factor",
+        "L = pipe length",
+        "v = average velocity",
+        "g = gravitational acceleration",
+        "D = pipe diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Darcy-Weisbach for Circular Pipes Flowing Full",
+      "formula": "hf = 0.0826fLQ²/D⁵",
+      "where": [
+        "hf = friction head loss",
+        "f = Darcy friction factor",
+        "L = pipe length",
+        "Q = discharge",
+        "D = pipe diameter",
+        "Use with the circular-pipe-flowing-full case specified in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Friction Factor for Laminar Pipe Flow",
+      "formula": "f = 64/Re",
+      "where": [
+        "f = Darcy friction factor",
+        "Re = Reynolds number",
+        "The source gives this expression for circular pipes under laminar flow."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Darcy-Weisbach Formula for Laminar Flow",
+      "formula": "hf = 128μLQ/(πρgd⁴) = 32μLv/(ρgd²)",
+      "where": [
+        "hf = friction head loss",
+        "μ = dynamic viscosity",
+        "L = pipe length",
+        "Q = discharge",
+        "ρ = mass density",
+        "g = gravitational acceleration",
+        "d = pipe diameter",
+        "v = average velocity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Manning’s Formula",
+      "formula": "v = (1/n)R^(2/3)S^(1/2)",
+      "where": [
+        "v = average velocity",
+        "n = Manning roughness coefficient",
+        "R = hydraulic radius",
+        "S = energy / friction slope"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Manning’s Formula for Circular Pipes Flowing Full",
+      "formula": "hf = 10.29n²LQ²/D^(16/3)",
+      "where": [
+        "hf = head loss",
+        "n = Manning roughness coefficient",
+        "L = pipe length",
+        "Q = discharge",
+        "D = pipe diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hazen-Williams Formula",
+      "formula": "v = 0.849CR^0.63S^0.54",
+      "where": [
+        "v = average velocity",
+        "C = Hazen-Williams coefficient",
+        "R = hydraulic radius",
+        "S = slope"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hazen-Williams for Circular Pipes Flowing Full",
+      "formula": "hf = 10.67LQ^1.85/(C^1.85D^4.87)",
+      "where": [
+        "hf = head loss",
+        "L = pipe length",
+        "Q = discharge",
+        "C = Hazen-Williams coefficient",
+        "D = pipe diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minor Head Loss",
+      "formula": "hm = Kv²/(2g)",
+      "where": [
+        "hm = minor head loss",
+        "K = minor-loss coefficient",
+        "v = average velocity",
+        "g = gravitational acceleration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pipes in Series",
+      "formula": "Q₁ = Q₂ = Q₃; HL = hf₁ + hf₂ + hf₃",
+      "where": [
+        "Q₁, Q₂, Q₃ = flow rates in the pipe segments",
+        "HL = total head loss",
+        "hf₁, hf₂, hf₃ = head losses in the segments"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pipes in Parallel",
+      "formula": "Q = Q₁ + Q₂ + Q₃; HL = hf₁ = hf₂ = hf₃",
+      "where": [
+        "Q = total discharge",
+        "Q₁, Q₂, Q₃ = branch discharges",
+        "HL = head loss between common junctions",
+        "hf₁, hf₂, hf₃ = head loss in each parallel branch"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Radius (Open Channel)",
+      "formula": "R = A/Pw",
+      "where": [
+        "R = hydraulic radius",
+        "A = cross-sectional area of flow",
+        "Pw = wetted perimeter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Specific Energy, E",
+      "formula": "E = v²/(2g) + d",
+      "where": [
+        "E = specific energy",
+        "v = flow velocity",
+        "g = gravitational acceleration",
+        "d = flow depth",
+        "The source uses d for depth in this open-channel relation."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Depth, d",
+      "formula": "d = A/B",
+      "where": [
+        "d = hydraulic depth",
+        "A = cross-sectional area of flow",
+        "B = top width of the water surface"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boundary Shear Stress, τ",
+      "formula": "τ = γRS",
+      "where": [
+        "τ = boundary shear stress",
+        "γ = unit weight of fluid",
+        "R = hydraulic radius",
+        "S = channel / energy slope"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Manning’s Formula (Open Channel)",
+      "formula": "v = (1/n)R^(2/3)S^(1/2); Q = (A/n)R^(2/3)S^(1/2)",
+      "where": [
+        "v = average velocity",
+        "Q = discharge",
+        "n = Manning roughness coefficient",
+        "R = hydraulic radius",
+        "S = channel / energy slope",
+        "A = cross-sectional flow area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Chezy Formula",
+      "formula": "v = C√(RS); Q = CA√(RS)",
+      "where": [
+        "v = average velocity",
+        "Q = discharge",
+        "C = Chezy coefficient",
+        "R = hydraulic radius",
+        "S = channel slope",
+        "A = flow area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Froude Number, FN",
+      "formula": "FN = v/√(gd) = √(Q²B/(A³g))",
+      "where": [
+        "FN = Froude number",
+        "v = flow velocity",
+        "g = gravitational acceleration",
+        "d = hydraulic depth",
+        "Q = discharge",
+        "B = top width of water surface",
+        "A = cross-sectional flow area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Flow Stages by Froude Number",
+      "formula": "FN < 1: subcritical; FN = 1: critical; FN > 1: supercritical",
+      "where": [
+        "FN = Froude number",
+        "The labels slow/tranquil for subcritical and fast/rapid/shooting for supercritical follow the source slide."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unit Flow / Unit Discharge, q",
+      "formula": "q = vd; q = Q/B",
+      "where": [
+        "q = unit flow / unit discharge",
+        "v = flow velocity",
+        "d = flow depth",
+        "Q = discharge",
+        "B = top width of the water surface"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Flow Conditions",
+      "formula": "FN = 1; specific energy is minimum; discharge is maximum; depth is critical",
+      "where": [
+        "FN = Froude number",
+        "The four statements are the critical-flow conditions listed in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Flow",
+      "formula": "Q²/g = A³/B; for rectangular / wide channels: q²/g = dc³",
+      "where": [
+        "Q = discharge",
+        "g = gravitational acceleration",
+        "A = cross-sectional flow area",
+        "B = top width of the water surface",
+        "q = unit discharge",
+        "dc = critical depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Specific Energy, Emin",
+      "formula": "Emin = vc²/(2g) + dc; for rectangular / wide channels: dc = (2/3)Emin; Emin = (3/2)dc",
+      "where": [
+        "Emin = minimum specific energy",
+        "vc = velocity at critical flow",
+        "g = gravitational acceleration",
+        "dc = critical depth",
+        "The last two relationships are listed for rectangular / wide channels in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Most Efficient Rectangular Section (Half-Square)",
+      "formula": "b = 2d",
+      "where": [
+        "b = bottom width of the rectangular channel",
+        "d = flow depth",
+        "The source labels this a rectangular half-square section."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Most Efficient Triangular Section (Rotated Half-Square)",
+      "formula": "Included angle = 90°",
+      "where": [
+        "Included angle = angle at the bottom of the triangular section",
+        "The source diagram shows a triangular rotated half-square with a 90° included angle."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Most Efficient Trapezoidal Section (General)",
+      "formula": "x = y₁ + y₂",
+      "where": [
+        "x = horizontal top / width measure marked in the source diagram",
+        "y₁, y₂ = side measures marked in the source diagram"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Most Efficient Trapezoidal Section (Semi-Hexagon)",
+      "formula": "x = 2y; side angle = 60°",
+      "where": [
+        "x = top-width measure shown in the diagram",
+        "y = equal side / bottom length marked in the diagram",
+        "The source identifies this as the most efficient trapezoid / semi-hexagon section."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum-Seepage Trapezoidal Section",
+      "formula": "b = 4d tan(θ/2)",
+      "where": [
+        "b = bottom width",
+        "d = flow depth",
+        "θ = angle of the side slope relative to the horizontal",
+        "The formula is shown under “For Minimum Seepage” in the source."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Jump",
+      "formula": "For any section: Q²/g = (A₁y₁ − A₂y₂)/(1/A₂ − 1/A₁); for rectangular / wide channels: q²/g = d₁d₂[(d₁ + d₂)/2]",
+      "where": [
+        "Q = discharge",
+        "g = gravitational acceleration",
+        "A₁, A₂ = flow areas before and after the jump",
+        "y₁, y₂ = centroid / depth terms as shown in the source relation",
+        "q = unit discharge",
+        "d₁, d₂ = depths before and after the jump"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydrodynamic Force",
+      "formula": "FHD = ρQ(v₁ − v₂)",
+      "where": [
+        "FHD = hydrodynamic force",
+        "ρ = mass density of fluid",
+        "Q = discharge",
+        "v₁, v₂ = velocities at sections 1 and 2"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Celerity or Wave Speed, c (Rigid Water-Hammer Pipe)",
+      "formula": "c = √(EB/ρ)",
+      "where": [
+        "c = pressure-wave speed / celerity",
+        "EB = bulk modulus of water",
+        "ρ = mass density of water",
+        "The source labels this equation for the rigid case."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Celerity or Wave Speed, c (Non-Rigid Water-Hammer Pipe)",
+      "formula": "c = √[EB/{ρ(1 + EB d/(Es t))}]",
+      "where": [
+        "c = pressure-wave speed / celerity",
+        "EB = bulk modulus of water",
+        "ρ = mass density of water",
+        "d = pipe diameter",
+        "Es = modulus of elasticity of the pipe material",
+        "t = pipe wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Time for Pressure Wave to Travel",
+      "formula": "T = 2L/c",
+      "where": [
+        "T = round-trip wave travel time as shown in the source",
+        "L = pipe length",
+        "c = pressure-wave speed / celerity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Water Hammer Pressure: Instantaneous Closure",
+      "formula": "For tc = 0: Ph = ρcv",
+      "where": [
+        "Ph = water-hammer pressure rise as denoted in the PDF",
+        "tc = closure time",
+        "ρ = fluid density",
+        "c = pressure-wave speed",
+        "v = flow velocity before closure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Water Hammer Pressure: Rapid Closure",
+      "formula": "For tc < T: Ph = ρcv",
+      "where": [
+        "Ph = water-hammer pressure rise",
+        "tc = closure time",
+        "T = pressure-wave travel time",
+        "ρ = fluid density",
+        "c = pressure-wave speed",
+        "v = flow velocity before closure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Water Hammer Pressure: Slow Closure",
+      "formula": "For tc > T: Ph = ρ(2L/tc)v",
+      "where": [
+        "Ph = water-hammer pressure rise",
+        "tc = closure time",
+        "T = pressure-wave travel time",
+        "ρ = fluid density",
+        "L = pipe length",
+        "v = flow velocity before closure"
       ],
       "mnemonics": ""
     },
@@ -314,46 +1429,6 @@ const RAW = {
       "mnemonics": ""
     },
     {
-      "name": "Specific Weight",
-      "formula": "γ = ρg",
-      "where": [
-        "γ = specific weight",
-        "ρ = density",
-        "g = gravity"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Buoyant Force",
-      "formula": "B = γV",
-      "where": [
-        "B = buoyant force",
-        "γ = unit weight of fluid",
-        "V = volume displaced"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Hydrostatic Force on a Plane",
-      "formula": "F = γhA",
-      "where": [
-        "F = total force",
-        "h = depth of centroid",
-        "A = area"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Bernoulli's Equation",
-      "formula": "P₁/γ + v₁²/2g + z₁ = P₂/γ + v₂²/2g + z₂",
-      "where": [
-        "P/γ = pressure head",
-        "v²/2g = velocity head",
-        "z = elevation head"
-      ],
-      "mnemonics": ""
-    },
-    {
       "name": "Torricelli's Theorem",
       "formula": "v = √(2gh)",
       "where": [
@@ -363,162 +1438,71 @@ const RAW = {
       "mnemonics": ""
     },
     {
-      "name": "Reynolds Number",
-      "formula": "Re = ρvD/μ",
+      "name": "Void Ratio, e",
+      "formula": "e = Vv/Vs",
       "where": [
-        "ρ = density",
-        "v = velocity",
-        "D = diameter",
-        "μ = dynamic viscosity"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Darcy-Weisbach",
-      "formula": "hf = fLv²/2gD",
-      "where": [
-        "hf = head loss",
-        "f = friction factor",
-        "L = pipe length",
-        "D = diameter"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Manning's Formula",
-      "formula": "v = (1/n)R^(2/3)S^(1/2)",
-      "where": [
-        "n = roughness coefficient",
-        "R = hydraulic radius",
-        "S = slope"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Hazen-Williams",
-      "formula": "v = 0.8492CR^0.63S^0.54",
-      "where": [
-        "C = roughness coefficient",
-        "R = hydraulic radius",
-        "S = slope"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Chezy Formula",
-      "formula": "v = C√(RS)",
-      "where": [
-        "C = Chezy coefficient",
-        "R = hydraulic radius",
-        "S = slope"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Specific Energy",
-      "formula": "E = y + v²/2g",
-      "where": [
-        "E = specific energy",
-        "y = depth of flow",
-        "v = velocity"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Froude Number",
-      "formula": "Fr = v/√(gy)",
-      "where": [
-        "v = velocity",
-        "y = depth of flow",
-        "Fr = 1 is critical flow"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Orifice Discharge",
-      "formula": "Q = Ca√(2gh)",
-      "where": [
-        "C = discharge coefficient",
-        "a = orifice area",
-        "h = head"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Rectangular Weir",
-      "formula": "Q = (2/3)C√(2g)LH^(3/2)",
-      "where": [
-        "C = discharge coefficient",
-        "L = crest length",
-        "H = head over crest"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Impulse-Momentum Force",
-      "formula": "F = ρQ(v₂−v₁)",
-      "where": [
-        "ρ = density",
-        "Q = discharge",
-        "v₂, v₁ = final and initial velocity"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Void Ratio",
-      "formula": "e = Vᵥ/Vₛ",
-      "where": [
-        "Vᵥ = volume of voids",
-        "Vₛ = volume of solids"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Porosity",
-      "formula": "n = Vᵥ/V",
-      "where": [
-        "Vᵥ = volume of voids",
-        "V = total volume"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Saturation Relation",
-      "formula": "Se = wGs",
-      "where": [
-        "S = degree of saturation",
         "e = void ratio",
-        "w = water content",
-        "Gs = specific gravity of solids"
+        "Vv = volume of voids",
+        "Vs = volume of soil solids"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Dry Unit Weight",
-      "formula": "γd = γ/(1+w)",
+      "name": "Porosity, n",
+      "formula": "n = Vv/V",
       "where": [
+        "n = porosity",
+        "Vv = volume of voids",
+        "V = total volume of soil"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relationship Between Gs, ω, e, S",
+      "formula": "ω·Gs = S·e",
+      "where": [
+        "ω = moisture content (water weight / dry soil weight)",
+        "Gs = specific gravity of soil particles",
+        "S = degree of saturation",
+        "e = void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Dry Unit Weight, γd",
+      "formula": "γd = Ws/V = γ/(1 + ω) = Gs·γw/(1 + e)",
+      "where": [
+        "γd = dry unit weight of soil",
+        "Ws = weight of soil solids",
+        "V = total soil volume",
         "γ = moist unit weight",
-        "w = water content"
+        "ω = moisture content",
+        "Gs = specific gravity of soil particles",
+        "γw = unit weight of water",
+        "e = void ratio"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Effective Stress",
-      "formula": "σ′ = σ − u",
+      "name": "Effective Stress, σ′",
+      "formula": "σ′ = σ − σw = σ − u",
       "where": [
-        "σ′ = effective stress",
-        "σ = total stress",
-        "u = pore water pressure"
+        "σ′ = effective vertical stress",
+        "σ = total vertical stress",
+        "σw = pore-water pressure as denoted in the Geotech PDF",
+        "u = pore-water pressure notation used in the earlier catalog"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Darcy's Law (Soil)",
-      "formula": "Q = kiA",
+      "name": "Darcy's Law",
+      "formula": "v = ki; Q = kiA",
       "where": [
-        "k = permeability",
+        "v = Darcy / discharge velocity",
+        "k = coefficient of permeability (hydraulic conductivity)",
         "i = hydraulic gradient",
-        "A = area"
+        "Q = volumetric flow rate",
+        "A = cross-sectional area normal to flow"
       ],
       "mnemonics": ""
     },
@@ -534,21 +1518,24 @@ const RAW = {
       "mnemonics": ""
     },
     {
-      "name": "Rankine Active Coefficient",
-      "formula": "Ka = (1−sinφ)/(1+sinφ)",
+      "name": "Active Lateral Earth Pressure Coefficient",
+      "formula": "Ka = (1 − sinφ)/(1 + sinφ)",
       "where": [
-        "φ = friction angle"
+        "Ka = active lateral earth-pressure coefficient",
+        "φ = soil friction angle"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Terzaghi Bearing Capacity (Strip)",
-      "formula": "qult = cNc + qNq + 0.5γBNγ",
+      "name": "Terzaghi's Ultimate Bearing Capacity (Strip/Long Footings)",
+      "formula": "qu = cNc + qNq + (1/2)γBNγ",
       "where": [
-        "c = cohesion",
-        "q = surcharge",
-        "B = footing width",
-        "Nc, Nq, Nγ = bearing factors"
+        "qu = ultimate bearing capacity",
+        "c = soil cohesion",
+        "Nc, Nq, Nγ = bearing-capacity factors",
+        "q = surcharge pressure at footing level",
+        "γ = soil unit weight",
+        "B = footing width"
       ],
       "mnemonics": ""
     },
@@ -561,16 +1548,1168 @@ const RAW = {
         "H = drainage path"
       ],
       "mnemonics": ""
+    },
+    {
+      "name": "Effective Size, D10",
+      "formula": "D10 = particle diameter corresponding to 10% finer",
+      "where": [
+        "D10 = effective particle size at which 10% of the sample is finer by weight",
+        "Read D10 from the particle-size distribution curve"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Uniformity Coefficient, Cu",
+      "formula": "Cu = D60/D10",
+      "where": [
+        "Cu = uniformity coefficient",
+        "D60 = particle diameter at 60% finer",
+        "D10 = effective particle diameter at 10% finer"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Coefficient of Gradation/Curvature, Cc",
+      "formula": "Cc = D30²/(D60·D10)",
+      "where": [
+        "Cc = coefficient of gradation / curvature",
+        "D30, D60, D10 = particle diameters at 30%, 60%, and 10% finer, respectively"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Sorting Coefficient, So",
+      "formula": "So = D75/D25",
+      "where": [
+        "So = sorting coefficient",
+        "D75 = particle diameter at 75% finer",
+        "D25 = particle diameter at 25% finer"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Degree of Saturation, S",
+      "formula": "S = Vw/Vv",
+      "where": [
+        "S = degree of saturation",
+        "Vw = volume of water",
+        "Vv = volume of voids"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Air Content, A",
+      "formula": "A = Va/Vv = 1 − S",
+      "where": [
+        "A = air content as defined in the source PDF",
+        "Va = volume of air",
+        "Vv = volume of voids",
+        "S = degree of saturation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Moisture Content, ω",
+      "formula": "ω = Ww/Ws",
+      "where": [
+        "ω = moisture content",
+        "Ww = weight of water",
+        "Ws = weight of soil solids"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Air Void Ratio, a",
+      "formula": "a = Va/V = n(1 − S)",
+      "where": [
+        "a = air void ratio as denoted in the source PDF",
+        "Va = volume of air",
+        "V = total volume",
+        "n = porosity",
+        "S = degree of saturation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Moist Unit Weight, γ",
+      "formula": "γ = W/V = γd(1 + ω)",
+      "where": [
+        "γ = moist unit weight of soil",
+        "W = total weight of soil",
+        "V = total soil volume",
+        "γd = dry unit weight",
+        "ω = moisture content"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Unit Weight of Soil Solids, γs",
+      "formula": "γs = Ws/Vs",
+      "where": [
+        "γs = unit weight of soil solids",
+        "Ws = weight of soil solids",
+        "Vs = volume of soil solids"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relationship Between Void Ratio and Porosity",
+      "formula": "e = n/(1 − n); n = e/(1 + e)",
+      "where": [
+        "e = void ratio",
+        "n = porosity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Moist Unit Weight from Gs, S, and e",
+      "formula": "γ = (Gs + S·e)·γw/(1 + e)",
+      "where": [
+        "γ = moist / partially saturated unit weight",
+        "Gs = specific gravity of soil particles",
+        "S = degree of saturation",
+        "e = void ratio",
+        "γw = unit weight of water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Saturated Unit Weight, γsat",
+      "formula": "γsat = (Gs + e)·γw/(1 + e)",
+      "where": [
+        "γsat = saturated unit weight of soil",
+        "Gs = specific gravity of soil particles",
+        "e = void ratio",
+        "γw = unit weight of water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Effective/Submerged/Buoyant Unit Weight, γ′",
+      "formula": "γ′ = γsat − γw = (Gs − 1)·γw/(1 + e); γ′ = icr·γw",
+      "where": [
+        "γ′ = effective / submerged / buoyant unit weight",
+        "γsat = saturated unit weight of soil",
+        "γw = unit weight of water",
+        "Gs = specific gravity of soil particles",
+        "e = void ratio",
+        "icr = critical hydraulic gradient"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Zero Air Void Density, γzav",
+      "formula": "γzav = Gs·γw/(1 + ω·Gs)",
+      "where": [
+        "γzav = zero-air-void unit weight / density relation as named in the source PDF",
+        "Gs = specific gravity of soil particles",
+        "γw = unit weight of water",
+        "ω = moisture content"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Hydraulic Gradient, icr",
+      "formula": "icr = (Gs − 1)/(1 + e)",
+      "where": [
+        "icr = critical hydraulic gradient",
+        "Gs = specific gravity of soil particles",
+        "e = void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Mass/Bulk/Apparent Specific Gravity, Gm",
+      "formula": "Gm = ρ/ρw = γ/γw",
+      "where": [
+        "Gm = mass / bulk / apparent specific gravity",
+        "ρ = bulk mass density of soil",
+        "ρw = mass density of water",
+        "γ = bulk unit weight of soil",
+        "γw = unit weight of water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pycnometer Test",
+      "formula": "Gs = (W2 − W1)/[(W2 − W1) − (W3 − W4)]",
+      "where": [
+        "Gs = specific gravity of soil particles",
+        "W1 = weight of empty container",
+        "W2 = weight of container + dry soil",
+        "W3 = weight of container + dry soil + water",
+        "W4 = weight of container + water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Liquid Limit Using Casagrande Device",
+      "formula": "LL = water content at 25 blows (semi-logarithmic flow curve)",
+      "where": [
+        "LL = liquid limit",
+        "The source PDF specifies 25 blows and a semi-logarithmic chart"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Liquid Limit Using Cone Penetration Method",
+      "formula": "LL = water content at 20 mm penetration in 5 seconds",
+      "where": [
+        "LL = liquid limit",
+        "The source PDF specifies 20 mm penetration in 5 seconds and an arithmetic chart"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Plastic Limit Test",
+      "formula": "PL = average moisture content at which the soil begins to crumble at 1/8 in (3 mm) diameter",
+      "where": [
+        "PL = plastic limit",
+        "The source PDF defines the endpoint as crumbling at a 1/8 in (3 mm) thread diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shrinkage Limit, SL",
+      "formula": "SL = (m1 − m2)/m2 − [(V1 − V2)·ρw]/m2",
+      "where": [
+        "SL = shrinkage limit",
+        "m1 = mass of wet soil specimen",
+        "m2 = mass of dry soil specimen",
+        "V1 = volume of wet soil specimen",
+        "V2 = volume of dry soil specimen",
+        "ρw = mass density of water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shrinkage Ratio, SR",
+      "formula": "SR = ρs/ρw = m2/(V2·ρw)",
+      "where": [
+        "SR = shrinkage ratio",
+        "ρs = mass density of soil solids",
+        "ρw = mass density of water",
+        "m2 = mass of dry soil specimen",
+        "V2 = volume of dry soil specimen"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relationship Between SL, SR, and Gs",
+      "formula": "Gs = SR/(1 − SR·SL); 1/Gs = 1/SR − SL/100",
+      "where": [
+        "Gs = specific gravity of soil particles",
+        "SR = shrinkage ratio",
+        "SL = shrinkage limit; use the percentage convention shown in the source PDF for SL/100"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Group Index, GI",
+      "formula": "GI = 0.2(F200 − 35) + 0.01(F200 − 15)(PI − 10) + 0.005(F200 − 35)(LL − 40)",
+      "where": [
+        "GI = group index",
+        "F200 = percentage passing the No. 200 sieve",
+        "PI = plasticity index",
+        "LL = liquid limit"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Plasticity Index, PI",
+      "formula": "PI = LL − PL",
+      "where": [
+        "PI = plasticity index",
+        "LL = liquid limit",
+        "PL = plastic limit"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Liquidity Index, LI",
+      "formula": "LI = (ω − PL)/(LL − PL)",
+      "where": [
+        "LI = liquidity index",
+        "ω = natural moisture content",
+        "PL = plastic limit",
+        "LL = liquid limit"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Consistency Index, CI",
+      "formula": "CI = (LL − ω)/(LL − PL)",
+      "where": [
+        "CI = consistency index",
+        "LL = liquid limit",
+        "ω = natural moisture content",
+        "PL = plastic limit"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shrinkage Index, SI",
+      "formula": "SI = PL − SL",
+      "where": [
+        "SI = shrinkage index",
+        "PL = plastic limit",
+        "SL = shrinkage limit"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Flow Index, FI",
+      "formula": "FI = slope of the flow curve plotted on semi-log coordinates",
+      "where": [
+        "FI = flow index",
+        "The source PDF defines FI as the slope of the flow curve plotted on semi-log coordinates"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Toughness Index, TI",
+      "formula": "TI = PI/FI",
+      "where": [
+        "TI = toughness index",
+        "PI = plasticity index",
+        "FI = flow index"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Activity of Soils, A",
+      "formula": "A = plasticity index / percentage of clay-size particles",
+      "where": [
+        "A = soil activity",
+        "Plasticity index = PI",
+        "Percentage of clay-size particles = clay-size fraction expressed as a percentage"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Volume of Soil Solids, Vs",
+      "formula": "Vs = V/(1 + e)",
+      "where": [
+        "Vs = volume of soil solids",
+        "V = total soil volume",
+        "e = void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Compaction, R",
+      "formula": "R = γd/γdmax",
+      "where": [
+        "R = relative compaction",
+        "γd = field dry unit weight",
+        "γdmax = maximum dry unit weight from the compaction test"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Density / Density Index, Dr",
+      "formula": "Dr = (emax − e)/(emax − emin) = (1/γdmin − 1/γd)/(1/γdmin − 1/γdmax)",
+      "where": [
+        "Dr = relative density / density index",
+        "emax, emin = maximum and minimum void ratios",
+        "e = in-place void ratio",
+        "γdmin, γdmax = minimum and maximum dry unit weights",
+        "γd = in-place dry unit weight"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Dry Unit Weight, γdmax",
+      "formula": "γdmax = Gs·γw/(1 + emin)",
+      "where": [
+        "γdmax = maximum dry unit weight",
+        "Gs = specific gravity of soil particles",
+        "γw = unit weight of water",
+        "emin = minimum void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Dry Unit Weight, γdmin",
+      "formula": "γdmin = Gs·γw/(1 + emax)",
+      "where": [
+        "γdmin = minimum dry unit weight",
+        "Gs = specific gravity of soil particles",
+        "γw = unit weight of water",
+        "emax = maximum void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Compaction from Relative Density",
+      "formula": "R = R0/[1 − Dr(1 − R0)]",
+      "where": [
+        "R = relative compaction",
+        "R0 = relative compaction ratio defined in the source PDF",
+        "Dr = relative density / density index"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Relative Compaction, R0",
+      "formula": "R0 = γdmin/γdmax",
+      "where": [
+        "R0 = relative compaction ratio as denoted in the source PDF",
+        "γdmin = minimum dry unit weight",
+        "γdmax = maximum dry unit weight"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Suitability Number of Backfill, SN",
+      "formula": "SN = 1.7√[3/(D50)² + 1/(D20)² + 1/(D10)²]",
+      "where": [
+        "SN = suitability number of backfill",
+        "D50, D20, D10 = particle diameters at 50%, 20%, and 10% finer, respectively",
+        "Suitability ranges are shown separately in the source PDF table"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Total Vertical Stress, σ",
+      "formula": "σ = Σγh",
+      "where": [
+        "σ = total vertical stress",
+        "γ = unit weight of each soil layer",
+        "h = thickness / vertical depth of each soil layer"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pore Water Pressure, σw",
+      "formula": "σw = γw h",
+      "where": [
+        "σw = pore-water pressure",
+        "γw = unit weight of water",
+        "h = depth below the water surface"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Height of Capillary Rise in Soil (Hazen)",
+      "formula": "h = c/[e·D10]",
+      "where": [
+        "h = height of capillary rise",
+        "c = Hazen coefficient as used in the source PDF",
+        "e = void ratio",
+        "D10 = effective particle size"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pore Water Pressure at Capillary Zone, σw",
+      "formula": "σw = γw h",
+      "where": [
+        "σw = pore-water pressure in the capillary zone",
+        "γw = unit weight of water",
+        "h = capillary height / depth term as shown in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pore Water Pressure in Partially Saturated Capillary Zone",
+      "formula": "σw = γw h·S",
+      "where": [
+        "σw = pore-water pressure in the partially saturated capillary zone",
+        "γw = unit weight of water",
+        "h = capillary height / depth term as shown in the source PDF",
+        "S = degree of saturation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Settlement from Void-Ratio Change",
+      "formula": "ΔH = H·Δe/(1 + e0)",
+      "where": [
+        "ΔH = settlement",
+        "H = original thickness of compressible layer",
+        "Δe = change in void ratio",
+        "e0 = initial void ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Overconsolidation Ratio, OCR",
+      "formula": "OCR = Pc/Po",
+      "where": [
+        "OCR = overconsolidation ratio",
+        "Pc = preconsolidation pressure",
+        "Po = initial effective overburden pressure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Immediate / Elastic Settlement",
+      "formula": "δi = qB(1 − ν²)If/Es",
+      "where": [
+        "δi = immediate / elastic settlement",
+        "q = applied footing pressure",
+        "B = footing width",
+        "ν = Poisson ratio of soil",
+        "If = influence factor as denoted in the source PDF",
+        "Es = modulus of elasticity of soil"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Primary Consolidation Settlement of Clay",
+      "formula": "ΔH = H·Δe/(1 + e0); Δe = Cc·log[(Po + ΔP)/Po]",
+      "where": [
+        "ΔH = primary consolidation settlement",
+        "H = thickness of clay layer",
+        "Δe = change in void ratio",
+        "e0 = initial void ratio",
+        "Cc = compression index",
+        "Po = initial effective overburden pressure",
+        "ΔP = increase in effective pressure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Primary Consolidation Settlement (Normally Consolidated Clay)",
+      "formula": "δp = [Cc·H/(1 + e0)]·log[(Po + ΔP)/Po]",
+      "where": [
+        "δp = primary consolidation settlement",
+        "Cc = compression index",
+        "H = thickness of clay layer",
+        "e0 = initial void ratio",
+        "Po = initial effective overburden pressure",
+        "ΔP = increase in effective pressure",
+        "The source PDF specifies OCR = 1.0 for this case"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Primary Consolidation Settlement (Over-Consolidated Clay, Case 1)",
+      "formula": "δp = [Cs·H/(1 + e0)]·log[(Po + ΔP)/Po], when Po + ΔP ≤ Pc",
+      "where": [
+        "δp = primary consolidation settlement",
+        "Cs = swell / recompression index",
+        "H = thickness of clay layer",
+        "e0 = initial void ratio",
+        "Po = initial effective overburden pressure",
+        "ΔP = increase in effective pressure",
+        "Pc = preconsolidation pressure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Primary Consolidation Settlement (Over-Consolidated Clay, Case 2)",
+      "formula": "δp = [Cs·H/(1 + e0)]·log(Pc/Po) + [Cc·H/(1 + e0)]·log[(Po + ΔP)/Pc], when Po + ΔP > Pc",
+      "where": [
+        "δp = primary consolidation settlement",
+        "Cs = swell / recompression index",
+        "Cc = compression index",
+        "H = thickness of clay layer",
+        "e0 = initial void ratio",
+        "Po = initial effective overburden pressure",
+        "ΔP = increase in effective pressure",
+        "Pc = preconsolidation pressure"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Secondary Consolidation Settlement",
+      "formula": "δs = [Cα·H/(1 + ep)]·log(T2/T1)",
+      "where": [
+        "δs = secondary consolidation settlement",
+        "Cα = secondary compression index",
+        "H = thickness of compressible layer",
+        "ep = void ratio at the end of primary consolidation",
+        "T1, T2 = times defining the settlement interval"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Compression Index / Coefficient of Consolidation, Cc",
+      "formula": "For undisturbed clay: Cc = 0.009(LL − 10%); for remolded clay: Cc = 0.007(LL − 7%)",
+      "where": [
+        "Cc = compression index as labeled in the source PDF",
+        "LL = liquid limit",
+        "The source PDF gives separate correlations for undisturbed (Skempton) and remolded clay"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Swell Index, Cs",
+      "formula": "Cs ranges from (1/5)Cc to (1/10)Cc",
+      "where": [
+        "Cs = swell index",
+        "Cc = compression index",
+        "The range is reproduced in the order stated in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hydraulic Gradient, i",
+      "formula": "i = Δh/L",
+      "where": [
+        "i = hydraulic gradient",
+        "Δh = head loss / difference in hydraulic head",
+        "L = length of the flow path"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Seepage Velocity / Interstitial Velocity, vs",
+      "formula": "vs = v/n",
+      "where": [
+        "vs = seepage / interstitial velocity",
+        "v = Darcy velocity (discharge per total cross-sectional area)",
+        "n = porosity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Constant Head Permeability Test",
+      "formula": "k = VL/(A·h·t)",
+      "where": [
+        "k = coefficient of permeability / hydraulic conductivity",
+        "V = volume of water collected",
+        "L = specimen length",
+        "A = specimen cross-sectional area",
+        "h = constant head difference",
+        "t = elapsed time"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Falling Head / Variable Head Permeability Test",
+      "formula": "k = (aL/At)·ln(h1/h2)",
+      "where": [
+        "k = coefficient of permeability / hydraulic conductivity",
+        "a = cross-sectional area of standpipe",
+        "L = specimen length",
+        "A = specimen cross-sectional area",
+        "t = elapsed time",
+        "h1, h2 = initial and final head differences"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Well in an Unconfined Aquifer Underlain by an Impermeable Layer",
+      "formula": "k = Q·ln(r1/r2)/[π(h1² − h2²)]",
+      "where": [
+        "k = coefficient of permeability / hydraulic conductivity",
+        "Q = pumping discharge",
+        "r1, r2 = radii / radial distances shown for the well and observation locations",
+        "h1, h2 = saturated water depths / levels at the corresponding radii",
+        "The source PDF illustrates the unconfined aquifer underlain by an impermeable layer"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Well in a Confined Aquifer Underlain and Overlain by Impermeable Soil Layers",
+      "formula": "k = Q·ln(r1/r2)/[2πt(z2 − z1)]",
+      "where": [
+        "k = coefficient of permeability / hydraulic conductivity",
+        "Q = pumping discharge",
+        "r1, r2 = radii / radial distances shown in the source diagram",
+        "t = thickness of the confined aquifer as denoted in the source PDF",
+        "z2 − z1 = difference between the measured water-level elevations"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Transmissibility, T",
+      "formula": "T = k·t",
+      "where": [
+        "T = transmissibility",
+        "k = coefficient of permeability / hydraulic conductivity",
+        "t = aquifer thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Radius of Influence, Ri",
+      "formula": "k = Q·ln(Ri/R2)/[π(H² − h²)]",
+      "where": [
+        "k = coefficient of permeability / hydraulic conductivity",
+        "Q = pumping discharge",
+        "Ri = radius of influence",
+        "R2 = radial distance / radius denoted R2 in the source formula",
+        "H and h = water-level / saturated-thickness terms as labeled in the source formula"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boiling / Quicksand Condition",
+      "formula": "σ′ = 0",
+      "where": [
+        "σ′ = effective vertical stress",
+        "The source PDF states that the boiling / quicksand condition occurs when effective stress is zero"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Seepage Force per Unit Volume",
+      "formula": "F = i·γw",
+      "where": [
+        "F = seepage force per unit volume, as labeled in the source PDF",
+        "i = hydraulic gradient",
+        "γw = unit weight of water"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Equivalent Horizontal Hydraulic Conductivity, kH",
+      "formula": "kH = (k1h1 + k2h2 + … + knhn)/H",
+      "where": [
+        "kH = equivalent horizontal hydraulic conductivity of stratified soil",
+        "k1…kn = hydraulic conductivities of the individual layers",
+        "h1…hn = thicknesses of the individual layers",
+        "H = total thickness of all layers"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Equivalent Vertical Hydraulic Conductivity, kv",
+      "formula": "kv = H/(h1/k1 + h2/k2 + … + hn/kn)",
+      "where": [
+        "kv = equivalent vertical hydraulic conductivity of stratified soil",
+        "H = total thickness of all layers",
+        "h1…hn = thicknesses of the individual layers",
+        "k1…kn = hydraulic conductivities of the individual layers"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Discharge Through an Isotropic Soil Flow Net",
+      "formula": "q = k·H·(Nf/Nd)",
+      "where": [
+        "q = seepage discharge per unit width, as used in the source PDF",
+        "k = coefficient of permeability / hydraulic conductivity",
+        "H = total head loss across the flow net",
+        "Nf = number of flow channels",
+        "Nd = number of potential drops",
+        "The source PDF specifies this expression for isotropic soil"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pressure Head Drop in Flow Net",
+      "formula": "ΔH = H/Nd",
+      "where": [
+        "ΔH = pressure / hydraulic head drop per potential drop",
+        "H = total head difference",
+        "Nd = number of potential drops"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Normal Stress (Slope Stability)",
+      "formula": "σ = γH cos²β",
+      "where": [
+        "σ = normal stress on the potential failure plane",
+        "γ = soil unit weight",
+        "H = slope / soil layer height as shown in the source PDF",
+        "β = slope angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Stress (Slope Stability)",
+      "formula": "τ = γH sinβ cosβ",
+      "where": [
+        "τ = shear stress on the potential failure plane",
+        "γ = soil unit weight",
+        "H = slope / soil layer height as shown in the source PDF",
+        "β = slope angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Sliding (Shear Strength)",
+      "formula": "FS = (c + σtanφ)/(cd + σtanφd)",
+      "where": [
+        "FS = factor of safety against sliding",
+        "c = cohesion",
+        "σ = normal stress",
+        "φ = friction angle",
+        "cd = design / mobilized cohesion as denoted in the source PDF",
+        "φd = design / mobilized friction angle as denoted in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Sliding (Friction)",
+      "formula": "FS = (σtanφ)/(σtanφd)",
+      "where": [
+        "FS = factor of safety with respect to friction",
+        "σ = normal stress",
+        "φ = friction angle",
+        "φd = design / mobilized friction angle as denoted in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Sliding (Cohesion)",
+      "formula": "FS = c/cd",
+      "where": [
+        "FS = factor of safety with respect to cohesion",
+        "c = cohesion",
+        "cd = design / mobilized cohesion as denoted in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability of Infinite Slope Without Seepage",
+      "formula": "FS = c/(γH cosβ sinβ) + tanφ/tanβ",
+      "where": [
+        "FS = factor of safety of an infinite slope without seepage",
+        "c = soil cohesion",
+        "γ = soil unit weight",
+        "H = soil layer / slope height as shown in the source PDF",
+        "β = slope angle",
+        "φ = soil friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability of Infinite Slope With Seepage",
+      "formula": "FS = c/(γsat H cosβ sinβ) + [(γsat − γw)tanφ]/(γsat tanβ)",
+      "where": [
+        "FS = factor of safety of an infinite slope with seepage",
+        "c = soil cohesion",
+        "γsat = saturated unit weight of soil",
+        "γw = unit weight of water",
+        "H = soil layer / slope height as shown in the source PDF",
+        "β = slope angle",
+        "φ = soil friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability of Finite Slope With Plane Failure",
+      "formula": "FS = resisting forces/sliding forces = (Fc + Ff)/(W sinθ)",
+      "where": [
+        "FS = factor of safety",
+        "Fc = resisting force due to cohesion",
+        "Ff = resisting force due to friction",
+        "W = weight of the sliding soil mass",
+        "θ = angle shown for the sliding plane in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability Number, m (at Critical)",
+      "formula": "m = Cd/(γH) = [1 − cos(β − φd)]/[4sinβ cosφd]",
+      "where": [
+        "m = stability number at critical condition",
+        "Cd = design cohesion as denoted in the source PDF",
+        "γ = soil unit weight",
+        "H = slope / soil layer height",
+        "β = slope angle",
+        "φd = design friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stability Factor, SF (at Critical)",
+      "formula": "SF = 1/m = γH/Cd",
+      "where": [
+        "SF = stability factor at critical condition",
+        "m = stability number",
+        "γ = soil unit weight",
+        "H = slope / soil layer height",
+        "Cd = design cohesion as denoted in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Angle of Slip Plane, θcr",
+      "formula": "θcr = (β + φd)/2",
+      "where": [
+        "θcr = critical angle of the slip plane",
+        "β = slope angle",
+        "φd = design friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Terzaghi's Ultimate Bearing Capacity (Rectangular Footings)",
+      "formula": "qu = [1 + 0.3(B/L)]cNc + qNq + [1 − 0.2(B/L)](1/2)γBNγ",
+      "where": [
+        "qu = ultimate bearing capacity of a rectangular footing",
+        "B = footing width",
+        "L = footing length",
+        "c = soil cohesion",
+        "Nc, Nq, Nγ = bearing-capacity factors",
+        "q = surcharge pressure at footing level",
+        "γ = soil unit weight"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Terzaghi's Ultimate Bearing Capacity (Square Footing)",
+      "formula": "qu = 1.3cNc + qNq + 0.4γBNγ",
+      "where": [
+        "qu = ultimate bearing capacity of a square footing",
+        "c = soil cohesion",
+        "Nc, Nq, Nγ = bearing-capacity factors",
+        "q = surcharge pressure at footing level",
+        "γ = soil unit weight",
+        "B = footing width"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Terzaghi's Ultimate Bearing Capacity (Circular Footing)",
+      "formula": "qu = 1.3cNc + qNq + 0.3γBNγ",
+      "where": [
+        "qu = ultimate bearing capacity of a circular footing",
+        "c = soil cohesion",
+        "Nc, Nq, Nγ = bearing-capacity factors",
+        "q = surcharge pressure at footing level",
+        "γ = soil unit weight",
+        "B = footing diameter / characteristic width as denoted in the source formula"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Local Shear Failure: Reduced Cohesion",
+      "formula": "c′ = (2/3)c",
+      "where": [
+        "c′ = reduced cohesion used for local shear failure",
+        "c = original soil cohesion"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Local Shear Failure: Reduced Friction Angle",
+      "formula": "tanφ′ = (2/3)tanφ",
+      "where": [
+        "φ′ = reduced friction angle used for local shear failure",
+        "φ = original soil friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "At-Rest Lateral Earth Pressure Coefficient",
+      "formula": "Ko = 1 − sinφ",
+      "where": [
+        "Ko = at-rest lateral earth pressure coefficient",
+        "φ = soil friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Passive Lateral Earth Pressure Coefficient",
+      "formula": "Kp = (1 + sinφ)/(1 − sinφ)",
+      "where": [
+        "Kp = passive lateral earth pressure coefficient",
+        "φ = soil friction angle"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Single Pile Capacity",
+      "formula": "Qult = Qb + Qf",
+      "where": [
+        "Qult = ultimate capacity of a single pile",
+        "Qb = pile base / end-bearing capacity",
+        "Qf = pile shaft-friction capacity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Allowable Bearing Capacity of Pile",
+      "formula": "Qallow = Qult/FS",
+      "where": [
+        "Qallow = allowable pile capacity",
+        "Qult = ultimate pile capacity",
+        "FS = factor of safety"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pile Base Capacity in Sand",
+      "formula": "Qb = σ′ApNq",
+      "where": [
+        "Qb = pile base / end-bearing capacity",
+        "σ′ = effective vertical stress at the pile tip",
+        "Ap = area of the pile base",
+        "Nq = bearing-capacity factor"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pile Shaft Friction in Sand",
+      "formula": "Qf = ρ·𝒜·k·μ",
+      "where": [
+        "Qf = pile shaft-friction capacity",
+        "ρ, 𝒜, k, and μ = symbols shown in the source formula; the PDF does not separately define each on this slide",
+        "The source slide notes that the pressure diagram depends on the critical depth Dc"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Depth for Piles in Sand",
+      "formula": "Dense sand: Dc = 20dpile; loose sand: Dc = 10dpile",
+      "where": [
+        "Dc = critical depth",
+        "dpile = pile diameter",
+        "The source PDF gives separate critical-depth multipliers for dense and loose sand"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pile Base Capacity in Clay",
+      "formula": "Qb = c·A·Nc",
+      "where": [
+        "Qb = pile base / end-bearing capacity",
+        "c = soil cohesion / undrained shear strength as used in the source formula",
+        "A = pile base area",
+        "Nc = bearing-capacity factor; the source PDF notes Nc = 9 for long piles, or when not given"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Pile Shaft Friction in Clay",
+      "formula": "Qf = c·L·α·ρ",
+      "where": [
+        "Qf = pile shaft-friction capacity",
+        "c = soil cohesion / undrained shear strength as used in the source formula",
+        "L = embedded pile length",
+        "α = adhesion factor",
+        "ρ = pile perimeter as denoted in the source formula"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boussinesq's Equation (Point Load)",
+      "formula": "Δσz = (3P/(2π))(z³/L⁵) = 0.477P·z³/L⁵ = 3P/[2πz²(1 + (r/z)²)^(5/2)]",
+      "where": [
+        "Δσz = vertical stress increase",
+        "P = concentrated point load",
+        "z = depth below the ground surface",
+        "r = horizontal radial distance from the load axis",
+        "L = √(r² + z²) = √(x² + y² + z²)"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Westergaard's Equation (Point Load)",
+      "formula": "Δσz = P/[πz²(1 + 2(r/z)²)^(3/2)] = 0.318P/[z²(1 + 2(r/z)²)^(3/2)]",
+      "where": [
+        "Δσz = vertical stress increase",
+        "P = concentrated point load",
+        "z = depth below the ground surface",
+        "r = horizontal radial distance from the load axis"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Westergaard's Equation (Vertical Line Load)",
+      "formula": "Δσz = 2qz³/[π(x² + z²)²]; P = 0.637q/N; N = z[1 + (r/z)²]²",
+      "where": [
+        "Δσz / P = vertical stress as denoted in the source PDF",
+        "q = vertical line load intensity",
+        "x = horizontal distance from the line load",
+        "z = depth below the ground surface",
+        "r = horizontal radial distance used in the source influence expression",
+        "N = influence term defined by the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boussinesq's Equation (Vertical Line Load)",
+      "formula": "P = 0.477QN/z²; N = 1/[1 + (r/z)²]^(5/2)",
+      "where": [
+        "P = vertical stress as denoted in the source PDF",
+        "Q = vertical line-load intensity as denoted in the source PDF",
+        "z = depth below the ground surface",
+        "r = horizontal radial distance from the line load",
+        "N = influence term defined by the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Boussinesq's Equation (Circular Area)",
+      "formula": "P = q(1 − 1/N); N = [1 + (r/z)²]^(3/2)",
+      "where": [
+        "P = vertical stress as denoted in the source PDF",
+        "q = uniform pressure over the circular loaded area",
+        "r = radial distance from the center of the loaded circular area",
+        "z = depth below the loaded surface",
+        "N = influence term defined by the source PDF"
+      ],
+      "mnemonics": ""
     }
   ],
   "PSAD": [
     {
-      "name": "Axial Stress",
+      "name": "Friction Force",
+      "formula": "F = μN",
+      "where": [
+        "F = friction force",
+        "μ = coefficient of friction",
+        "N = normal force"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Normal Stress",
       "formula": "σ = P/A",
       "where": [
         "σ = normal stress",
-        "P = axial load",
-        "A = area"
+        "P = axial force or load",
+        "A = cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Stress",
+      "formula": "τ = V/Aᵥ",
+      "where": [
+        "τ = average shear stress",
+        "V = shear force",
+        "Aᵥ = area resisting shear"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Normal Strain",
+      "formula": "ε = δ/L",
+      "where": [
+        "ε = normal strain",
+        "δ = change in length",
+        "L = original length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Strain",
+      "formula": "γ = δᵥ/H",
+      "where": [
+        "γ = engineering shear strain",
+        "δᵥ = relative lateral displacement",
+        "H = original height/depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hooke's Law in Axial Stress",
+      "formula": "ε = σ/E",
+      "where": [
+        "ε = normal strain",
+        "σ = normal stress",
+        "E = modulus of elasticity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hooke's Law in Shear Stress",
+      "formula": "γ = τ/G",
+      "where": [
+        "γ = shear strain",
+        "τ = shear stress",
+        "G = shear modulus"
       ],
       "mnemonics": ""
     },
@@ -586,62 +2725,107 @@ const RAW = {
       "mnemonics": ""
     },
     {
-      "name": "Hooke's Law",
-      "formula": "σ = Eε",
+      "name": "Axial Rigidity",
+      "formula": "AE",
       "where": [
-        "σ = stress",
+        "A = cross-sectional area",
         "E = modulus of elasticity",
-        "ε = strain"
+        "AE = axial rigidity"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Poisson's Ratio",
-      "formula": "ν = −εlat/εlong",
+      "name": "Axial Stiffness",
+      "formula": "k = AE/L",
       "where": [
-        "εlat = lateral strain",
-        "εlong = longitudinal strain"
+        "k = axial stiffness",
+        "A = cross-sectional area",
+        "E = modulus of elasticity",
+        "L = member length"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Shear Stress",
-      "formula": "τ = V/A",
+      "name": "Ductility by Elongation",
+      "formula": "D% = (ΔL/L₀) × 100%",
       "where": [
-        "τ = shear stress",
-        "V = shear force",
-        "A = area"
+        "D% = percentage elongation",
+        "ΔL = increase in length at fracture",
+        "L₀ = original gauge length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Ductility by Reduction in Area",
+      "formula": "D% = (ΔA/A₀) × 100%",
+      "where": [
+        "D% = percentage reduction in area",
+        "ΔA = decrease in cross-sectional area",
+        "A₀ = original cross-sectional area"
       ],
       "mnemonics": ""
     },
     {
       "name": "Thermal Deformation",
-      "formula": "δ = αLΔT",
+      "formula": "δₜ = αLΔT",
       "where": [
+        "δₜ = thermal deformation",
         "α = coefficient of thermal expansion",
-        "L = length",
+        "L = original length",
         "ΔT = temperature change"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Torsion Formula",
-      "formula": "τ = Tρ/J",
+      "name": "Thermal Expansion Coefficient of Steel",
+      "formula": "α = 11.6 × 10⁻⁶ /°C",
       "where": [
-        "T = torque",
-        "ρ = distance from center",
+        "α = coefficient of linear thermal expansion for steel as stated in the source PDF",
+        "°C = temperature unit used for ΔT"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Torsional Shear Stress",
+      "formula": "τ = Tr/J",
+      "where": [
+        "τ = torsional shear stress",
+        "T = applied torque",
+        "r = radial distance from the shaft center",
         "J = polar moment of inertia"
       ],
       "mnemonics": ""
     },
     {
       "name": "Angle of Twist",
-      "formula": "θ = TL/JG",
+      "formula": "θ = TL/(JG)",
       "where": [
-        "T = torque",
-        "L = length",
-        "J = polar moment",
+        "θ = angle of twist in radians",
+        "T = applied torque",
+        "L = shaft length",
+        "J = polar moment of inertia",
         "G = shear modulus"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Torsional Rigidity",
+      "formula": "JG",
+      "where": [
+        "J = polar moment of inertia",
+        "G = shear modulus",
+        "JG = torsional rigidity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Torsional Stiffness",
+      "formula": "k = JG/L",
+      "where": [
+        "k = torsional stiffness",
+        "J = polar moment of inertia",
+        "G = shear modulus",
+        "L = shaft length"
       ],
       "mnemonics": ""
     },
@@ -656,118 +2840,719 @@ const RAW = {
       "mnemonics": ""
     },
     {
-      "name": "Flexure Formula",
-      "formula": "σ = My/I",
+      "name": "Two Wheel Loads Maximum Moment (Span L)",
+      "formula": "Mₘₐₓ = (RL − Pₛd)²/(4PL)",
       "where": [
-        "M = moment",
-        "y = distance from neutral axis",
-        "I = moment of inertia"
+        "Mₘₐₓ = maximum bending moment",
+        "R = resultant of the two wheel loads as shown",
+        "L = span used in this case",
+        "Pₛ = smaller wheel load",
+        "d = spacing between wheel loads",
+        "P = load term used in the source equation"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Horizontal Shear in Beams",
-      "formula": "τ = VQ/Ib",
+      "name": "Two Wheel Loads Maximum Moment (Span L₂)",
+      "formula": "Mₘₐₓ = (RL₂ − Pₛd)²/(4PL₂)",
       "where": [
-        "V = shear force",
-        "Q = first moment of area",
-        "I = moment of inertia",
-        "b = width"
+        "Mₘₐₓ = maximum bending moment",
+        "R = resultant of the two wheel loads as shown",
+        "L₂ = span length in the second source configuration",
+        "Pₛ = smaller wheel load",
+        "d = spacing between wheel loads",
+        "P = load term used in the source equation"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Moment of Inertia (Rectangle)",
-      "formula": "I = bh³/12",
+      "name": "Flexural Stress Formula",
+      "formula": "fᵦ = My/I = Ey/ρ",
       "where": [
-        "b = base",
-        "h = height"
+        "fᵦ = flexural stress at distance y from the neutral axis",
+        "M = bending moment",
+        "y = distance from the neutral axis",
+        "I = second moment of area",
+        "E = modulus of elasticity",
+        "ρ = radius of curvature"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Moment of Inertia (Circle)",
-      "formula": "I = πd⁴/64",
+      "name": "Maximum Flexural Stress",
+      "formula": "fᵦₘₐₓ = Mc/I",
       "where": [
-        "d = diameter"
+        "fᵦₘₐₓ = maximum flexural stress",
+        "M = maximum bending moment at the section",
+        "c = distance from neutral axis to the extreme fiber",
+        "I = second moment of area"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Parallel Axis Theorem",
-      "formula": "I = Ic + Ad²",
-      "where": [
-        "Ic = centroidal inertia",
-        "A = area",
-        "d = distance between axes"
-      ],
-      "mnemonics": ""
-    },
-    {
-      "name": "Euler Buckling Load",
-      "formula": "Pcr = π²EI/(KL)²",
+      "name": "General Flexure Formula",
+      "formula": "E/ρ = M/I = fᵦ/y",
       "where": [
         "E = modulus of elasticity",
-        "I = moment of inertia",
-        "K = effective length factor",
-        "L = unbraced length"
+        "ρ = radius of curvature",
+        "M = bending moment",
+        "I = second moment of area",
+        "fᵦ = flexural stress",
+        "y = distance from neutral axis"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Slenderness Ratio",
-      "formula": "λ = KL/r",
+      "name": "Beam Curvature",
+      "formula": "1/ρ = M/(EI)",
       "where": [
-        "K = effective length factor",
-        "L = length",
-        "r = radius of gyration"
+        "1/ρ = curvature",
+        "ρ = radius of curvature",
+        "M = bending moment",
+        "E = modulus of elasticity",
+        "I = second moment of area"
       ],
       "mnemonics": ""
     },
     {
-      "name": "SS Beam Deflection (Uniform Load)",
-      "formula": "δ = 5wL⁴/384EI",
+      "name": "Flexural Rigidity",
+      "formula": "EI",
       "where": [
-        "w = uniform load",
-        "L = span",
-        "E = modulus",
-        "I = inertia"
+        "E = modulus of elasticity",
+        "I = second moment of area",
+        "EI = flexural rigidity"
       ],
       "mnemonics": ""
     },
     {
-      "name": "SS Beam Deflection (Center Load)",
-      "formula": "δ = PL³/48EI",
+      "name": "Flexural Stiffness",
+      "formula": "k = EI/L",
       "where": [
-        "P = point load",
-        "L = span"
+        "k = flexural stiffness in the source notation",
+        "E = modulus of elasticity",
+        "I = second moment of area",
+        "L = member length"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Cantilever Deflection (End Load)",
-      "formula": "δ = PL³/3EI",
+      "name": "Section Modulus",
+      "formula": "S = I/c",
       "where": [
-        "P = end load",
-        "L = length"
+        "S = elastic section modulus",
+        "I = second moment of area",
+        "c = distance from the neutral axis to the extreme fiber"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Max Moment: Uniform Load (SS)",
-      "formula": "M = wL²/8",
+      "name": "Horizontal Shear Stress Formula",
+      "formula": "fᵥ = VQ/(Ib)",
       "where": [
-        "w = uniform load",
+        "fᵥ = horizontal shear stress",
+        "V = internal shear force",
+        "Q = first moment of area about the neutral axis",
+        "I = second moment of area",
+        "b = section width at the point considered"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Rectangular Section Maximum Flexural Stress",
+      "formula": "fᵦₘₐₓ = 6M/(bd²)",
+      "where": [
+        "fᵦₘₐₓ = maximum flexural stress",
+        "M = bending moment",
+        "b = rectangle width",
+        "d = rectangle depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Rectangular Section Maximum Shear Stress",
+      "formula": "fᵥₘₐₓ = 3V/(2A)",
+      "where": [
+        "fᵥₘₐₓ = maximum shear stress",
+        "V = shear force",
+        "A = cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Solid Circular Section Maximum Flexural Stress",
+      "formula": "fᵦₘₐₓ = Mr/I",
+      "where": [
+        "fᵦₘₐₓ = maximum flexural stress",
+        "M = bending moment",
+        "r = outer radius",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Solid Circular Section Maximum Shear Stress",
+      "formula": "fᵥₘₐₓ = 4V/(3A)",
+      "where": [
+        "fᵥₘₐₓ = maximum shear stress",
+        "V = shear force",
+        "A = cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Triangular Section Maximum Flexural Stress",
+      "formula": "fᵦₘₐₓ = Mc/I",
+      "where": [
+        "fᵦₘₐₓ = maximum flexural stress",
+        "M = bending moment",
+        "c = distance to the extreme fiber",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Triangular Section Maximum Shear Stress",
+      "formula": "fᵥₘₐₓ = 3V/(2A)",
+      "where": [
+        "fᵥₘₐₓ = maximum shear stress",
+        "V = shear force",
+        "A = cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hollow Circular Section Maximum Flexural Stress",
+      "formula": "fᵦₘₐₓ = Mc/I",
+      "where": [
+        "fᵦₘₐₓ = maximum flexural stress",
+        "M = bending moment",
+        "c = outer radius",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Hollow Circular Section Maximum Shear Stress",
+      "formula": "fᵥₘₐₓ = (4V/(3A)) × ((R² + Rr + r²)/(R² + r²)) ≈ 2V/A",
+      "where": [
+        "fᵥₘₐₓ = maximum shear stress",
+        "V = shear force",
+        "A = annular cross-sectional area",
+        "R = outer radius",
+        "r = inner radius",
+        "The source PDF also gives the thin-wall approximation ≈ 2V/A"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "One Pick-up Point for Least Bending Stress",
+      "formula": "x₁ = 0.2929L",
+      "where": [
+        "x₁ = pick-up point location shown in the source diagram",
+        "L = beam length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two Pick-up Points for Least Bending Stress",
+      "formula": "x₁ = 0.20711L",
+      "where": [
+        "x₁ = pick-up point location shown in the source diagram",
+        "L = beam length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two Pick-up Points for Least Shear Stress",
+      "formula": "x₁ = 0.25L",
+      "where": [
+        "x₁ = pick-up point location shown in the source diagram",
+        "L = beam length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Sliding",
+      "formula": "FSₛ = μRᵧ/FH",
+      "where": [
+        "FSₛ = factor of safety against sliding",
+        "μ = coefficient of friction at the base",
+        "Rᵧ = resultant vertical base reaction",
+        "FH = total horizontal force"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Factor of Safety Against Overturning",
+      "formula": "FSₒ = RM/OM",
+      "where": [
+        "FSₒ = factor of safety against overturning",
+        "RM = sum of resisting moments",
+        "OM = sum of overturning moments"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Location of Vertical Base Reaction from Toe",
+      "formula": "Rᵧx = RM − OM",
+      "where": [
+        "Rᵧ = resultant vertical base reaction",
+        "x = distance from the toe to the line of action of Rᵧ",
+        "RM = resisting moment about the toe",
+        "OM = overturning moment about the toe"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Eccentricity of Base Reaction",
+      "formula": "e = B/2 − x",
+      "where": [
+        "e = eccentricity of the vertical reaction from the base centerline",
+        "B = base width",
+        "x = distance from the toe to the resultant vertical reaction"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum/Minimum Base Pressure (e < B/6)",
+      "formula": "qₘₐₓ/ₘᵢₙ = (Rᵧ/(BW))(1 ± 6e/B)",
+      "where": [
+        "qₘₐₓ, qₘᵢₙ = maximum and minimum base pressures",
+        "Rᵧ = vertical base reaction",
+        "B = base width",
+        "W = base width/depth dimension used in the source notation for contact area BW",
+        "e = eccentricity",
+        "Condition stated in the source: e < B/6"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Base Pressure (e > B/6)",
+      "formula": "qₘₐₓ = 2Rᵧ/(3xW)",
+      "where": [
+        "qₘₐₓ = maximum base pressure for a triangular pressure distribution",
+        "Rᵧ = vertical base reaction",
+        "x = distance from toe to line of action of Rᵧ",
+        "W = dimension perpendicular to the section shown in the source",
+        "Condition stated in the source: e > B/6"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cylindrical Vessel Longitudinal Stress",
+      "formula": "σL = pD/(4t)",
+      "where": [
+        "σL = longitudinal/axial wall stress",
+        "p = internal pressure",
+        "D = cylinder diameter",
+        "t = wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cylindrical Vessel Hoop Stress",
+      "formula": "σt = pD/(2t)",
+      "where": [
+        "σt = tangential/circumferential (hoop) stress",
+        "p = internal pressure",
+        "D = cylinder diameter",
+        "t = wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cylindrical Vessel Maximum Shear Stress",
+      "formula": "τₘₐₓ = pD/(4t)",
+      "where": [
+        "τₘₐₓ = maximum in-plane shear stress for a thin-walled cylindrical vessel",
+        "p = internal pressure",
+        "D = cylinder diameter",
+        "t = wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spherical Vessel Wall Stress",
+      "formula": "σ = pD/(4t)",
+      "where": [
+        "σ = membrane wall stress in a thin-walled spherical vessel",
+        "p = internal pressure",
+        "D = sphere diameter",
+        "t = wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spherical Vessel Maximum Shear Stress",
+      "formula": "τₘₐₓ = pD/(8t)",
+      "where": [
+        "τₘₐₓ = maximum shear stress as given in the source PDF",
+        "p = internal pressure",
+        "D = sphere diameter",
+        "t = wall thickness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Degree of Indeterminacy for Plane Trusses",
+      "formula": "I = m + r − 2j",
+      "where": [
+        "I = degree of static indeterminacy",
+        "m = number of members",
+        "r = number of reaction components",
+        "j = number of joints"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Degree of Indeterminacy for 2D Beams and Frames",
+      "formula": "I = U − E; E = 3N",
+      "where": [
+        "I = degree of static indeterminacy using the source notation",
+        "U = number of unknown force/moment components",
+        "E = number of equilibrium equations",
+        "N = number of nodes/joints in the source notation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Catenary Tension at a Point",
+      "formula": "T = wy",
+      "where": [
+        "T = tension at the point considered in the source notation",
+        "w = cable load per unit horizontal length",
+        "y = vertical coordinate shown in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Catenary Tension",
+      "formula": "Tₘᵢₙ = wc",
+      "where": [
+        "Tₘᵢₙ = minimum tension at the lowest point of the cable",
+        "w = cable load per unit horizontal length",
+        "c = catenary parameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Catenary Equation",
+      "formula": "y = c cosh(x/c)",
+      "where": [
+        "y = vertical coordinate measured as shown in the source PDF",
+        "x = horizontal coordinate",
+        "c = catenary parameter",
+        "cosh = hyperbolic cosine"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Reaction (Center Point Load)",
+      "formula": "R = P/2",
+      "where": [
+        "R = reaction at either support for a symmetric load",
+        "P = concentrated load at midspan"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Shear (Center Point Load)",
+      "formula": "Vₘₐₓ = P/2",
+      "where": [
+        "Vₘₐₓ = maximum absolute shear force",
+        "P = concentrated load at midspan"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Moment (Center Point Load)",
+      "formula": "Mₘₐₓ = PL/4",
+      "where": [
+        "Mₘₐₓ = maximum bending moment at midspan",
+        "P = concentrated load at midspan",
         "L = span"
       ],
       "mnemonics": ""
     },
     {
       "name": "Max Moment: Center Load (SS)",
-      "formula": "M = PL/4",
+      "formula": "Mₘₐₓ = PL/4",
       "where": [
-        "P = point load",
+        "Mₘₐₓ = maximum bending moment at midspan",
+        "P = concentrated load at midspan",
         "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Deflection (Center Point Load)",
+      "formula": "δₘₐₓ = PL³/(48EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection at midspan",
+        "P = concentrated load at midspan",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Deflection (Center Load)",
+      "formula": "δₘₐₓ = PL³/(48EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection at midspan",
+        "P = concentrated load at midspan",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Deflection at x (Point Load at Any Point)",
+      "formula": "δₓ = (Pbx/(6EIL))(L² − b² − x²)",
+      "where": [
+        "δₓ = deflection at location x",
+        "P = concentrated load",
+        "a = distance from left support to load",
+        "b = distance from load to right support (b = L − a)",
+        "x = location measured from the left support",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Reaction (Full-Span UDL)",
+      "formula": "R = wL/2",
+      "where": [
+        "R = reaction at either support",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Shear (Full-Span UDL)",
+      "formula": "Vₘₐₓ = wL/2",
+      "where": [
+        "Vₘₐₓ = maximum absolute shear force",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Moment (Full-Span UDL)",
+      "formula": "Mₘₐₓ = wL²/8",
+      "where": [
+        "Mₘₐₓ = maximum bending moment at midspan",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Max Moment: Uniform Load (SS)",
+      "formula": "Mₘₐₓ = wL²/8",
+      "where": [
+        "Mₘₐₓ = maximum bending moment",
+        "w = uniformly distributed load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Maximum Deflection (Full-Span UDL)",
+      "formula": "δₘₐₓ = 5wL⁴/(384EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection at midspan",
+        "w = uniform load per unit length",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Deflection (Uniform Load)",
+      "formula": "δₘₐₓ = 5wL⁴/(384EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection",
+        "w = uniformly distributed load per unit length",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "SS Beam Deflection at x (Full-Span UDL)",
+      "formula": "δₓ = (wx/(24EI))(L³ − 2Lx² + x³)",
+      "where": [
+        "δₓ = deflection at location x",
+        "w = uniform load per unit length",
+        "x = location measured from a support",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Reaction (End Point Load)",
+      "formula": "R = P",
+      "where": [
+        "R = vertical reaction magnitude at the fixed support",
+        "P = concentrated load at the free end"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Maximum Shear (End Point Load)",
+      "formula": "Vₘₐₓ = P",
+      "where": [
+        "Vₘₐₓ = maximum shear-force magnitude",
+        "P = concentrated load at the free end"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Maximum Moment (End Point Load)",
+      "formula": "Mₘₐₓ = PL",
+      "where": [
+        "Mₘₐₓ = maximum moment magnitude at the fixed support",
+        "P = concentrated load at the free end",
+        "L = cantilever length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Deflection (End Load)",
+      "formula": "δₘₐₓ = PL³/(3EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection at the free end",
+        "P = concentrated load at the free end",
+        "L = cantilever length",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Maximum Deflection (Point Load at Any Point)",
+      "formula": "δₘₐₓ = Pa²(3L − a)/(6EI)",
+      "where": [
+        "δₘₐₓ = free-end deflection for a load located along the cantilever",
+        "P = concentrated load",
+        "a = distance from the fixed support to the load",
+        "L = total cantilever length",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Deflection at x (End Point Load)",
+      "formula": "δₓ = (P/(6EI))(2L³ − 3L²x + x³)",
+      "where": [
+        "δₓ = deflection at location x",
+        "P = concentrated load at free end",
+        "L = cantilever length",
+        "x = distance measured from the free end toward the fixed support",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Maximum Deflection (Full-Span UDL)",
+      "formula": "δₘₐₓ = wL⁴/(8EI)",
+      "where": [
+        "δₘₐₓ = free-end deflection",
+        "w = uniform load per unit length",
+        "L = cantilever length",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cantilever Maximum Deflection (End Moment)",
+      "formula": "δₘₐₓ = ML²/(2EI)",
+      "where": [
+        "δₘₐₓ = free-end deflection",
+        "M = applied end moment",
+        "L = cantilever length",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Reactions (Center Point Load)",
+      "formula": "R = P/2; V = P/2",
+      "where": [
+        "R = vertical reaction at either fixed support",
+        "V = shear-force magnitude at either side of the midspan load",
+        "P = concentrated load at midspan"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Support Moment (Center Point Load)",
+      "formula": "M_support = −PL/8",
+      "where": [
+        "M_support = fixed-end support moment (negative by the source sign convention)",
+        "P = concentrated load at midspan",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Midspan Moment (Center Point Load)",
+      "formula": "M_midspan = +PL/8",
+      "where": [
+        "M_midspan = positive midspan bending moment",
+        "P = concentrated load at midspan",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Maximum Deflection (Center Point Load)",
+      "formula": "δₘₐₓ = PL³/(192EI)",
+      "where": [
+        "δₘₐₓ = maximum midspan deflection",
+        "P = concentrated load at midspan",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Left Fixed-End Moment (Point Load Anywhere)",
+      "formula": "M_L = Pab²/L²",
+      "where": [
+        "M_L = fixed-end moment at the left support, magnitude as shown",
+        "P = concentrated load",
+        "a = distance from left support to load",
+        "b = distance from load to right support",
+        "L = a + b = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Right Fixed-End Moment (Point Load Anywhere)",
+      "formula": "M_R = Pa²b/L²",
+      "where": [
+        "M_R = fixed-end moment at the right support, magnitude as shown",
+        "P = concentrated load",
+        "a = distance from left support to load",
+        "b = distance from load to right support",
+        "L = a + b = span"
       ],
       "mnemonics": ""
     },
@@ -775,17 +3560,654 @@ const RAW = {
       "name": "Fixed-End Moment (Uniform Load)",
       "formula": "FEM = wL²/12",
       "where": [
-        "w = uniform load",
+        "FEM = magnitude of fixed-end moment for a fixed-fixed beam under full-span UDL",
+        "w = uniformly distributed load per unit length",
         "L = span"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Modulus of Concrete",
-      "formula": "Ec = 4700√(f′c)",
+      "name": "Restrained Beam End Moments (Full-Span UDL)",
+      "formula": "M_A = M_B = −wL²/12",
       "where": [
-        "Ec in MPa",
-        "f′c = concrete strength in MPa"
+        "M_A, M_B = fixed-end moments at supports, negative by the source sign convention",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Reactions (Full-Span UDL)",
+      "formula": "R_A = R_B = wL/2",
+      "where": [
+        "R_A, R_B = vertical reactions at the two supports",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam End Shears (Full-Span UDL)",
+      "formula": "V_A = +wL/2; V_B = −wL/2",
+      "where": [
+        "V_A, V_B = end shears using the source sign convention",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Maximum Positive Moment (Full-Span UDL)",
+      "formula": "M⁺ = +wL²/24",
+      "where": [
+        "M⁺ = maximum positive midspan moment",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Maximum Deflection (Full-Span UDL)",
+      "formula": "δₘₐₓ = wL⁴/(384EI)",
+      "where": [
+        "δₘₐₓ = maximum deflection at midspan",
+        "w = uniform load per unit length",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Left Reaction (Triangular Load, w at A to 0 at B)",
+      "formula": "R_A = 7wL/20",
+      "where": [
+        "R_A = vertical reaction at support A",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Right Reaction (Triangular Load, w at A to 0 at B)",
+      "formula": "R_B = 3wL/20",
+      "where": [
+        "R_B = vertical reaction at support B",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Left End Shear (Triangular Load, w at A to 0 at B)",
+      "formula": "V_A = +7wL/20",
+      "where": [
+        "V_A = end shear at A using the source sign convention",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Right End Shear (Triangular Load, w at A to 0 at B)",
+      "formula": "V_B = −3wL/20",
+      "where": [
+        "V_B = end shear at B using the source sign convention",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Left End Moment (Triangular Load, w at A to 0 at B)",
+      "formula": "M_A = −wL²/20",
+      "where": [
+        "M_A = fixed-end moment at support A",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Restrained Beam Right End Moment (Triangular Load, w at A to 0 at B)",
+      "formula": "M_B = −wL²/30",
+      "where": [
+        "M_B = fixed-end moment at support B",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Fixed-End Moment Relation",
+      "formula": "M_A = FEM_A + (1/2)FEM_B",
+      "where": [
+        "M_A = end moment at the fixed support A after propping",
+        "FEM_A = fixed-end moment at A for the corresponding restrained-beam loading",
+        "FEM_B = fixed-end moment at B for the corresponding restrained-beam loading"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction for Point Load",
+      "formula": "R_B = Pa²(3L − a)/(2L³)",
+      "where": [
+        "R_B = vertical reaction at the propped support B",
+        "P = concentrated load",
+        "a = distance from fixed support A to the point load",
+        "L = total span",
+        "E = modulus of elasticity and I = second moment of area cancel from the final reaction expression"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction A (Full-Span UDL)",
+      "formula": "R_A = 5wL/8",
+      "where": [
+        "R_A = vertical reaction at the fixed support A",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction B (Full-Span UDL)",
+      "formula": "R_B = 3wL/8",
+      "where": [
+        "R_B = vertical reaction at the prop B",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam End Shears (Full-Span UDL)",
+      "formula": "V_A = +5wL/8; V_B = −3wL/8",
+      "where": [
+        "V_A, V_B = end shears using the source sign convention",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Fixed-End Moment (Full-Span UDL)",
+      "formula": "M_A = −wL²/8; M_B = 0",
+      "where": [
+        "M_A = moment at fixed support A, negative by the source sign convention",
+        "M_B = moment at the simple prop B",
+        "w = uniform load per unit length",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Maximum Positive Moment (Full-Span UDL)",
+      "formula": "M⁺ = +9wL²/128 at x₂ = 3L/8",
+      "where": [
+        "M⁺ = maximum positive bending moment",
+        "w = uniform load per unit length",
+        "L = span",
+        "x₂ = distance indicator shown from the positive-moment location to support B in the source diagram"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Maximum Deflection (Full-Span UDL)",
+      "formula": "δₘₐₓ = wL⁴/(185EI) at x = 0.4215L",
+      "where": [
+        "δₘₐₓ = maximum deflection",
+        "w = uniform load per unit length",
+        "L = span",
+        "E = modulus of elasticity",
+        "I = second moment of area",
+        "x = location of maximum deflection measured as shown in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction A (Triangular Load, w at A to 0 at B)",
+      "formula": "R_A = 2wL/5",
+      "where": [
+        "R_A = vertical reaction at the fixed support A",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction B (Triangular Load, w at A to 0 at B)",
+      "formula": "R_B = wL/10",
+      "where": [
+        "R_B = vertical reaction at the prop B",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam End Shears (Triangular Load, w at A to 0 at B)",
+      "formula": "V_A = +2wL/5; V_B = −wL/10",
+      "where": [
+        "V_A, V_B = end shears using the source sign convention",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Fixed-End Moment (Triangular Load, w at A to 0 at B)",
+      "formula": "M_A = −wL²/15; M_B = 0",
+      "where": [
+        "M_A = moment at fixed support A",
+        "M_B = moment at the prop B",
+        "w = peak triangular load intensity at A, reducing to zero at B",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Propped Beam Reaction for General Load",
+      "formula": "R_B = Pa²(3L − a)/(2L³) = ∫(y dx)x²(3L − x)/(2L³)",
+      "where": [
+        "R_B = reaction at the prop B",
+        "P = concentrated-load equivalent when load is a point load",
+        "a = distance from fixed support to the point load",
+        "y = distributed load intensity at location x",
+        "dx = differential length",
+        "x = distance from fixed support A",
+        "L = span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: R1 and V1",
+      "formula": "R₁ = V₁ = 7wL/16",
+      "where": [
+        "R₁ = left support reaction",
+        "V₁ = shear at the left end as defined in the source",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: Interior Reaction",
+      "formula": "R₂ = V₂ + V₃ = 5wL/8",
+      "where": [
+        "R₂ = interior support reaction",
+        "V₂, V₃ = shear components shown either side of the interior support",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: R3 and V3",
+      "formula": "R₃ = V₃ = wL/16",
+      "where": [
+        "R₃ = right support reaction",
+        "V₃ = shear at the right end as defined in the source",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: V2",
+      "formula": "V₂ = 9wL/16",
+      "where": [
+        "V₂ = shear component shown at the interior support",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: Maximum Moment",
+      "formula": "Mₘₐₓ = 49wL²/512",
+      "where": [
+        "Mₘₐₓ = maximum positive bending moment shown for the loaded span",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL: Interior Support Moment",
+      "formula": "M₁ = wL²/16",
+      "where": [
+        "M₁ = interior-support moment magnitude shown in the source",
+        "w = uniform load applied over the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: R1 and V1",
+      "formula": "R₁ = V₁ = 13P/32",
+      "where": [
+        "R₁ = left support reaction",
+        "V₁ = left-end shear",
+        "P = concentrated load at the center of the first span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: Interior Reaction",
+      "formula": "R₂ = V₂ + V₃ = 11P/16",
+      "where": [
+        "R₂ = interior support reaction",
+        "V₂, V₃ = shear components shown either side of the interior support",
+        "P = concentrated load at the center of the first span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: R3 and V3",
+      "formula": "R₃ = V₃ = 3P/32",
+      "where": [
+        "R₃ = right support reaction",
+        "V₃ = right-end shear",
+        "P = concentrated load at the center of the first span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: V2",
+      "formula": "V₂ = 19P/32",
+      "where": [
+        "V₂ = shear component shown at the interior support",
+        "P = concentrated load at the center of the first span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: Maximum Moment",
+      "formula": "Mₘₐₓ = 13PL/64",
+      "where": [
+        "Mₘₐₓ = maximum positive bending moment",
+        "P = concentrated load at the center of the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam Center Point Load: Interior Support Moment",
+      "formula": "M₁ = 3PL/32",
+      "where": [
+        "M₁ = interior-support moment magnitude shown in the source",
+        "P = concentrated load at the center of the first span",
+        "L = each span length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL on Both Spans: End Reactions",
+      "formula": "R_A = R_C = 3wL/8",
+      "where": [
+        "R_A, R_C = reactions at the end supports",
+        "w = uniform load per unit length on both spans",
+        "L = length of each span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL on Both Spans: Interior Reaction",
+      "formula": "R_B = 5wL/4",
+      "where": [
+        "R_B = reaction at the middle support",
+        "w = uniform load per unit length on both spans",
+        "L = length of each span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL on Both Spans: Positive Moment",
+      "formula": "M⁺ = 9wL²/128",
+      "where": [
+        "M⁺ = maximum positive bending moment in either span",
+        "w = uniform load per unit length on both spans",
+        "L = length of each span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL on Both Spans: Interior Support Moment",
+      "formula": "M_B = −wL²/8",
+      "where": [
+        "M_B = negative bending moment at the interior support",
+        "w = uniform load per unit length on both spans",
+        "L = length of each span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Span Continuous Beam UDL on Both Spans: Maximum Deflection",
+      "formula": "δₘₐₓ = wL⁴/(185EI) at x = 0.4215L",
+      "where": [
+        "δₘₐₓ = maximum deflection",
+        "w = uniform load per unit length on both spans",
+        "L = length of each span",
+        "E = modulus of elasticity",
+        "I = second moment of area",
+        "x = location of maximum deflection as shown in the source"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Carry-Over Moment",
+      "formula": "M_A = (1/2)M_B",
+      "where": [
+        "M_A = carried-over moment at the far end for the source convention",
+        "M_B = applied/distributed moment at the near end"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Beam Stiffness (Moment Distribution)",
+      "formula": "K = 4EI/L",
+      "where": [
+        "K = member stiffness at a joint when the far end is fixed",
+        "E = modulus of elasticity",
+        "I = second moment of area",
+        "L = member length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Distribution Factor",
+      "formula": "DF = K/ΣKᵢ",
+      "where": [
+        "DF = distribution factor for a member at a joint",
+        "K = stiffness of the member considered",
+        "ΣKᵢ = sum of stiffnesses of all members meeting at the joint"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Distribution Factor at Fixed Ends",
+      "formula": "DF = 0",
+      "where": [
+        "DF = distribution factor",
+        "For fixed ends, the source PDF states DF = 0"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Distribution Factor at Hinged or Roller Ends",
+      "formula": "DF = 1.0",
+      "where": [
+        "DF = distribution factor",
+        "For a hinged or roller end, the source PDF states DF = 1.0"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Modified Beam Stiffness",
+      "formula": "K′ = (3/4)K",
+      "where": [
+        "K′ = modified member stiffness",
+        "K = original beam stiffness"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Three-Moment Equation (No Settlement)",
+      "formula": "M₁L₁ + 2M₂(L₁ + L₂) + M₃L₂ + 6A₁ā₁/L₁ + 6A₂b̄₂/L₂ = 0",
+      "where": [
+        "M₁, M₂, M₃ = bending moments at the three consecutive supports",
+        "L₁, L₂ = lengths of the two adjacent spans",
+        "A₁, A₂ = areas under the simply-supported bending-moment diagrams due to loads on each span",
+        "ā₁ = centroid distance for the first span diagram measured as shown in the source",
+        "b̄₂ = centroid distance for the second span diagram measured as shown in the source",
+        "Applicable source condition: homogeneous, prismatic beam without support settlement"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Conical Pendulum Force Relation",
+      "formula": "tanθ = F_c/W",
+      "where": [
+        "θ = angle of the string from the vertical as shown",
+        "F_c = horizontal centripetal force",
+        "W = weight of the mass"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Conical Pendulum Acceleration Relation",
+      "formula": "tanθ = a_c/g",
+      "where": [
+        "θ = angle of the string from the vertical as shown",
+        "a_c = centripetal acceleration",
+        "g = acceleration due to gravity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Centripetal Acceleration",
+      "formula": "a_c = v²/r",
+      "where": [
+        "a_c = centripetal acceleration",
+        "v = tangential speed",
+        "r = radius of the circular path"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Elastic Neutral Axis Condition",
+      "formula": "Q_above = Q_below",
+      "where": [
+        "Q_above = first moment of area above the elastic neutral axis",
+        "Q_below = first moment of area below the elastic neutral axis",
+        "Used in the source for a homogeneous section"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Plastic Neutral Axis Condition",
+      "formula": "A_above = A_below",
+      "where": [
+        "A_above = area above the plastic neutral axis",
+        "A_below = area below the plastic neutral axis",
+        "Used in the source for a homogeneous section"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Plastic Section Modulus",
+      "formula": "Z = Q_above + Q_below",
+      "where": [
+        "Z = plastic section modulus",
+        "Q_above = first moment of area above the plastic neutral axis",
+        "Q_below = first moment of area below the plastic neutral axis"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Plastic Moment Capacity",
+      "formula": "Mₚ = F_y Z",
+      "where": [
+        "Mₚ = plastic moment capacity",
+        "F_y = yield stress of the material",
+        "Z = plastic section modulus"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Poisson's Ratio",
+      "formula": "ν = −εlat/εlong",
+      "where": [
+        "ν = Poisson’s ratio",
+        "ε_lat = lateral strain",
+        "ε_long = longitudinal strain"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Moment of Inertia (Rectangle)",
+      "formula": "I = bh³/12",
+      "where": [
+        "I = second moment of area about the centroidal axis parallel to the base",
+        "b = rectangle base/width",
+        "h = rectangle height/depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Moment of Inertia (Circle)",
+      "formula": "I = πd⁴/64",
+      "where": [
+        "I = second moment of area about a centroidal diameter",
+        "d = circle diameter"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Parallel Axis Theorem",
+      "formula": "I = Ic + Ad²",
+      "where": [
+        "I = second moment of area about the target axis",
+        "I_c = second moment of area about a parallel centroidal axis",
+        "A = area",
+        "d = perpendicular distance between the two axes"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Euler’s Critical Buckling Load",
+      "formula": "Pcr = π²EI/(KL)² = FcrAg",
+      "where": [
+        "Pcr = Euler critical buckling load",
+        "E = modulus of elasticity",
+        "I = moment of inertia about the buckling axis",
+        "K = effective length factor",
+        "L = unsupported length",
+        "Fcr = Euler critical buckling stress",
+        "Ag = gross cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Slenderness Ratio",
+      "formula": "SR = KL/r",
+      "where": [
+        "SR = slenderness ratio",
+        "K = effective length / end-fixity factor",
+        "L = unsupported length",
+        "r = radius of gyration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Modulus of Elasticity of Concrete",
+      "formula": "Lightweight: Ec = wc^1.5 × 0.043√(f′c); Normal weight: Ec = 4700√(f′c)",
+      "where": [
+        "Ec = modulus of elasticity of concrete (MPa)",
+        "wc = unit weight of concrete, as used in the lightweight formula",
+        "f′c = specified compressive strength of concrete (MPa)",
+        "The two equations are listed separately in the source PDF for lightweight and normal-weight concrete."
       ],
       "mnemonics": ""
     },
@@ -793,8 +4215,10 @@ const RAW = {
       "name": "Stress Block Depth",
       "formula": "a = Asfy/(0.85f′cb)",
       "where": [
-        "As = steel area",
-        "fy = steel yield strength",
+        "a = equivalent rectangular stress-block depth",
+        "A_s = area of tension reinforcement",
+        "f_y = yield strength of reinforcement",
+        "f′c = specified concrete compressive strength",
         "b = beam width"
       ],
       "mnemonics": ""
@@ -803,20 +4227,950 @@ const RAW = {
       "name": "Nominal Moment (Singly Reinforced)",
       "formula": "Mn = Asfy(d−a/2)",
       "where": [
-        "As = steel area",
-        "fy = yield strength",
+        "M_n = nominal flexural moment capacity",
+        "A_s = area of tension reinforcement",
+        "f_y = yield strength of reinforcement",
         "d = effective depth",
-        "a = stress block depth"
+        "a = equivalent rectangular stress-block depth"
       ],
       "mnemonics": ""
     },
     {
-      "name": "Concrete Shear Strength",
-      "formula": "Vc = 0.17λ√(f′c)bd",
+      "name": "Shear Strength by Concrete – Simplified Calculation (Shear and Flexure Only)",
+      "formula": "Vc = 0.17λ√(f′c)bw d",
       "where": [
-        "λ = concrete weight factor",
-        "b = width",
+        "Vc = concrete contribution to nominal shear strength",
+        "λ = concrete density / lightweight-concrete factor",
+        "f′c = specified concrete compressive strength",
+        "bw = web width",
+        "d = effective depth",
+        "This is the source PDF case for members subject to shear and flexure only."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Allowable Strength Design (ASD)",
+      "formula": "Ra ≤ Rn/Ω",
+      "where": [
+        "Ra = allowable strength",
+        "Rn = nominal strength",
+        "Ω = factor of safety / safety factor"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Load and Resistance Factor Design (LRFD)",
+      "formula": "Ru ≤ φRn",
+      "where": [
+        "Ru = required strength due to factored loads",
+        "φ = resistance factor",
+        "Rn = nominal strength"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "ASTM A36 Steel Grade Properties",
+      "formula": "Fy = 248 MPa; Fu = 400 MPa",
+      "where": [
+        "Fy = yield strength",
+        "Fu = tensile / ultimate strength",
+        "Values are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "ASTM A572/A992 Grade 50 Steel Properties",
+      "formula": "Fy = 345 MPa; Fu = 450 MPa",
+      "where": [
+        "Fy = yield strength",
+        "Fu = tensile / ultimate strength",
+        "Values are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "ASTM A572/A992 Grade 60 Steel Properties",
+      "formula": "Fy = 414 MPa; Fu = 520 MPa",
+      "where": [
+        "Fy = yield strength",
+        "Fu = tensile / ultimate strength",
+        "Values are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Tensile Yielding in the Gross Section",
+      "formula": "Ft = 0.60Fy; Pa = FtAg = 0.60FyAg",
+      "where": [
+        "Ft = allowable tensile stress for gross-section yielding",
+        "Pa = allowable tensile load",
+        "Fy = yield strength",
+        "Ag = gross area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Tensile Rupture in the Net Section",
+      "formula": "Ft = 0.50Fu; Pa = FtAe = 0.50FuAe",
+      "where": [
+        "Ft = allowable tensile stress for net-section rupture",
+        "Pa = allowable tensile load",
+        "Fu = tensile / ultimate strength",
+        "Ae = effective net area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Bearing Strength",
+      "formula": "Fp = 1.2Fu; Pa = FpAp; Pa = 1.2FuAe",
+      "where": [
+        "Fp = allowable bearing stress",
+        "Pa = allowable load",
+        "Fu = tensile / ultimate strength",
+        "Ap = projected bearing area",
+        "Ae = effective net area; the final expression uses Ae as printed in the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Block Shear Strength",
+      "formula": "Fv = 0.30Fu; Ft = 0.50Fu; Pa = FvAnv + FtAnt = 0.30FuAnv + 0.50FuAnt",
+      "where": [
+        "Fv = allowable shear stress",
+        "Ft = allowable tensile stress",
+        "Pa = allowable block-shear load",
+        "Fu = tensile / ultimate strength",
+        "Anv = net area subject to shear",
+        "Ant = net area subject to tension"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Joint Efficiency (%)",
+      "formula": "η = (capacity of connection / capacity of member) × 100%",
+      "where": [
+        "η = joint efficiency in percent",
+        "Capacity of connection = capacity of the connection",
+        "Capacity of member = capacity of the connected member"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cochrane’s Formula",
+      "formula": "s²/(4g)",
+      "where": [
+        "s = pitch / spacing parallel to the force",
+        "g = gage / spacing perpendicular to the force",
+        "s²/(4g) is the staggered-hole correction shown in the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Net Width and Net Area (Staggered Holes)",
+      "formula": "wn = wg − Σdh + Σ(s²/(4g)); An = wn t; An = Ag − Σdh t + Σ(s²/(4g))t",
+      "where": [
+        "wn = net width",
+        "wg = gross width",
+        "dh = hole diameter",
+        "s = pitch / spacing parallel to the force",
+        "g = gage / spacing perpendicular to the force",
+        "An = net area",
+        "t = plate thickness",
+        "Ag = gross area",
+        "Σ = sum over the holes / staggered paths considered"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Strength of Fillet Welds",
+      "formula": "Fvw = 0.3Fuw; Pa = Fvw(0.707tL) = 0.3Fuw(0.707tL)",
+      "where": [
+        "Fvw = allowable weld shear stress",
+        "Fuw = tensile strength of weld metal",
+        "Pa = allowable weld load",
+        "t = weld size / throat-size variable as used in the source PDF",
+        "L = length of weld",
+        "0.707 = fillet-weld throat factor shown in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Commonly Used Weld Electrodes",
+      "formula": "E60: Fuw = 60 ksi = 414 MPa; E70: Fuw = 70 ksi = 483 MPa",
+      "where": [
+        "E60 and E70 = electrode classifications",
+        "Fuw = tensile strength of weld metal",
+        "Values are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Limiting Lengths, Lc and Lu",
+      "formula": "Lc = min(200bf/Fy, 137900Af/(Fy d))",
+      "where": [
+        "Lc = limiting unbraced length value calculated by the source equation",
+        "Lu = limiting length referenced in the source section; no separate Lu equation is printed on this page",
+        "bf = flange width",
+        "Af = flange area",
+        "Fy = yield strength",
+        "d = overall section depth",
+        "min(…)=take the smaller value"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Compact Sections (Compact Flange, Compact Web, and Lb < Lc)",
+      "formula": "Fb = 0.66Fy",
+      "where": [
+        "Fb = allowable bending stress",
+        "Fy = yield strength",
+        "Lb = laterally unsupported length",
+        "Lc = limiting length for the section"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Compact Sections that are Non-Slender (Non-Compact Flange, Compact Web, and Lb < Lc)",
+      "formula": "Fb = Fy(0.79 − 0.000762(bf/(2tf))√Fy)",
+      "where": [
+        "Fb = allowable bending stress",
+        "Fy = yield strength",
+        "bf = flange width",
+        "tf = flange thickness",
+        "Lb = laterally unsupported length",
+        "Lc = limiting length for the section"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Compact Sections that are Non-Slender (Compact Flange, Compact Web, and Lc < Lb < Lu)",
+      "formula": "Fb = 0.60Fy",
+      "where": [
+        "Fb = allowable bending stress",
+        "Fy = yield strength",
+        "Lb = laterally unsupported length",
+        "Lc = lower limiting length",
+        "Lu = upper limiting length"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Slender Members (Inelastic LTB)",
+      "formula": "√(703270Cb/Fy) < Lb/rt < √(3516330Cb/Fy); Fb = Fy(2/3 − Fy(Lb/rt)²/(10550 × 10³Cb)) ≤ 0.60Fy",
+      "where": [
+        "Fb = allowable bending stress",
+        "Fy = yield strength",
+        "Cb = lateral-torsional buckling modification factor",
+        "Lb = laterally unsupported length",
+        "rt = radius of gyration of the section component used by the source formula",
+        "LTB = lateral-torsional buckling",
+        "The inequality and equation follow the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Slender Members (Elastic LTB)",
+      "formula": "Lb/rt > √(3516330Cb/Fy); Fb = 1172100Cb/(Lb/rt)² ≤ 0.60Fy",
+      "where": [
+        "Fb = allowable bending stress",
+        "Fy = yield strength",
+        "Cb = lateral-torsional buckling modification factor",
+        "Lb = laterally unsupported length",
+        "rt = radius of gyration used in the source formula",
+        "LTB = lateral-torsional buckling"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "For Slender Members (General Lb/rt)",
+      "formula": "Fb = 82740Cb/(Lb d/Af) ≤ 0.60Fy",
+      "where": [
+        "Fb = allowable bending stress",
+        "Cb = lateral-torsional buckling modification factor",
+        "Lb = laterally unsupported length",
+        "d = section depth",
+        "Af = flange area",
+        "Fy = yield strength",
+        "The source PDF says to take the larger value compared with the previous equations."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Allowable Bending Stress in Tension (All Cases)",
+      "formula": "Fb = 0.60Fy",
+      "where": [
+        "Fb = allowable bending stress in tension",
+        "Fy = yield strength",
+        "The source PDF labels this formula as applicable for all cases."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spacing of Bolts in Built-Up Beams",
+      "formula": "s = RI/(VQ) = R/q",
+      "where": [
+        "s = bolt spacing along the member",
+        "R = allowable / resisting force per connector as used in the source equation",
+        "I = moment of inertia",
+        "V = shear force",
+        "Q = first moment of area",
+        "q = shear flow"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Flow",
+      "formula": "q = VQ/I",
+      "where": [
+        "q = shear flow",
+        "V = shear force",
+        "Q = first moment of area",
+        "I = moment of inertia"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Effective Flange Width, be",
+      "formula": "be = min(L/4, s, bf + 16tslab)",
+      "where": [
+        "be = effective flange width",
+        "L = span",
+        "s = spacing between adjacent beams / spacing limit shown in the source PDF",
+        "bf = beam flange width",
+        "tslab = slab thickness",
+        "min(…)=take the smallest of the listed limits"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Euler’s Critical Buckling Stress",
+      "formula": "Fcr = Fe = π²E/SR²",
+      "where": [
+        "Fcr = critical buckling stress",
+        "Fe = Euler buckling stress",
+        "E = modulus of elasticity",
+        "SR = slenderness ratio"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Radius of Gyration",
+      "formula": "r = √(I/A)",
+      "where": [
+        "r = radius of gyration",
+        "I = moment of inertia about the relevant axis",
+        "A = cross-sectional area"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Critical Slenderness Ratio / Compression Index, Cc",
+      "formula": "Cc = √(2π²E/Fy)",
+      "where": [
+        "Cc = critical slenderness ratio / compression index",
+        "E = modulus of elasticity",
+        "Fy = yield strength"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Allowable Compressive Stress, Fa (Intermediate Column, 2001)",
+      "formula": "When SR < Cc: FS = 5/3 + (3/8)(SR/Cc) − (1/8)(SR/Cc)³; Fc = Fy(1 − 0.5(SR/Cc)²); Fa = Fcr/FS",
+      "where": [
+        "Fa = allowable compressive stress",
+        "FS = factor of safety",
+        "Fc = critical / allowable stress term shown in the source PDF",
+        "Fcr = critical buckling stress",
+        "Fy = yield strength",
+        "SR = slenderness ratio",
+        "Cc = critical slenderness ratio / compression index",
+        "The formulas are copied from the 2001 compression-members pages."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Allowable Compressive Stress, Fa (Long Column, 2001)",
+      "formula": "When SR ≥ Cc: FS = 23/12; Fc = Fcr = Fe = π²E/SR²; Fa = Fc/FS",
+      "where": [
+        "Fa = allowable compressive stress",
+        "FS = factor of safety",
+        "Fc = critical stress term shown in the source PDF",
+        "Fcr = critical buckling stress",
+        "Fe = Euler buckling stress",
+        "E = modulus of elasticity",
+        "SR = slenderness ratio",
+        "Cc = critical slenderness ratio / compression index"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Slenderness Ratio Limit for Tension Members",
+      "formula": "SR ≤ 300",
+      "where": [
+        "SR = slenderness ratio",
+        "The source PDF states that the limit for tension members is 300."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Biaxial Bending Interaction Equation",
+      "formula": "IV = fbx/Fbx + fby/Fby ≤ 1.0",
+      "where": [
+        "IV = interaction value",
+        "fbx = actual bending stress about the x-axis",
+        "fby = actual bending stress about the y-axis",
+        "Fbx = allowable bending stress about the x-axis",
+        "Fby = allowable bending stress about the y-axis"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Purlin Bending Coefficients",
+      "formula": "No sagrods: X = 1/8, Y = 1/8; One line: X = 1/8, Y = 1/32; Two lines: (X = 1/8, Y = 1/360) or (X = 1/9, Y = 1/90), whichever governs",
+      "where": [
+        "X = coefficient shown for the X-axis",
+        "Y = coefficient shown for the Y-axis",
+        "No sagrods / one line / two lines = purlin bracing arrangements listed in the source PDF",
+        "The source slide presents these as coefficient values and does not print a full equation beside the table."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Purlins Technique / Shortcut for Eccentric Load",
+      "formula": "Adjusted load = 2P",
+      "where": [
+        "P = load not passing through the centroid",
+        "The source PDF says to multiply the load not passing through the centroid by 2."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Modular Ratio, n",
+      "formula": "n = Es/Ec",
+      "where": [
+        "n = modular ratio",
+        "Es = modulus of elasticity of steel",
+        "Ec = modulus of elasticity of concrete"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Cracking Moment, Mcr",
+      "formula": "Mcr = frIg/yt; fr = Mcr yt/Ig",
+      "where": [
+        "Mcr = cracking moment",
+        "fr = modulus of rupture of concrete",
+        "Ig = gross moment of inertia of the concrete section",
+        "yt = distance from the centroidal axis to the extreme tension fiber"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Effective Moment of Inertia, Ie",
+      "formula": "Icr ≤ Ie = (Mcr/Ma)³Ig + [1 − (Mcr/Ma)³]Icr ≤ Ig",
+      "where": [
+        "Ie = effective moment of inertia",
+        "Icr = cracked moment of inertia",
+        "Mcr = cracking moment",
+        "Ma = maximum service-load moment at the section",
+        "Ig = gross moment of inertia"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Whitney’s Theory",
+      "formula": "a = βc",
+      "where": [
+        "a = depth of the equivalent rectangular stress block",
+        "β = stress-block factor",
+        "c = depth to the neutral axis"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Steel Ratio, ρ",
+      "formula": "ρ = As/(bd)",
+      "where": [
+        "ρ = tensile steel ratio",
+        "As = area of tension reinforcement",
+        "b = beam width",
         "d = effective depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stress in the Tension Steel",
+      "formula": "fs = 600(d − c)/c",
+      "where": [
+        "fs = stress in the tension steel",
+        "d = effective depth",
+        "c = neutral-axis depth",
+        "600 = coefficient shown in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Balanced Condition (Singly Reinforced Beam)",
+      "formula": "ρb = (0.85f′cβ/fy)(600/(600 + fy))",
+      "where": [
+        "ρb = balanced steel ratio",
+        "f′c = specified concrete compressive strength",
+        "β = stress-block factor",
+        "fy = yield strength of reinforcement",
+        "600 = coefficient shown in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Steel Ratio, ρmax (SRB)",
+      "formula": "ρmax = (0.85f′cβ/fy)(3/7)",
+      "where": [
+        "ρmax = maximum steel ratio for a singly reinforced beam (SRB)",
+        "f′c = specified concrete compressive strength",
+        "β = stress-block factor",
+        "fy = yield strength of reinforcement"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Steel Ratio, ρmax (TC)",
+      "formula": "ρmax = (0.85f′cβ/fy)(3/8)",
+      "where": [
+        "ρmax = maximum steel ratio shown for TC in the source PDF",
+        "f′c = specified concrete compressive strength",
+        "β = stress-block factor",
+        "fy = yield strength of reinforcement",
+        "TC is the source PDF abbreviation; it is not expanded on the formula page."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Steel Ratio, ρmin",
+      "formula": "ρmin = greater of {1.4/fy, √(f′c)/(4fy)}",
+      "where": [
+        "ρmin = minimum steel ratio",
+        "fy = yield strength of reinforcement",
+        "f′c = specified concrete compressive strength",
+        "The source PDF presents the two expressions inside a greater-of brace."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Ultimate / Design Moment Capacity",
+      "formula": "Mu = φMn",
+      "where": [
+        "Mu = ultimate / design moment capacity",
+        "φ = strength-reduction factor",
+        "Mn = nominal moment capacity"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Stress in the Compression Steel",
+      "formula": "fs′ = 600(c − d′)/c",
+      "where": [
+        "fs′ = stress in compression steel",
+        "c = neutral-axis depth",
+        "d′ = distance from the extreme compression fiber to the compression reinforcement",
+        "600 = coefficient shown in the source PDF"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Span Ratio, m",
+      "formula": "m = S/L",
+      "where": [
+        "m = span ratio",
+        "S = shorter span",
+        "L = longer span"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "One-Way Load Distribution to the Longer Beam",
+      "formula": "w = qS/2 (per side)",
+      "where": [
+        "w = line load distributed to the longer beam per side",
+        "q = slab area load",
+        "S = shorter span",
+        "The source PDF notes “per side”."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Way Load Distribution to the Longer Beam",
+      "formula": "w = (qS/3)((3 − m²)/2) (per side)",
+      "where": [
+        "w = line load distributed to the longer beam per side",
+        "q = slab area load",
+        "S = shorter span",
+        "m = span ratio S/L",
+        "The source PDF notes “per side”."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Two-Way Load Distribution to the Shorter Beam",
+      "formula": "w = qS/3 (per side)",
+      "where": [
+        "w = line load distributed to the shorter beam per side",
+        "q = slab area load",
+        "S = shorter span",
+        "The source PDF notes “per side”."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Clear Span, ln (Negative Moments)",
+      "formula": "ln = average of the adjacent clear span lengths (for negative moments only)",
+      "where": [
+        "ln = clear span used for the negative-moment coefficient method",
+        "Adjacent clear span lengths = the two spans next to the support",
+        "The source PDF says this is not applicable for positive moments, shears, or negative moment at the exterior support."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Thickness for One-Way Slabs",
+      "formula": "hmin = l/10 (cantilever); l/20 (simply supported); l/24 (one-end continuous); l/28 (both ends continuous)",
+      "where": [
+        "hmin = minimum slab thickness",
+        "l = clear span",
+        "Support conditions correspond to the four cases listed in the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Modified Value for Slab Thickness, h′",
+      "formula": "h′ = h(0.4 + fy/700)",
+      "where": [
+        "h′ = modified minimum slab thickness",
+        "h = minimum slab thickness from the support-condition table",
+        "fy = yield strength of reinforcement in MPa, as used in the source equation"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Area of Shrinkage and Temperature Reinforcement",
+      "formula": "If fy < 420 MPa: Asmin = 0.0020Ag; if fy ≥ 420 MPa: Asmin = greater of {(0.0018 × 420/fy)Ag, 0.0014Ag}",
+      "where": [
+        "Asmin = minimum area of shrinkage and temperature reinforcement",
+        "Ag = gross concrete area",
+        "fy = yield strength of reinforcement",
+        "The expressions and threshold of 420 MPa follow the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Spacing for Temperature and Shrinkage Reinforcement",
+      "formula": "smax = lesser of {3h, 450 mm}",
+      "where": [
+        "smax = maximum reinforcement spacing",
+        "h = slab thickness",
+        "The source PDF directs choosing the lesser value."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Concrete Cover, Cc",
+      "formula": "Cc = 20 mm",
+      "where": [
+        "Cc = minimum concrete cover, as named in the source PDF",
+        "The source PDF gives 20 mm."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Horizontal Clear Spacing",
+      "formula": "sclear = greatest of {25 mm, db, (4/3)dagg}",
+      "where": [
+        "sclear = minimum horizontal clear spacing between reinforcing bars",
+        "db = reinforcing-bar diameter",
+        "dagg = maximum size of coarse aggregate",
+        "The source PDF directs choosing the greatest value."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Eccentricity for Short Columns",
+      "formula": "Tied: emin = 0.10h; Spiral: emin = 0.05h",
+      "where": [
+        "emin = minimum eccentricity",
+        "h = relevant column dimension shown in the source PDF",
+        "Tied / spiral = column transverse-reinforcement type"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Theoretical Compressive Strength, Po",
+      "formula": "Po = 0.85f′c(Ag − As) + fyAs",
+      "where": [
+        "Po = theoretical compressive strength",
+        "f′c = specified concrete compressive strength",
+        "Ag = gross column area",
+        "As = area of longitudinal steel reinforcement",
+        "fy = yield strength of reinforcement"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Nominal Axial Compressive Strength, Pn",
+      "formula": "Tied: Pn = 0.80Po; Spiral: Pn = 0.85Po",
+      "where": [
+        "Pn = nominal axial compressive strength",
+        "Po = theoretical compressive strength",
+        "Tied / spiral = column transverse-reinforcement type"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Ultimate / Design Axial Compressive Strength, Pu",
+      "formula": "Pu = φPn; φ = 0.65 (tied); φ = 0.75 (spiral)",
+      "where": [
+        "Pu = ultimate / design axial compressive strength",
+        "φ = strength-reduction factor",
+        "Pn = nominal axial compressive strength",
+        "Tied / spiral = column transverse-reinforcement type"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Limits of Reinforcement (%) for Column",
+      "formula": "0.01 ≤ ρg ≤ 0.08",
+      "where": [
+        "ρg = ratio of longitudinal reinforcement area to gross column area",
+        "The limits are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Number of Longitudinal Bars",
+      "formula": "3 for triangular ties; 4 for rectangular/circular ties; 6 for spiral columns",
+      "where": [
+        "The values specify the minimum number of longitudinal bars",
+        "Triangular ties / rectangular or circular ties / spiral = column tie or spiral configuration"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Tie / Confining Reinforcement Diameter",
+      "formula": "db ≤ 32 mm: tie diameter = 10 mm; db ≥ 36 mm: tie diameter = 12 mm",
+      "where": [
+        "db = main longitudinal-bar diameter",
+        "Tie diameter = minimum transverse tie diameter",
+        "The source PDF gives the two displayed ranges; it does not give a value for the interval between 32 mm and 36 mm."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spacing of Longitudinal Bars",
+      "formula": "sclear ≥ greatest of {1.5db, 40 mm}",
+      "where": [
+        "sclear = clear distance between longitudinal bars",
+        "db = longitudinal-bar diameter",
+        "The source PDF says the clear distance shall not be less than 1.5db or less than 40 mm."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spacing of Ties",
+      "formula": "stie ≤ least of {16db, 48dt, least column dimension}",
+      "where": [
+        "stie = vertical spacing of ties",
+        "db = longitudinal-bar diameter",
+        "dt = tie-bar diameter",
+        "Least column dimension = smallest cross-sectional dimension of the column",
+        "The source PDF directs choosing the smallest limit."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Clear Cover of Ties",
+      "formula": "Cclear ≥ greatest of {db, 40 mm, (4/3)(maximum coarse aggregate size)}",
+      "where": [
+        "Cclear = minimum clear cover of ties",
+        "db = longitudinal-bar diameter",
+        "Maximum coarse aggregate size = largest coarse aggregate size",
+        "The source PDF directs choosing the largest limit."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spiral Reinforcements",
+      "formula": "ds ≥ 10 mm diameter",
+      "where": [
+        "ds = spiral-bar diameter",
+        "The source PDF states that the spiral size shall not be less than 10 mm diameter."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Clear Spacing Between Spirals",
+      "formula": "25 mm < clear spacing < 75 mm",
+      "where": [
+        "Clear spacing = clear distance between adjacent spiral turns",
+        "Both limits are copied from the source PDF."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Spiral Ratio, ρs",
+      "formula": "ρs = volume of spiral / volume of concrete core = 4as(Dc − db)/(sDc²)",
+      "where": [
+        "ρs = volumetric spiral reinforcement ratio",
+        "as = cross-sectional area of the spiral bar",
+        "Dc = diameter of the concrete core",
+        "db = bar-diameter symbol shown in the source PDF formula",
+        "s = pitch / vertical spacing of spiral turns"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Spiral Reinforcement Ratio, ρsmin",
+      "formula": "ρsmin = 0.45(D²/Dc² − 1)(f′c/fy); ρsmin = 0.12f′c/fyv",
+      "where": [
+        "ρsmin = minimum spiral reinforcement ratio",
+        "D = outside diameter used in the first source expression",
+        "Dc = diameter of the concrete core",
+        "f′c = specified concrete compressive strength",
+        "fy = yield strength of longitudinal reinforcement",
+        "fyv = yield strength of spiral reinforcement in the second expression"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Balanced Condition (Eccentrically Loaded Short Column)",
+      "formula": "e = ebal; Pn = Pbal; Mn = Mbal",
+      "where": [
+        "e = load eccentricity",
+        "ebal = balanced eccentricity",
+        "Pn = nominal axial compressive strength",
+        "Pbal = balanced axial load",
+        "Mn = nominal moment",
+        "Mbal = balanced moment"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Strength by Concrete – Simplified Calculation (Axial Compression)",
+      "formula": "Vc = 0.17λ(1 + Nu/(14Ag))√(f′c)bw d",
+      "where": [
+        "Vc = concrete contribution to nominal shear strength",
+        "λ = concrete density / lightweight-concrete factor",
+        "Nu = factored axial load; positive for compression",
+        "Ag = gross concrete area",
+        "f′c = specified concrete compressive strength",
+        "bw = web width",
+        "d = effective depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Strength by Concrete – Simplified Calculation (Axial Tension)",
+      "formula": "Vc = 0.17λ(1 + Nu/(3.5Ag))√(f′c)bw d",
+      "where": [
+        "Vc = concrete contribution to nominal shear strength",
+        "λ = concrete density / lightweight-concrete factor",
+        "Nu = factored axial load; negative for tension and positive for compression",
+        "Ag = gross concrete area",
+        "f′c = specified concrete compressive strength",
+        "bw = web width",
+        "d = effective depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Strength Provided by Web Reinforcement",
+      "formula": "Vs = Avfyt d/s; Vs ≤ 0.67λ√(f′c)bw d",
+      "where": [
+        "Vs = shear strength provided by web reinforcement",
+        "Av = area of shear reinforcement within spacing s",
+        "fyt = yield strength of transverse reinforcement",
+        "d = effective depth",
+        "s = spacing of shear reinforcement",
+        "λ = concrete density / lightweight-concrete factor",
+        "f′c = specified concrete compressive strength",
+        "bw = web width"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Nominal Shear Strength, Vn",
+      "formula": "Vn = Vc + Vs",
+      "where": [
+        "Vn = nominal shear strength",
+        "Vc = concrete contribution to shear strength",
+        "Vs = shear reinforcement contribution to shear strength"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Design Shear Strength, Vu",
+      "formula": "Vu = φVn",
+      "where": [
+        "Vu = design shear strength",
+        "φ = strength-reduction factor",
+        "Vn = nominal shear strength"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Maximum Spacing of Shear Reinforcement",
+      "formula": "If Vs ≤ 0.33√(f′c)bw d: smax = d/2 or 600 mm; if Vs > 0.33√(f′c)bw d: smax = d/4 or 300 mm",
+      "where": [
+        "Vs = shear strength provided by web reinforcement",
+        "f′c = specified concrete compressive strength",
+        "bw = web width",
+        "d = effective depth",
+        "smax = maximum spacing of shear reinforcement",
+        "The PDF gives the two limits for each condition joined by “or”; it does not state an additional selection rule on that slide."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Minimum Area of Shear Reinforcement",
+      "formula": "Avmin = 0.35bws/fyt; Avmin = 0.062√(f′c)bws/fyt",
+      "where": [
+        "Avmin = minimum area of shear reinforcement within spacing s",
+        "bw = web width",
+        "s = spacing of shear reinforcement",
+        "fyt = yield strength of transverse reinforcement",
+        "f′c = specified concrete compressive strength",
+        "The source PDF lists both minimum-area expressions and does not print a separate selection rule on that slide."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Shear Reinforcements are Needed When",
+      "formula": "Vu ≤ 0.5φVc: stirrups not needed; 0.5φVc < Vu ≤ φVc: minimum stirrups needed; Vu > φVc: stirrups needed",
+      "where": [
+        "Vu = factored/design shear force",
+        "φ = strength-reduction factor",
+        "Vc = concrete contribution to shear strength",
+        "The limits and labels follow the source PDF diagram."
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Wide-Beam Shear Strength",
+      "formula": "Vc = 0.17λ√(f′c)bw d",
+      "where": [
+        "Vc = concrete shear strength for the wide-beam footing case shown in the source PDF",
+        "λ = concrete density / lightweight-concrete factor",
+        "f′c = specified concrete compressive strength",
+        "bw = web / beam width",
+        "d = effective depth"
+      ],
+      "mnemonics": ""
+    },
+    {
+      "name": "Punching Shear Strength",
+      "formula": "Vc = 0.33λ√(f′c)Ap",
+      "where": [
+        "Vc = concrete punching shear strength",
+        "λ = concrete density / lightweight-concrete factor",
+        "f′c = specified concrete compressive strength",
+        "Ap = area denoted Ap in the source PDF formula"
       ],
       "mnemonics": ""
     }
